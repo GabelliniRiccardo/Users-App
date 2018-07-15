@@ -1,0 +1,196 @@
+<form
+        (ngSubmit)="onSubmit(f)"
+        #f="ngForm">
+
+    <div class="row">
+        <div class="col-xl-4 form-group">
+
+            <div class="form-inline">
+
+                <label
+                        for="name">
+                    Name
+
+                </label>
+
+                <div data-toggle="tooltip"
+                     data-placement="left"
+                     title="minlength: 3">
+
+                    <span class="badge badge-dark">?</span>
+
+                </div>
+            </div>
+
+            <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    ngModel
+                    required
+                    minlength="3"
+                    #inputName="ngModel">
+
+            <div class="alert alert-danger" *ngIf="!inputName.valid && inputName.touched">
+                Name is invalid
+            </div>
+        </div>
+
+
+        <div class="col-xl-4 form-group">
+
+            <div class="form-inline">
+                <label
+                        for="surname">
+                    Surname
+                </label>
+
+                <div data-toggle="tooltip"
+                     data-placement="left"
+                     title="minlength: 3">
+
+                    <span class="badge badge-dark">?</span>
+                </div>
+
+            </div>
+            <input
+                    id="surname"
+                    class="form-control"
+                    type="text"
+                    name="surname"
+                    ngModel
+                    required
+                    minlength="3"
+                    #inputSurname="ngModel">
+
+            <div class="alert alert-danger" *ngIf="!inputSurname.valid && inputSurname.touched">
+                Surname is invalid
+            </div>
+        </div>
+
+
+        <div class="col-xl-4 form-group">
+
+            <div class="form-inline">
+                <label
+
+                        for="email">
+                    Email
+                </label>
+
+                <div data-toggle="tooltip"
+                     data-placement="left"
+                     title="insert a valid email">
+
+                    <span class="badge badge-dark">?</span>
+
+                </div>
+            </div>
+            <input
+                    id="email"
+                    class="form-control"
+                    type="email"
+                    name="email"
+                    ngModel
+                    required
+                    email
+                    #inputEmail="ngModel">
+
+
+            <div class="alert alert-danger" *ngIf="!inputEmail.valid && inputEmail.touched">
+                Email is invalid
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-xl-4 form-group">
+
+            <div class="form-inline">
+                <label
+                        for="phone">
+                    Phone
+                </label>
+
+                <div data-toggle="tooltip"
+                     data-placement="left"
+                     title="insert only numbers">
+
+                    <span class="badge badge-dark">?</span>
+
+                </div>
+            </div>
+            <input
+                    id="phone"
+                    class="form-control"
+                    type="text"
+                    name="phone"
+                    ngModel
+                    required
+                    minlength="10"
+                    maxlength="10"
+                    [pattern]="phonePattern"
+                    #inputPhone="ngModel">
+
+            <div class="alert alert-danger" *ngIf="!inputPhone.valid && inputPhone.touched">
+                Phone is invalid
+            </div>
+
+        </div>
+
+        <div class="col-xl-4 form-group">
+
+            <div class="form-inline">
+
+                <label
+                        for="password">
+                    Password
+                </label>
+
+                <div data-toggle="tooltip"
+                     data-placement="left"
+                     title="Password must cointains at least one character">
+
+                    <span class="badge badge-dark">?</span>
+
+                </div>
+            </div>
+
+            <input
+                    id="password"
+                    class="form-control"
+                    type="password"
+                    name="password"
+                    ngModel
+                    required
+                    [pattern]="passwordPattern"
+                    #inputPassword="ngModel">
+
+            <div class="alert alert-danger" *ngIf="!inputPassword.valid && inputPassword.touched">
+                Password is invalid
+            </div>
+
+        </div>
+
+        <div class="col-xl-4 form-group text-center">
+
+            <br>
+
+            <button [disabled]="!f.valid" class="btn btn-success" type="submit">
+                Register User
+            </button>
+
+        </div>
+
+
+    </div>
+
+</form>
+
+
+
+

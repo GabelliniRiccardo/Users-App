@@ -1,0 +1,197 @@
+<div class="container">
+    <div class="navbar-collapse row">
+        <div class="col-xl-10">
+
+
+            <h1>WELCOME TO THE HOME PAGE!</h1>
+            <p>This is my firs Home Page!</p>
+        </div>
+
+        <div class="col-xl-2 text-center">
+            <button class="btn btn-danger"
+                    (click)="exit()">Exit
+            </button>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div
+        *ngIf="!editMode"
+        class="text-center">
+
+    <button
+            type="button"
+            class="btn btn-success"
+            (click)="onRegisterUser()">
+        Register new User
+    </button>
+</div>
+
+
+<add-user-form
+        *ngIf="editMode"
+        (addedUser)="addUserToList($event)">
+</add-user-form>
+
+
+<hr>
+
+
+<div *ngIf="errorHasOccourred" class="row">
+    <div class="col-xl-12">
+
+        <div class="text-center">
+
+            'ops, something went wrong :('
+
+            <button class="alert alert-info"
+                    (click)="executeUsersRequest()">
+                Reload
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row" *ngIf="!errorHasOccourred">
+
+    <div class="col-xl-6 text-center">
+
+        <h2>List Of Users</h2>
+        <p>Users are represented using a bootstrap table</p>
+
+
+    </div>
+
+
+    <div class="col-xl-6 text-center">
+
+
+        <button
+                type="button" class="btn btn-primary"
+                (click)="onConfirm();">
+            Confirm Users
+        </button>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="container" *ngIf="!loadingCompleted ; else listLoaded">
+    <div class="row">
+        <div class="col-xl-12 text-center">
+            LOADING {{loadingCount*10}}%
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="loading">
+                <div class="progress">
+                    <div class="progress-bar"
+                         role="progressbar"
+                         [ngStyle]="{width: loadingCount * 10 + '%' }"
+                         aria-valuenow="75"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr>
+
+
+<ng-template #listLoaded>
+    <div class="row" *ngIf="listOfUsers.length>0 ; else emptyList">
+        <div class="container">
+            <div class="col-xl-12">
+
+                <table class="table table-hover">
+
+                    <thead>
+
+                    <tr class="table-primary">
+                        <th>ID</th>
+                        <th>Firstname</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Manage</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr *ngFor="let user of listOfUSerOfOnePAge; let i=index">
+                        <td><span class="badge badge-info">{{i}}</span></td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <modal-basic (deleteEvent)="onDeleteUser(user)"></modal-basic>
+
+                                </div>
+
+                                <div class="col-xl-6">
+                                    <dropdown-menu [user]="user"></dropdown-menu>
+
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    <div *ngFor="let number of generateNumbers()">
+                        <li class="page-item active" *ngIf="number===currentPage">
+                            <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
+                        </li>
+
+                        <li class="page-item" *ngIf="number!=currentPage">
+                            <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <ng-template #emptyList>
+        <hr>
+        <div class="text-center">_______________________ Please Register a user _______________________
+        </div>
+    </ng-template>
+
+</ng-template>
+
+
+
+
+
+

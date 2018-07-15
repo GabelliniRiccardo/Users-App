@@ -1,0 +1,122 @@
+<div class="container"> <!--class="container"-->
+
+
+    <form #loginForm="ngForm" novalidate
+          class="max-width-of-form mx-auto my-auto">
+
+        <div class="container pt-md-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 class="text-center">Login Form</h1>
+                </div>
+            </div>
+
+            <div class="row margin_of_input">
+                <div class="col">
+                    <label for="email">E-mail</label>
+                    <input type="text"
+                           class="form-control"
+                           [(ngModel)]="email"
+                           minlength="4"
+                           name="email"
+                           placeholder="E-mail"
+                           id="email"
+                           required
+                           [pattern]="emailPattern"
+                           #emailOfUser="ngModel">
+
+                    <div *ngIf="loginForm.submitted">
+
+                        <div *ngIf="emailOfUser.errors?.required " class="alert alert-danger">
+                            Email of user is required
+                        </div>
+
+                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger">
+                            Email of user not valid.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin_of_input">
+                <div class="col">
+                    <label for="password">Password</label>
+                    <input type="password"
+                           class="form-control"
+                           [(ngModel)]="password"
+                           name="passwordOfUser"
+                           placeholder="Password"
+                           id="password"
+                           minlength="4"
+                           maxlength="16"
+                           required
+                           [pattern]="passwordPattern"
+                           #passwordOfTheUser="ngModel"/>
+
+                    <div *ngIf="loginForm.submitted">
+
+                        <div *ngIf="passwordOfTheUser.errors?.required" class="alert alert-danger">
+                            Password of user is required
+                        </div>
+
+                        <div *ngIf="passwordOfTheUser.errors?.pattern" class="alert alert-danger">
+                            Password of user not valid.
+                        </div>
+
+                        <div *ngIf="passwordOfTheUser.errors?.minlength" class="alert alert-danger">
+                            The length of the password must be at least of 4 characters
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <div class="checkbox">
+                        <label><input #checkbox type="checkbox" name="remember">
+                            Remember mail address</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin_of_input">
+                <div class="col text-center">
+                    <button #button type="submit"
+                            class="btn btn-success"
+
+                            (click)="passwordOfTheUser.reset(password); emailOfUser.reset(email); userHasClickedButtonOfLogin();">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <br>
+
+    <div class="row">
+        <div class="col text-center">
+
+            <p>email typed: {{email}}</p>
+            <p>password typed: {{password}}</p>
+
+            <div *ngIf="loginForm.submitted && !passwordOfTheUser.dirty && !emailOfUser.dirty">
+                <div *ngIf="passwordOfTheUser?.errors || emailOfUser?.errors" class="alert alert-danger">
+                    No requests sent to the Server
+                </div>
+
+                <div *ngIf="loginForm.errors?.error401" class="alert alert-danger">
+                    Access Denied: {{loginForm.errors.error401}}
+
+                </div>
+
+
+                <div *ngIf="loginForm.errors?.genericError" class="alert alert-danger">
+                    {{loginForm.errors.genericError}}
+                </div>
+            </div>
+
+            <p>Email: DIRTY: {{emailOfUser.dirty}}</p>
+            <p>Password: DIRTY: {{passwordOfTheUser.dirty}}</p>
+            <p>submitted: {{loginForm.submitted}}</p>
+        </div>
+    </div>
+</div>
