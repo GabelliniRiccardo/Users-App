@@ -1,16 +1,16 @@
-<div class="pippo">
-    <div class="navbar-collapse row">
-        <div class="col-10">
+<div class="container-fluid pt-3">
+    <div class="navbar-collapse">
+        <div class="row">
+            <div class="col">
+                <h1>WELCOME TO THE HOME PAGE!</h1>
+                <p>This is my firs Home Page!</p>
+            </div>
 
-
-            <h1>WELCOME TO THE HOME PAGE!</h1>
-            <p>This is my firs Home Page!</p>
-        </div>
-
-        <div class="col-2 text-center">
-            <button class="btn btn-danger"
-                    (click)="exit()">Exit
-            </button>
+            <div class="col-2 text-center px-2">
+                <button class="btn btn-danger"
+                        (click)="exit()">Exit
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -41,44 +41,31 @@
 
 <div *ngIf="errorHasOccourred" class="row">
     <div class="col-12">
-
         <div class="text-center">
-
             'ops, something went wrong :('
-
             <button class="alert alert-info"
                     (click)="executeUsersRequest()">
                 Reload
             </button>
-
         </div>
-
     </div>
 </div>
 
 
 <div class="row" *ngIf="!errorHasOccourred">
-
-    <div class="col-6 text-center">
-
+    <div class="col text-center">
         <h2>List Of Users</h2>
         <p>Users are represented using a bootstrap table</p>
-
-
     </div>
 
-
-    <div class="col-6 text-center">
-
+    <div class="col text-center">
 
         <button
                 type="button" class="btn btn-primary"
                 (click)="onConfirm();">
             Confirm Users
         </button>
-
     </div>
-
 </div>
 
 <hr>
@@ -89,7 +76,6 @@
             LOADING {{loadingCount*10}}%
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-12">
@@ -113,110 +99,57 @@
 
 
 <ng-template #listLoaded>
-    <!--<div class="container-fluid">-->
-        <!--<div class="row" >-->
-            <div class="mx-auto table-responsive" *ngIf="listOfUsers.length>0 ; else emptyList">
+    <div class="mx-auto table-responsive" *ngIf="listOfUsers.length>0 ; else emptyList">
 
+        <!--SCROLL TABLE-->
 
-                <!--USED TEXT-TRUNCATE-->
+        <table class="table">
+            <thead>
+            <tr class="table-primary">
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Manage</th>
 
-                <!--<table class="table-sm table table-hover table-striped">-->
+            </tr>
+            </thead>
 
-                    <!--<thead>-->
+            <tbody>
+            <tr class="text-truncate" *ngFor="let user of listOfUSerOfOnePAge; let i=index">
+                <td>
+                    <span class="badge badge-info">
+                    {{ 3 * currentPage + i }}
+                    </span>
+                </td>
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                    <div class="row">
+                        <div class="col">
+                            <modal-basic (deleteEvent)="onDeleteUser(user)"></modal-basic>
+                        </div>
 
-                    <!--<tr class="table-primary row text-truncate">-->
-                        <!--<th class="col-1 text-truncate pl-2">ID</th>-->
-                        <!--<th class="col-3 text-truncate">Firstname</th>-->
-                        <!--<th class="col-3 text-truncate">Surname</th>-->
-                        <!--<th class="col-3 text-truncate">Email</th>-->
-                        <!--<th class="col-2 text-truncate">Manage</th>-->
+                        <div class="col">
+                            <dropdown-menu [user]="user"></dropdown-menu>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-                    <!--</tr>-->
-                    <!--</thead>-->
-
-                    <!--<tbody>-->
-                    <!--<tr class="row text-truncate" *ngFor="let user of listOfUSerOfOnePAge; let i=index">-->
-                        <!--<td class="col-1 text-truncate pl-2"><span class="badge badge-info">{{i}}</span></td>-->
-                        <!--<td class="col-3 text-truncate">{{user.name}}</td>-->
-                        <!--<td class="col-3 text-truncate">{{user.surname}}</td>-->
-                        <!--<td class="col-3 text-truncate">{{user.email}}</td>-->
-                        <!--<td class="col-2 text-truncate">-->
-                            <!--<div class="row">-->
-                                <!--<div class="col">-->
-                                    <!--<modal-basic (deleteEvent)="onDeleteUser(user)"></modal-basic>-->
-
-                                <!--</div>-->
-
-                                <!--<div class="col">-->
-                                    <!--<dropdown-menu [user]="user"></dropdown-menu>-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-
-
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-
-                <!--</table>-->
-
-                <!--SCROLL TABLE-->
-
-                <table class="table">
-
-                    <thead>
-
-                    <tr class="table-primary">
-                        <th>ID</th>
-                        <th>Firstname</th>
-                        <th>Surname</th>
-                        <th>Email</th>
-                        <th>Manage</th>
-
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr class="text-truncate" *ngFor="let user of listOfUSerOfOnePAge; let i=index">
-                        <td><span class="badge badge-info">{{i}}</span></td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.surname}}</td>
-                        <td>{{user.email}}</td>
-                        <td>
-                            <div class="row">
-                                <div class="col">
-                                    <modal-basic (deleteEvent)="onDeleteUser(user)"></modal-basic>
-
-                                </div>
-
-                                <div class="col">
-                                    <dropdown-menu [user]="user"></dropdown-menu>
-
-                                </div>
-                            </div>
-
-
-                        </td>
-                    </tr>
-                    </tbody>
-
-                </table>
-
-
-            </div>
-        <!--</div>-->
-    <!--</div>-->
+    </div>
 
     <div class="row">
         <div class="col-12">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-
                     <div *ngFor="let number of generateNumbers()">
                         <li class="page-item active" *ngIf="number===currentPage">
                             <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
                         </li>
-
                         <li class="page-item" *ngIf="number!=currentPage">
                             <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
                         </li>
