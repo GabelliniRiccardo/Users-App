@@ -21,6 +21,7 @@ export class HomePageComponent implements OnInit {
 
   editMode: boolean = false;
   loadingCompleted: boolean = false;
+  errorHasOccourred: boolean = false;
 
   interval: any;
 
@@ -32,7 +33,6 @@ export class HomePageComponent implements OnInit {
   constructor(private userService: UserService,
               private dataStorageService: DataStorageService,
               private router: Router) {
-
   }
 
 
@@ -78,9 +78,11 @@ export class HomePageComponent implements OnInit {
         console.log('Users Received: ', response)
         this.listOfUsers = response;
         this.onPageNumberClick(0);
+        this.errorHasOccourred=false;
       },
       (error) => {
         console.log(error)
+        this.errorHasOccourred=true;
       }
     )
 
@@ -145,6 +147,4 @@ export class HomePageComponent implements OnInit {
     this.listOfUSerOfOnePAge = this.listOfUsers.slice(startFrom, startFrom + this.numberOfUsersInOnePAge);
 
   }
-
-
 }

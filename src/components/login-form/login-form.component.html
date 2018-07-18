@@ -15,7 +15,7 @@
                 <div class="col">
                     <label for="email">E-mail</label>
                     <input type="text"
-                           class="form-control"
+                           class="form-control input-height"
                            [(ngModel)]="email"
                            minlength="4"
                            name="email"
@@ -27,11 +27,11 @@
 
                     <div *ngIf="loginForm.submitted">
 
-                        <div *ngIf="emailOfUser.errors?.required " class="alert alert-danger">
+                        <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
                             Email of user is required
                         </div>
 
-                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger">
+                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger mb-0">
                             Email of user not valid.
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                 <div class="col">
                     <label for="password">Password</label>
                     <input type="password"
-                           class="form-control"
+                           class="form-control input-height"
                            [(ngModel)]="password"
                            name="passwordOfUser"
                            placeholder="Password"
@@ -55,15 +55,15 @@
 
                     <div *ngIf="loginForm.submitted">
 
-                        <div *ngIf="passwordOfTheUser.errors?.required" class="alert alert-danger">
+                        <div *ngIf="passwordOfTheUser.errors?.required" class="alert alert-danger mb-0">
                             Password of user is required
                         </div>
 
-                        <div *ngIf="passwordOfTheUser.errors?.pattern" class="alert alert-danger">
+                        <div *ngIf="passwordOfTheUser.errors?.pattern" class="alert alert-danger mb-0">
                             Password of user not valid.
                         </div>
 
-                        <div *ngIf="passwordOfTheUser.errors?.minlength" class="alert alert-danger">
+                        <div *ngIf="passwordOfTheUser.errors?.minlength" class="alert alert-danger mb-0">
                             The length of the password must be at least of 4 characters
                         </div>
 
@@ -103,13 +103,13 @@
                     No requests sent to the Server
                 </div>
 
-                <div *ngIf="loginForm.errors?.error401" class="alert alert-danger">
+                <div *ngIf="loginForm.errors?.error401" class="alert alert-danger mb-0">
                     Access Denied: {{loginForm.errors.error401}}
 
                 </div>
 
 
-                <div *ngIf="loginForm.errors?.genericError" class="alert alert-danger">
+                <div *ngIf="loginForm.errors?.genericError" class="alert alert-danger mb-0">
                     {{loginForm.errors.genericError}}
                 </div>
             </div>
