@@ -1,26 +1,25 @@
-<div class="container"> <!--class="container"-->
 
+<div class="container my-3 my-md-5">
 
     <form #loginForm="ngForm" novalidate
           class="max-width-of-form mx-auto">
 
-        <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <h1 class="text-center">Login Form</h1>
+        <div class="container u-card">
+            <div class="row mt-4 mb-3">
+                <div class="col text-center u-title">
+                    Login Form
                 </div>
             </div>
 
-            <div class="row margin_of_input">
+            <div class="row">
                 <div class="col">
-                    <label for="email">E-mail</label>
                     <input type="text"
-                           class="form-control input-height"
+                           class="form-control u-input no-autocomplete text-truncate"
+                           [class.u-input-invalid]="loginForm.submitted && emailOfUser.errors"
                            [(ngModel)]="email"
                            minlength="4"
                            name="email"
                            placeholder="E-mail"
-                           id="email"
                            required
                            [pattern]="emailPattern"
                            #emailOfUser="ngModel">
@@ -34,19 +33,19 @@
                         <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger mb-0">
                             Email of user not valid.
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="row margin_of_input">
+            <div class="row mt-4">
                 <div class="col">
-                    <label for="password">Password</label>
                     <input type="password"
-                           class="form-control input-height"
+                           class="form-control u-input no-autocomplete text-truncate"
+                           [class.u-input-invalid]="loginForm.submitted && passwordOfTheUser.errors"
                            [(ngModel)]="password"
                            name="passwordOfUser"
                            placeholder="Password"
-                           id="password"
                            minlength="4"
                            maxlength="16"
                            required
@@ -67,21 +66,19 @@
                             The length of the password must be at least of 4 characters
                         </div>
 
-
                     </div>
-                    <br>
-                    <div class="checkbox">
+                    <div class="checkbox my-4 text-truncate">
                         <label><input #checkbox type="checkbox" name="remember">
                             Remember mail address</label>
                     </div>
                 </div>
             </div>
 
-            <div class="row margin_of_input">
+            <div class="row">
                 <div class="col text-center">
                     <button #button type="submit"
-                            class="btn btn-success"
-
+                            [class.u-btn-error]="(passwordOfTheUser.errors || emailOfUser.errors) && loginForm.submitted"
+                            class="btn u-btn"
                             (click)="passwordOfTheUser.reset(password); emailOfUser.reset(email); userHasClickedButtonOfLogin();">
                         Submit
                     </button>
@@ -90,17 +87,12 @@
         </div>
     </form>
 
-    <br>
-
-    <div class="row">
+    <div class="row my-4">
         <div class="col text-center">
+            <div *ngIf="loginForm.submitted && !passwordOfTheUser.dirty && !emailOfUser.dirty" class="u-card p-0">
 
-            <p>email typed: {{email}}</p>
-            <p>password typed: {{password}}</p>
-
-            <div *ngIf="loginForm.submitted && !passwordOfTheUser.dirty && !emailOfUser.dirty">
                 <div *ngIf="passwordOfTheUser?.errors || emailOfUser?.errors" class="alert alert-danger">
-                    No requests sent to the Server
+                    No requests sent to the Server ( please respect e-mail and password pattern )
                 </div>
 
                 <div *ngIf="loginForm.errors?.error401" class="alert alert-danger mb-0">
@@ -112,11 +104,8 @@
                 <div *ngIf="loginForm.errors?.genericError" class="alert alert-danger mb-0">
                     {{loginForm.errors.genericError}}
                 </div>
-            </div>
 
-            <p>Email: DIRTY: {{emailOfUser.dirty}}</p>
-            <p>Password: DIRTY: {{passwordOfTheUser.dirty}}</p>
-            <p>submitted: {{loginForm.submitted}}</p>
+            </div>
         </div>
     </div>
 </div>
