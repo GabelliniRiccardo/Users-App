@@ -19,6 +19,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.component";
+import {AngularSvgIconModule} from 'angular-svg-icon';
 // import {DropdownDirective} from "../components/dropdown-menu/dropdown.directive";
 
 
@@ -26,6 +27,7 @@ import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.c
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularSvgIconModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTING),
     FormsModule,

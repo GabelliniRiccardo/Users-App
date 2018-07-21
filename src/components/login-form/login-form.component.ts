@@ -28,6 +28,8 @@ export class LoginFormComponent implements OnInit {
   emailPattern       = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   passwordPattern    = "([0-9]+[a-zA-z]+|[a-zA-z]+[0-9]+)+([0-9]+[a-zA-z]*|[a-zA-z]+[0-9]*)*";
 
+  isPasswordShownLikePlanText: boolean = true;
+
 
   @ViewChild('loginForm') loginForm : NgForm;
   @ViewChild('checkbox') checkbox : ElementRef;

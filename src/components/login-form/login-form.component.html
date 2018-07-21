@@ -1,4 +1,3 @@
-
 <div class="container my-3 my-md-5">
 
     <form #loginForm="ngForm" novalidate
@@ -40,17 +39,32 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    <input type="password"
-                           class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="loginForm.submitted && passwordOfTheUser.errors"
-                           [(ngModel)]="password"
-                           name="passwordOfUser"
-                           placeholder="Password"
-                           minlength="4"
-                           maxlength="16"
-                           required
-                           [pattern]="passwordPattern"
-                           #passwordOfTheUser="ngModel"/>
+                    <div class="u-input input-group" #passwordFieldGroupFocus
+                         [class.u-input-invalid]="loginForm.submitted && passwordOfTheUser.errors"
+                         [class.u-input-focused]="passwordFieldGroupFocus.value"
+                         (click)="passwordInputField.focus()">
+                        <input
+                                type="{{isPasswordShownLikePlanText ? 'password' : 'text'}}"
+                                class="form-control u-input border-0 no-autocomplete text-truncate"
+                                [(ngModel)]="password"
+                                name="passwordOfUser"
+                                placeholder="Password"
+                                minlength="4"
+                                maxlength="16"
+                                required
+                                [pattern]="passwordPattern"
+                                (focus)="passwordFieldGroupFocus.value = true"
+                                (focusout)="passwordFieldGroupFocus.value = false"
+                                #passwordOfTheUser="ngModel"
+                                #passwordInputField/>
+
+                        <div class="pr-4 my-auto">
+                            <svg-icon src="{{isPasswordShownLikePlanText ? '/assets/svg/eye.svg' : '/assets/svg/eye-off.svg'}}"
+                                      style="cursor: pointer"
+                                      (click)="isPasswordShownLikePlanText = !isPasswordShownLikePlanText; passwordInputField.focus()">
+                            </svg-icon>
+                        </div>
+                    </div>
 
                     <div *ngIf="loginForm.submitted">
 
