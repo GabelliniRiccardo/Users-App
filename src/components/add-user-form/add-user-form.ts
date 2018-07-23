@@ -3,8 +3,7 @@ import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'add-user-form',
-  templateUrl: './add-user-form.html',
-  styleUrls: ['./add-user-form.scss']
+  templateUrl: './add-user-form.html'
 })
 
 export class AddUserForm{
@@ -22,8 +21,6 @@ export class AddUserForm{
     const email = f.value.email;
     const phone = f.value.phone;
     const password = f.value.password;
-
-
 
     this.addedUser.emit({email,password,name,surname,phone});
   }

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {User} from "../../Models/user.model";
 
 @Component({
   selector: 'modal-basic',
@@ -10,7 +9,6 @@ import {User} from "../../Models/user.model";
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent {
-  closeResult: string;
 
   @Output() deleteEvent = new EventEmitter<boolean>();
 
