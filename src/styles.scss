@@ -104,3 +104,19 @@ body{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+// SHADOW ON SCROLLING
+
+.shadowOnLeft{
+  box-shadow: inset 5px 0px 10px -3px #616161;
+}
+
+.shadowOnRight{
+  box-shadow: inset -5px 0px 10px -3px #616161;
+}
+
+.shadowOnRightAndOnLeft{
+  box-shadow: inset -5px 0px 10px -3px #616161, inset 5px 0px 10px -3px #616161;
+
+}

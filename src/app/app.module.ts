@@ -20,7 +20,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.component";
 import {AngularSvgIconModule} from 'angular-svg-icon';
-// import {DropdownDirective} from "../components/dropdown-menu/dropdown.directive";
+import {ScrollDirective} from '../directives/scroll.directive';
 
 
 @NgModule({
@@ -41,6 +41,7 @@ import {AngularSvgIconModule} from 'angular-svg-icon';
     AddUserForm,
     ModalComponent,
     DropdownMenuComponent,
+    ScrollDirective
 
   ],
 
