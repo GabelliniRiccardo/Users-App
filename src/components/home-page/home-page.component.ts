@@ -10,7 +10,8 @@ import {range} from "rxjs/internal/observable/range";
 
 @Component({
   selector: 'app-home-page',
-  templateUrl: './home-page.component.html'
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
 
 export class HomePageComponent implements OnInit {

@@ -2,11 +2,10 @@
     <div class="navbar-collapse">
         <div class="row">
             <div class="col">
-                <h1>WELCOME TO THE HOME PAGE!</h1>
-                <p>This is my firs Home Page!</p>
+                <h1 class="u-title">RG</h1>
             </div>
 
-            <div class="col-2 text-center px-2">
+            <div class="col-4 text-right px-2">
                 <button class="btn btn-danger"
                         (click)="exit()">Exit
                 </button>
@@ -15,12 +14,10 @@
     </div>
 </div>
 
-<hr>
+<hr class="mt-0">
 
-<div
-        *ngIf="!editMode"
+<div   *ngIf="!editMode"
         class="text-center">
-
     <button
             type="button"
             class="btn btn-success"
@@ -52,13 +49,13 @@
 </div>
 
 
-<div class="row" *ngIf="!errorHasOccourred">
-    <div class="col text-center">
+<div class="row u-card lighter-background mx-0" *ngIf="!errorHasOccourred">
+    <div class="col text-center m-auto">
         <h2>List Of Users</h2>
         <p>Users are represented using a bootstrap table</p>
     </div>
 
-    <div class="col text-center">
+    <div class="col text-center m-auto">
 
         <button
                 type="button" class="btn btn-primary"
@@ -99,13 +96,13 @@
 
 
 <ng-template #listLoaded>
-    <div scrolldirective class="mx-auto table-responsive" *ngIf="listOfUsers.length>0 ; else emptyList">
+    <div scrolldirective class="mx-auto table-responsive u-card lighter-background mb-2" *ngIf="listOfUsers.length>0 ; else emptyList">
 
         <!--SCROLL TABLE-->
 
         <table class="table">
             <thead>
-            <tr class="table-primary">
+            <tr class>
                 <th>ID</th>
                 <th>Firstname</th>
                 <th>Surname</th>
