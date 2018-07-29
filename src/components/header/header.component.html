@@ -1,0 +1,23 @@
+<div class="row pt-3 u-sticky-top u-rounded-border-bottom mb-2" appShadowOnScroll [useWindowScroll]="true"
+     [shadowClass]="'shadowBottomBlue'">
+    <div class="col">
+        <h1 class="u-title">RG</h1>
+    </div>
+
+    <div *ngIf="!showLinks" class="col-4 text-right px-2">
+        <button class="btn btn-danger"
+                (click)="exit()">Exit
+        </button>
+    </div>
+
+    <div *ngIf="showLinks" class="col-8 text-right px-2">
+        <button class="u-btn-lighter mx-2">
+            <a routerLink="/login" class="u-link">Login</a>
+        </button>
+
+
+        <button class="u-btn-lighter mx-2">
+            <a routerLink="/registration" class="u-link">Registrati</a>
+        </button>
+    </div>
+</div>

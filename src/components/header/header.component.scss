@@ -1,0 +1,23 @@
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.u-rounded-border-bottom{
+  border-radius: 25px;
+}
+
+.u-btn-lighter{
+  background-image: -webkit-linear-gradient(99deg, #0096ff, #7dc9ff);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: sans-serif;
+  box-shadow: 0 3px 24px 0 #00a6e9;
+
+  &:hover {
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(99deg, #00c1ff, #377cff);
+    box-shadow: 0 3px 24px 0 #377cff;
+  }
+}

@@ -22,6 +22,7 @@ import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.c
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {ScrollDirective} from '../directives/scroll.directive';
 import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-scroll.directive';
+import { HeaderComponent } from '../components/header/header.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-
     ModalComponent,
     DropdownMenuComponent,
     ScrollDirective,
-    ShadowOnScrollDirective
+    ShadowOnScrollDirective,
+    HeaderComponent
   ],
 
   providers: [
