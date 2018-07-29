@@ -1,23 +1,17 @@
-<div class="container-fluid pt-3">
-    <div class="navbar-collapse">
-        <div class="row">
-            <div class="col">
-                <h1 class="u-title">RG</h1>
-            </div>
+<div class="row pt-3 u-sticky-top u-rounded-border-bottom mb-2" appShadowOnScroll [useWindowScroll]="true" [shadowClass]="'shadowBottomBlue'">
+    <div class="col">
+        <h1 class="u-title">RG</h1>
+    </div>
 
-            <div class="col-4 text-right px-2">
-                <button class="btn btn-danger"
-                        (click)="exit()">Exit
-                </button>
-            </div>
-        </div>
+    <div class="col-4 text-right px-2">
+        <button class="btn btn-danger"
+                (click)="exit()">Exit
+        </button>
     </div>
 </div>
 
-<hr class="mt-0">
-
-<div   *ngIf="!editMode"
-        class="text-center">
+<div *ngIf="!editMode"
+     class="text-center">
     <button
             type="button"
             class="btn btn-success"
@@ -96,7 +90,8 @@
 
 
 <ng-template #listLoaded>
-    <div scrolldirective class="mx-auto table-responsive u-card lighter-background mb-2" *ngIf="listOfUsers.length>0 ; else emptyList">
+    <div scrolldirective class="mx-auto table-responsive u-card lighter-background mb-2"
+         *ngIf="listOfUsers.length>0 ; else emptyList">
 
         <!--SCROLL TABLE-->
 

@@ -21,6 +21,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.component";
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {ScrollDirective} from '../directives/scroll.directive';
+import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-scroll.directive';
 
 
 @NgModule({
@@ -41,8 +42,8 @@ import {ScrollDirective} from '../directives/scroll.directive';
     AddUserForm,
     ModalComponent,
     DropdownMenuComponent,
-    ScrollDirective
-
+    ScrollDirective,
+    ShadowOnScrollDirective
   ],
 
   providers: [

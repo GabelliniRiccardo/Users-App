@@ -52,15 +52,19 @@
   }
 }
 
+$backgroundColor1: #377cff;
+$backgroundColor2: #00c1ff;
+$backgroundColor3: white;
+
 body{
-  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%) fixed;
+  background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%) fixed !important;
 }
 
 
 // BUTTON
 
 .u-btn {
-  background-image: linear-gradient(99deg, #2cb5e8, #0fb8ad);
+  background-image: -webkit-linear-gradient(99deg, $backgroundColor2, $backgroundColor1);
   border: 0;
   border-radius: 8px;
   color: white;
@@ -79,12 +83,12 @@ body{
   }
 
   &:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(99deg, #2cb5e8, #0fb8ad);
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(99deg, $backgroundColor2, $backgroundColor1);
   }
 
   &:active {
     // NOTE: !important is needed to override the bootstrap behaviour
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(99deg, #1020d4, #0fb8ad) !important;
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), -webkit-linear-gradient(99deg, #1020d4, $backgroundColor2) !important;
   }
 
   &:focus {
@@ -104,7 +108,7 @@ body{
   letter-spacing: -2px;
   font-weight: bold;
 
-  background: -webkit-linear-gradient(#2cb5e8, #1f50ff);
+  background: -webkit-linear-gradient($backgroundColor2, #1f50ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -123,4 +127,18 @@ body{
 .shadowOnRightAndOnLeft{
   box-shadow: inset -5px 0px 10px -3px #616161, inset 5px 0px 10px -3px #616161;
 
+}
+
+.shadowBottomBlue {
+  box-shadow: 0px 13px 25px 0px rgba(60, 193, 255, 0.47);
+}
+
+// BLOCK POSITION
+
+.u-sticky-top{
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%);
+  background-size: 100% 100vh;
 }
