@@ -47,7 +47,7 @@
   background-color: #ffffff;
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.06);
 
-  &.lighter-background{
+  &.lighter-background {
     background-color: rgba(255, 255, 255, 0.36);
   }
 }
@@ -56,10 +56,9 @@ $backgroundColor1: #377cff;
 $backgroundColor2: #00c1ff;
 $backgroundColor3: white;
 
-body{
+body {
   background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%) fixed !important;
 }
-
 
 // BUTTON
 
@@ -78,7 +77,7 @@ body{
   text-align: center;
   box-shadow: 0 3px 24px 0 #00a6e9;
 
-  &.u-btn-error{
+  &.u-btn-error {
     box-shadow: 0 3px 24px 0 #e9132f;
   }
 
@@ -96,10 +95,9 @@ body{
   }
 }
 
-
 // TEXT
 
-.u-title{
+.u-title {
   color: #444;
   margin: 0;
   padding: 0px 0px 6px 0px;
@@ -113,29 +111,17 @@ body{
   -webkit-text-fill-color: transparent;
 }
 
-.u-link{
-  color: white;
-  font-family: sans-serif;
-  font-size: 14px;
-  line-height: 44px;
-  letter-spacing: 0px;
-  font-weight: bold;
-  text-transform: capitalize;
-  text-align: center;
-}
-
-
 // SHADOW ON SCROLLING
 
-.shadowOnLeft{
+.shadowOnLeft {
   box-shadow: inset 5px 0px 10px -3px #616161;
 }
 
-.shadowOnRight{
+.shadowOnRight {
   box-shadow: inset -5px 0px 10px -3px #616161;
 }
 
-.shadowOnRightAndOnLeft{
+.shadowOnRightAndOnLeft {
   box-shadow: inset -5px 0px 10px -3px #616161, inset 5px 0px 10px -3px #616161;
 
 }
@@ -146,7 +132,7 @@ body{
 
 // BLOCK POSITION
 
-.u-sticky-top{
+.u-sticky-top {
   position: sticky;
   top: 0px;
   z-index: 1000;

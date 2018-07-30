@@ -23,6 +23,7 @@ import {AngularSvgIconModule} from 'angular-svg-icon';
 import {ScrollDirective} from '../directives/scroll.directive';
 import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-scroll.directive';
 import { HeaderComponent } from '../components/header/header.component';
+import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { HeaderComponent } from '../components/header/header.component';
     DropdownMenuComponent,
     ScrollDirective,
     ShadowOnScrollDirective,
-    HeaderComponent
+    HeaderComponent,
+    RegistrationFormComponent
   ],
 
   providers: [
