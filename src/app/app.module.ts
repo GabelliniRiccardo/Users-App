@@ -20,10 +20,11 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.component";
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {ScrollDirective} from '../directives/scroll.directive';
+import {ShadowOnTableDirective} from '../directives/shadow-on-table/shadow-on-table.directive';
 import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-scroll.directive';
 import { HeaderComponent } from '../components/header/header.component';
 import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
+import {RegistrationService} from '../services/registration.service';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { RegistrationFormComponent } from '../components/registration-form/regis
     AddUserForm,
     ModalComponent,
     DropdownMenuComponent,
-    ScrollDirective,
+    ShadowOnTableDirective,
     ShadowOnScrollDirective,
     HeaderComponent,
     RegistrationFormComponent
@@ -56,7 +57,9 @@ import { RegistrationFormComponent } from '../components/registration-form/regis
     DataStorageService,
     AuthenticationServiceOnLogin,
     AuthenticationServiceOnHomePage,
-    NgbModal],
+    NgbModal,
+    RegistrationService
+  ],
 
   bootstrap: [AppComponent]
 

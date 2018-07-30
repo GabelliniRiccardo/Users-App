@@ -2,7 +2,7 @@
 
 <div class="container my-3 my-md-5">
 
-    <form #loginForm="ngForm" novalidate
+    <form #registrationForm="ngForm" novalidate
           class="max-width-of-form mx-auto">
 
         <div class="container u-card">
@@ -16,7 +16,7 @@
                 <div class="col">
                     <input type="text"
                            class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="loginForm.submitted && emailOfUser.errors"
+                           [class.u-input-invalid]="registrationForm.submitted && nameOfUser.errors"
                            [(ngModel)]="name"
                            minlength="4"
                            name="name"
@@ -24,14 +24,14 @@
                            required
                            #nameOfUser="ngModel">
 
-                    <div *ngIf="loginForm.submitted">
+                    <div *ngIf="registrationForm.submitted">
 
-                        <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Email of user is required
+                        <div *ngIf="nameOfUser.errors?.required" class="alert alert-danger mb-0">
+                            Name of user is required
                         </div>
 
-                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger mb-0">
-                            Email of user not valid.
+                        <div *ngIf="nameOfUser.errors?.minlength" class="alert alert-danger mb-0">
+                            Name of user must be at least 4 character
                         </div>
 
                     </div>
@@ -42,7 +42,7 @@
                 <div class="col">
                     <input type="text"
                            class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="loginForm.submitted && emailOfUser.errors"
+                           [class.u-input-invalid]="registrationForm.submitted && surnameOfUser.errors"
                            [(ngModel)]="surname"
                            minlength="4"
                            name="surname"
@@ -50,14 +50,14 @@
                            required
                            #surnameOfUser="ngModel">
 
-                    <div *ngIf="loginForm.submitted">
+                    <div *ngIf="registrationForm.submitted">
 
-                        <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Email of user is required
+                        <div *ngIf="surnameOfUser.errors?.required" class="alert alert-danger mb-0">
+                            Surname of user is required
                         </div>
 
-                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger mb-0">
-                            Email of user not valid.
+                        <div *ngIf="surnameOfUser.errors?.minlength" class="alert alert-danger mb-0">
+                            Name of user must be at least 4 character
                         </div>
 
                     </div>
@@ -68,7 +68,7 @@
                 <div class="col">
                     <input type="text"
                            class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="loginForm.submitted && emailOfUser.errors"
+                           [class.u-input-invalid]="registrationForm.submitted && phoneOfUser.errors"
                            [(ngModel)]="phone"
                            minlength="10"
                            maxlength="10"
@@ -78,14 +78,18 @@
                            [pattern]="phonePattern"
                            #phoneOfUser="ngModel">
 
-                    <div *ngIf="loginForm.submitted">
+                    <div *ngIf="registrationForm.submitted">
 
-                        <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Email of user is required
+                        <div *ngIf="phoneOfUser.errors?.required" class="alert alert-danger mb-0">
+                            Phone of user is required
                         </div>
 
-                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger mb-0">
-                            Email of user not valid.
+                        <div *ngIf="phoneOfUser.errors?.minlength" class="alert alert-danger mb-0">
+                            Phone of user must be 10 numbers
+                        </div>
+
+                        <div *ngIf="phoneOfUser.errors?.pattern" class="alert alert-danger mb-0">
+                            Phone of user not valid.
                         </div>
 
                     </div>
@@ -96,7 +100,7 @@
                 <div class="col">
                     <input type="text"
                            class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="loginForm.submitted && emailOfUser.errors"
+                           [class.u-input-invalid]="registrationForm.submitted && emailOfUser.errors"
                            [(ngModel)]="email"
                            minlength="4"
                            name="email"
@@ -105,7 +109,7 @@
                            [pattern]="emailPattern"
                            #emailOfUser="ngModel">
 
-                    <div *ngIf="loginForm.submitted">
+                    <div *ngIf="registrationForm.submitted">
 
                         <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
                             Email of user is required
@@ -122,7 +126,7 @@
             <div class="row my-2">
                 <div class="col">
                     <div class="u-input input-group" #passwordFieldGroupFocus
-                         [class.u-input-invalid]="loginForm.submitted && passwordOfTheUser.errors"
+                         [class.u-input-invalid]="registrationForm.submitted && passwordOfTheUser.errors"
                          [class.u-input-focused]="passwordFieldGroupFocus.value"
                          (click)="passwordInputField.focus()">
                         <input
@@ -148,7 +152,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="loginForm.submitted">
+                    <div *ngIf="registrationForm.submitted">
 
                         <div *ngIf="passwordOfTheUser.errors?.required" class="alert alert-danger mb-0">
                             Password of user is required
@@ -209,9 +213,9 @@
             <div class="row">
                 <div class="col text-center">
                     <button #button type="submit"
-                            [class.u-btn-error]="(passwordOfTheUser.errors || emailOfUser.errors) && loginForm.submitted"
+                            [class.u-btn-error]="(passwordOfTheUser.errors || emailOfUser.errors) && registrationForm.submitted"
                             class="btn u-btn"
-                            (click)="passwordOfTheUser.reset(password); emailOfUser.reset(email); userHasClickedButtonOfLogin();">
+                            (click)="nameOfUser.reset(name); surnameOfUser.reset(surname); phoneOfUser.reset(phone); emailOfUser.reset(email); passwordOfTheUser.reset(password); onRegister();">
                         Register
                     </button>
                 </div>
@@ -221,20 +225,23 @@
 
     <div class="row my-4">
         <div class="col text-center">
-            <div *ngIf="loginForm.submitted && !passwordOfTheUser.dirty && !emailOfUser.dirty" class="u-card p-0">
+            <div *ngIf="registrationForm.submitted && !nameOfUser.dirty && !surnameOfUser.dirty && !phoneOfUser.dirty && !emailOfUser.dirty && !passwordOfTheUser.dirty" class="u-card p-0">
 
-                <div *ngIf="passwordOfTheUser?.errors || emailOfUser?.errors" class="alert alert-danger">
-                    No requests sent to the Server ( please respect e-mail and password pattern )
+                <div *ngIf="nameOfUser?.errors || surnameOfUser?.errors || phoneOfUser.errors || emailOfUser?.errors || passwordOfTheUser?.errors " class="alert alert-danger">
+                    No requests sent to the Server ( please respect all input fields )
                 </div>
 
-                <div *ngIf="loginForm.errors?.error401" class="alert alert-danger mb-0">
-                    Access Denied: {{loginForm.errors.error401}}
+                <div *ngIf="registrationForm.errors?.error401" class="alert alert-danger mb-0">
+                    Registration Denied: {{registrationForm.errors.error401}}
 
                 </div>
 
+                <div *ngIf="registrationForm.errors?.genericError" class="alert alert-danger mb-0">
+                    {{registrationForm.errors.genericError}}
+                </div>
 
-                <div *ngIf="loginForm.errors?.genericError" class="alert alert-danger mb-0">
-                    {{loginForm.errors.genericError}}
+                <div *ngIf="confirmMessageFromServer" class="alert alert-success">
+                    Registration Completed!
                 </div>
 
             </div>
