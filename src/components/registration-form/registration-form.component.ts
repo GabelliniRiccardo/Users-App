@@ -27,7 +27,11 @@ export class RegistrationFormComponent {
   @ViewChild('registrationForm') registrationForm: NgForm;
 
   constructor(private registrationService: RegistrationService,
-              public loadingService : LoadingService) {
+              public loadingService: LoadingService) {
+  }
+
+  resetConfirmMessageFromServer(){
+    this.confirmMessageFromServer = '';
   }
 
 
