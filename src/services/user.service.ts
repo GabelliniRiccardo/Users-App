@@ -11,8 +11,8 @@ import {map} from "rxjs/operators";
 export class UserService {
 
 
-  usersUrl: string = 'http://localhost:3000/users';
-  // usersUrl: string = 'http://ec2-35-180-128-122.eu-west-3.compute.amazonaws.com:3000/users';
+  // usersUrl: string = 'http://localhost:3000/users';
+  usersUrl: string = 'http://ec2-35-180-128-122.eu-west-3.compute.amazonaws.com:3000/users';
 
 
   constructor(private http: HttpClient) {
