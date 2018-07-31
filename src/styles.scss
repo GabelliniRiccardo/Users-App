@@ -47,20 +47,23 @@
   background-color: #ffffff;
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.06);
 
-  &.lighter-background{
+  &.lighter-background {
     background-color: rgba(255, 255, 255, 0.36);
   }
 }
 
-body{
-  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%) fixed;
-}
+$backgroundColor1: #377cff;
+$backgroundColor2: #00c1ff;
+$backgroundColor3: white;
 
+body {
+  background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%) fixed !important;
+}
 
 // BUTTON
 
 .u-btn {
-  background-image: linear-gradient(99deg, #2cb5e8, #0fb8ad);
+  background-image: -webkit-linear-gradient(99deg, $backgroundColor2, $backgroundColor1);
   border: 0;
   border-radius: 8px;
   color: white;
@@ -74,17 +77,17 @@ body{
   text-align: center;
   box-shadow: 0 3px 24px 0 #00a6e9;
 
-  &.u-btn-error{
+  &.u-btn-error {
     box-shadow: 0 3px 24px 0 #e9132f;
   }
 
   &:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(99deg, #2cb5e8, #0fb8ad);
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(99deg, $backgroundColor2, $backgroundColor1);
   }
 
   &:active {
     // NOTE: !important is needed to override the bootstrap behaviour
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(99deg, #1020d4, #0fb8ad) !important;
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), -webkit-linear-gradient(99deg, #1020d4, $backgroundColor2) !important;
   }
 
   &:focus {
@@ -92,10 +95,9 @@ body{
   }
 }
 
-
 // TEXT
 
-.u-title{
+.u-title {
   color: #444;
   margin: 0;
   padding: 0px 0px 6px 0px;
@@ -104,23 +106,36 @@ body{
   letter-spacing: -2px;
   font-weight: bold;
 
-  background: -webkit-linear-gradient(#2cb5e8, #1f50ff);
+  background: -webkit-linear-gradient($backgroundColor2, #1f50ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-
 // SHADOW ON SCROLLING
 
-.shadowOnLeft{
+.shadowOnLeft {
   box-shadow: inset 5px 0px 10px -3px #616161;
 }
 
-.shadowOnRight{
+.shadowOnRight {
   box-shadow: inset -5px 0px 10px -3px #616161;
 }
 
-.shadowOnRightAndOnLeft{
+.shadowOnRightAndOnLeft {
   box-shadow: inset -5px 0px 10px -3px #616161, inset 5px 0px 10px -3px #616161;
 
+}
+
+.shadowBottomBlue {
+  box-shadow: 0px 13px 25px 0px rgba(60, 193, 255, 0.47);
+}
+
+// BLOCK POSITION
+
+.u-sticky-top {
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%);
+  background-size: 100% 100vh;
 }

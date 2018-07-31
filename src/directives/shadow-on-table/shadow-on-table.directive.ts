@@ -13,9 +13,9 @@ import {
 
 
 @Directive({
-  selector: '[scrolldirective]'
+  selector: '[shadowOnTable]'
 })
-export class ScrollDirective implements AfterContentChecked {
+export class ShadowOnTableDirective implements AfterContentChecked {
 
   @HostBinding('class.shadowOnLeft') shadowOnLeft: boolean = false;
   @HostBinding('class.shadowOnRight') shadowOnRight: boolean = false;

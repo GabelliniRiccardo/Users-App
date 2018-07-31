@@ -20,7 +20,13 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropdownMenuComponent} from "../components/dropdown-menu/dropdown-menu.component";
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {ScrollDirective} from '../directives/scroll.directive';
+import {ShadowOnTableDirective} from '../directives/shadow-on-table/shadow-on-table.directive';
+import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-scroll.directive';
+import { HeaderComponent } from '../components/header/header.component';
+import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
+import {RegistrationService} from '../services/registration.service';
+import {LoadingModule} from 'ngx-loading';
+import {LoadingService} from '../services/loading.service';
 
 
 @NgModule({
@@ -29,6 +35,7 @@ import {ScrollDirective} from '../directives/scroll.directive';
     HttpClientModule,
     AngularSvgIconModule,
     ReactiveFormsModule,
+    LoadingModule,
     RouterModule.forRoot(ROUTING),
     FormsModule,
     NgbModule.forRoot()
@@ -41,8 +48,10 @@ import {ScrollDirective} from '../directives/scroll.directive';
     AddUserForm,
     ModalComponent,
     DropdownMenuComponent,
-    ScrollDirective
-
+    ShadowOnTableDirective,
+    ShadowOnScrollDirective,
+    HeaderComponent,
+    RegistrationFormComponent,
   ],
 
   providers: [
@@ -51,7 +60,10 @@ import {ScrollDirective} from '../directives/scroll.directive';
     DataStorageService,
     AuthenticationServiceOnLogin,
     AuthenticationServiceOnHomePage,
-    NgbModal],
+    NgbModal,
+    RegistrationService,
+    LoadingService
+  ],
 
   bootstrap: [AppComponent]
 
