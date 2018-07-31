@@ -4,6 +4,7 @@ import {DataStorageService} from "../../services/data-storage.service";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {LoadingService} from '../../services/loading.service';
 
 export interface User {
   name: string,
@@ -37,7 +38,8 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private dataStorageService: DataStorageService,
-              private router : Router) {
+              private router : Router,
+              public loadingService : LoadingService) {
   }
 
 
@@ -52,11 +54,14 @@ export class LoginFormComponent implements OnInit {
 
     if (this.loginForm.valid) {    // only if the form is valid the app make interval request at the API
 
+      this.loadingService.setLoading();
+
       this.loginService.doPostForLogin(this.email, this.password).subscribe(
 
         // case 1: Http responseOfServer code is 200 (OK)
 
         (res: User) => {
+          this.loadingService.unsetLoading();
           this.responseOfServer = 'Welcome ' + res.name + ' ' + res.surname;
           this.controlIfrememberMailAddressIsChecked();    // call this method only if all is OK (responseOfServer code is 200)
           this.dataStorageService.setUserAsAutenticated();
@@ -66,6 +71,7 @@ export class LoginFormComponent implements OnInit {
         // case 2: Http responseOfServer is bad (error 401 (Unathorized or generic error)
 
         (err: HttpErrorResponse) => {
+          this.loadingService.unsetLoading();
           if (err.status === 401) {            // UNATHORIZED
             this.loginForm.form.setErrors({error401: err.error.error})
           } else {                             // GENERIC ERROR (Server Unreachable)

@@ -6,6 +6,7 @@ import {User} from "../../Models/user.model";
 import {HttpResponse} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
 import {range} from "rxjs/internal/observable/range";
+import {LoadingService} from '../../services/loading.service';
 
 
 @Component({
@@ -20,19 +21,19 @@ export class HomePageComponent implements OnInit {
   listOfUSerOfOnePAge: User[] = [];
 
   editMode: boolean = false;
-  loadingCompleted: boolean = false;
   errorHasOccourred: boolean = false;
 
   interval: any;
 
-  loadingCount = 0;
+  //loadingCount = 0;
   numberOfUsersInOnePAge: number = 3;
   currentPage: number = 0;
 
 
   constructor(private userService: UserService,
               private dataStorageService: DataStorageService,
-              private router: Router) {
+              private router: Router,
+              public loadingService : LoadingService) {
   }
 
 
@@ -46,15 +47,15 @@ export class HomePageComponent implements OnInit {
 
     this.executeUsersRequest()
 
-    this.interval = setInterval(() => {
+    /*this.interval = setInterval(() => {
         this.loadingCount++;
         if (this.loadingCount == 11) {
           clearInterval(this.interval);
-          this.loadingCompleted = true;
+          this.loading = true;
         }
         console.log('Loading time:', this.loadingCount, 'sec')
       }, 500
-    )
+    )*/
 
 
   }
@@ -73,14 +74,18 @@ export class HomePageComponent implements OnInit {
 
   private executeUsersRequest() {
 
+    this.loadingService.setLoading();
+
     this.userService.getListOfUsers().subscribe(
       (response: User[]) => {
+        this.loadingService.unsetLoading();
         console.log('Users Received: ', response)
         this.listOfUsers = response;
         this.onPageNumberClick(0);
         this.errorHasOccourred=false;
       },
       (error) => {
+        this.loadingService.unsetLoading();
         console.log(error)
         this.errorHasOccourred=true;
       }
@@ -120,10 +125,19 @@ export class HomePageComponent implements OnInit {
   /* WHEN THE USER CONFIRM THE CHANGES THAT HAS DONE IT SENDS DATA TO THE API. IT WILL UPDATE ITS DATA */
 
   onConfirm() {
+
+    this.loadingService.setLoading();
+
     this.userService.updateListOfUsers(this.listOfUsers)
       .subscribe(
-        (response: { response: string }) => console.log('Response of Server : ', response),
-        (error: any) => console.log('Response of Server : ', error.error)
+        (response: { response: string }) => {
+          this.loadingService.unsetLoading();
+          console.log('Response of Server : ', response);
+        },
+        (error: any) => {
+          this.loadingService.unsetLoading();
+          console.log('Response of Server : ', error.error)
+        }
       )
   }
 

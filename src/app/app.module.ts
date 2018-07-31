@@ -25,6 +25,8 @@ import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-
 import { HeaderComponent } from '../components/header/header.component';
 import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
 import {RegistrationService} from '../services/registration.service';
+import {LoadingModule} from 'ngx-loading';
+import {LoadingService} from '../services/loading.service';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import {RegistrationService} from '../services/registration.service';
     HttpClientModule,
     AngularSvgIconModule,
     ReactiveFormsModule,
+    LoadingModule,
     RouterModule.forRoot(ROUTING),
     FormsModule,
     NgbModule.forRoot()
@@ -48,7 +51,7 @@ import {RegistrationService} from '../services/registration.service';
     ShadowOnTableDirective,
     ShadowOnScrollDirective,
     HeaderComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
   ],
 
   providers: [
@@ -58,7 +61,8 @@ import {RegistrationService} from '../services/registration.service';
     AuthenticationServiceOnLogin,
     AuthenticationServiceOnHomePage,
     NgbModal,
-    RegistrationService
+    RegistrationService,
+    LoadingService
   ],
 
   bootstrap: [AppComponent]
