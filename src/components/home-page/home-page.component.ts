@@ -45,7 +45,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.executeUsersRequest()
+    this.executeUsersRequest();
 
     /*this.interval = setInterval(() => {
         this.loadingCount++;

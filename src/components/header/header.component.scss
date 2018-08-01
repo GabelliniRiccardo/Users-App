@@ -1,14 +1,18 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
 
 a {
   color: white;
   text-decoration: none;
 }
 
-.u-rounded-border-bottom{
-  border-radius: 25px;
+.u-rounded-border-bottom {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.u-btn-lighter{
+.u-btn-lighter {
   background-image: -webkit-linear-gradient(99deg, #0096ff, #7dc9ff);
   border: 0;
   border-radius: 8px;
@@ -16,10 +20,21 @@ a {
   color: white;
   font-family: sans-serif;
   font-weight: bold;
-  box-shadow: 0 3px 24px 0 #00a6e9;
+  box-shadow: 0 2px 15px 0 white;
+
+  @include media-breakpoint-up(sm) {
+    box-shadow: 0 3px 24px 0 #00a6e9;
+  }
 
   &:hover {
     background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(99deg, #00c1ff, #377cff);
     box-shadow: 0 3px 24px 0 #377cff;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+
+  .shadowBottomWhite-sm {
+    box-shadow: 0px 13px 25px 0px #7dd2ff;
   }
 }
