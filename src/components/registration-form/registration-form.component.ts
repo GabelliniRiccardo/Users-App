@@ -17,16 +17,21 @@ export class RegistrationFormComponent {
   email: string = '';
   password: string = '';
   confirmMessageFromServer: string;
+  isPasswordShownLikePlanText: boolean = false;
 
 
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   passwordPattern = '([0-9]+[a-zA-z]+|[a-zA-z]+[0-9]+)+([0-9]+[a-zA-z]*|[a-zA-z]+[0-9]*)*';
-  phonePAttern = '[0-9]*';
+  phonePattern = '[0-9]*';
 
   @ViewChild('registrationForm') registrationForm: NgForm;
 
   constructor(private registrationService: RegistrationService,
-              public loadingService : LoadingService) {
+              public loadingService: LoadingService) {
+  }
+
+  resetConfirmMessageFromServer(){
+    this.confirmMessageFromServer = '';
   }
 
 
