@@ -1,14 +1,6 @@
-import {AfterViewInit} from "@angular/core";
-
-
 export class DataStorageService {
 
-  // local storage of the browser
   private storage = window.localStorage;
-
-
-
-  // EMAIL
 
   getEmail(): string {
     return this.storage.getItem('email');
@@ -19,24 +11,18 @@ export class DataStorageService {
   }
 
   clearMail() {
-      this.storage.removeItem('email');
+    this.storage.removeItem('email');
   }
 
-
-  // AUTENTICATION OF USER
-
-
-  setUserAsAutenticated(){
+  setUserAsAutenticated() {
     this.storage.setItem('autenticated', 'true');
   }
 
-  setUserAsNotAutenticated(){
+  setUserAsNotAutenticated() {
     this.storage.setItem('autenticated', 'false');
   }
 
-  isUserAutenticated() : boolean {
-    return this.storage.getItem('autenticated')==='true';
+  isUserAutenticated(): boolean {
+    return this.storage.getItem('autenticated') === 'true';
   }
-
-
 }

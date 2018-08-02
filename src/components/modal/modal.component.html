@@ -1,15 +1,15 @@
 <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Deleting user</h4>
-    </div>
-    <div class="modal-body">
-        <p>Do you Want to delete the user selected?&hellip;</p>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title">Deleting user</h4>
+  </div>
+  <div class="modal-body">
+    <p>Do you Want to delete the user selected?&hellip;</p>
+  </div>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="c('Close click')">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="onDelete(); c('Close click')" >Delete User</button>
-    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="c('Close click')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="onDelete(); c('Close click')">Delete User</button>
+  </div>
 </ng-template>
 
 <button class="btn btn-outline-danger mb-2 mr-2" (click)="openVerticallyCentered(content)">x</button>

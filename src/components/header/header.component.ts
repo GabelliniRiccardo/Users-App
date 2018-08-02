@@ -13,8 +13,7 @@ export class HeaderComponent {
   constructor() {
   }
 
-  exit(){
+  exit() {
     this.onExitEvent.emit();
   }
-
 }

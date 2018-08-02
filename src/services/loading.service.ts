@@ -1,17 +1,16 @@
-
 export class LoadingService {
 
-  private loading : boolean = false;
+  private loading: boolean = false;
 
-  isLoading() : boolean {
+  isLoading(): boolean {
     return this.loading;
   }
 
-  setLoading(){
+  setLoading() {
     this.loading = true;
   }
 
-  unsetLoading(){
+  unsetLoading() {
     this.loading = false;
   }
 }

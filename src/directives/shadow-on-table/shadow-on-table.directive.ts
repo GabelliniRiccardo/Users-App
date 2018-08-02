@@ -1,15 +1,4 @@
-import {
-  AfterContentChecked,
-  AfterViewChecked,
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  OnChanges,
-  OnInit,
-  SimpleChanges
-} from '@angular/core';
+import {AfterContentChecked, Directive, ElementRef, HostBinding, HostListener} from '@angular/core';
 
 
 @Directive({
@@ -37,7 +26,6 @@ export class ShadowOnTableDirective implements AfterContentChecked {
   @HostListener('window:resize') do() {
     this.insertShadows();
   }
-
 
   private insertShadows() {
     this.shadowOnLeft = true;

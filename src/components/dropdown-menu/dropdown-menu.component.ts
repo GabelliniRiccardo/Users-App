@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {User} from "../../Models/user.model";
+import {Component, Input} from '@angular/core';
+import {User} from '../../Models/user.model';
 
 @Component({
   selector: 'dropdown-menu',
@@ -8,6 +8,6 @@ import {User} from "../../Models/user.model";
 
 export class DropdownMenuComponent {
 
-  @Input() user : User;
+  @Input() user: User;
 
 }

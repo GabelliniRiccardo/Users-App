@@ -1,9 +1,9 @@
-import {Component, Injectable, OnInit, Input, ViewChild, ElementRef} from "@angular/core";
-import {LoginService} from "../../services/login.service";
-import {DataStorageService} from "../../services/data-storage.service";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {NgForm} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {LoginService} from '../../services/login.service';
+import {DataStorageService} from '../../services/data-storage.service';
+import {HttpErrorResponse} from '@angular/common/http';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 import {LoadingService} from '../../services/loading.service';
 
 export interface User {
@@ -22,63 +22,50 @@ export interface User {
 
 export class LoginFormComponent implements OnInit {
 
-  email:                string = '';
-  password:             string = '';
-  responseOfServer:     string = '';
+  email: string = '';
+  password: string = '';
+  responseOfServer: string = '';
 
-  emailPattern       = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  passwordPattern    = "([0-9]+[a-zA-z]+|[a-zA-z]+[0-9]+)+([0-9]+[a-zA-z]*|[a-zA-z]+[0-9]*)*";
+  passwordPattern = '([0-9]+[a-zA-z]+|[a-zA-z]+[0-9]+)+([0-9]+[a-zA-z]*|[a-zA-z]+[0-9]*)*';
 
   isPasswordShownLikePlanText: boolean = true;
 
-
-  @ViewChild('loginForm') loginForm : NgForm;
-  @ViewChild('checkbox') checkbox : ElementRef;
-
+  @ViewChild('loginForm') loginForm: NgForm;
+  @ViewChild('checkbox') checkbox: ElementRef;
 
   constructor(private loginService: LoginService,
               private dataStorageService: DataStorageService,
-              private router : Router,
-              public loadingService : LoadingService) {
+              private router: Router,
+              public loadingService: LoadingService) {
   }
 
-
-
-  ngOnInit() { // OnInit the email is loaded from interval data storage service
+  ngOnInit() {
     this.email = this.dataStorageService.getEmail();
   }
 
-
   userHasClickedButtonOfLogin() {
 
-
-    if (this.loginForm.valid) {    // only if the form is valid the app make interval request at the API
+    if (this.loginForm.valid) {
 
       this.loadingService.setLoading();
 
       this.loginService.doPostForLogin(this.email, this.password).subscribe(
-
-        // case 1: Http responseOfServer code is 200 (OK)
-
         (res: User) => {
           this.loadingService.unsetLoading();
           this.responseOfServer = 'Welcome ' + res.name + ' ' + res.surname;
-          this.controlIfrememberMailAddressIsChecked();    // call this method only if all is OK (responseOfServer code is 200)
+          this.controlIfrememberMailAddressIsChecked();
           this.dataStorageService.setUserAsAutenticated();
-          this.router.navigate(['home'])
+          this.router.navigate(['home']);
         },
-
-        // case 2: Http responseOfServer is bad (error 401 (Unathorized or generic error)
 
         (err: HttpErrorResponse) => {
           this.loadingService.unsetLoading();
-          if (err.status === 401) {            // UNATHORIZED
-            this.loginForm.form.setErrors({error401: err.error.error})
-          } else {                             // GENERIC ERROR (Server Unreachable)
+          if (err.status === 401) {
+            this.loginForm.form.setErrors({error401: err.error.error});
+          } else {
             this.loginForm.form.setErrors({genericError: 'Ops, Server is unreachable :( Please try later'});
           }
         });
-
     }
   }
 
@@ -91,6 +78,4 @@ export class LoginFormComponent implements OnInit {
       }
     }
   }
-
-
 }

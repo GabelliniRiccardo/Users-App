@@ -19,8 +19,6 @@ export class RegistrationFormComponent {
   confirmMessageFromServer: string;
   isPasswordShownLikePlanText: boolean = false;
 
-
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   passwordPattern = '([0-9]+[a-zA-z]+|[a-zA-z]+[0-9]+)+([0-9]+[a-zA-z]*|[a-zA-z]+[0-9]*)*';
   phonePattern = '[0-9]*';
 
@@ -30,10 +28,9 @@ export class RegistrationFormComponent {
               public loadingService: LoadingService) {
   }
 
-  resetConfirmMessageFromServer(){
+  resetConfirmMessageFromServer() {
     this.confirmMessageFromServer = '';
   }
-
 
   onRegister() {
 
@@ -49,9 +46,9 @@ export class RegistrationFormComponent {
           },
           (err: HttpErrorResponse) => {
             this.loadingService.unsetLoading();
-            if (err.status === 401) {            // UNATHORIZED
+            if (err.status === 401) {
               this.registrationForm.form.setErrors({error401: err.error.error});
-            } else {                             // GENERIC ERROR (Server Unreachable)
+            } else {
               this.registrationForm.form.setErrors({genericError: 'Ops, Server is unreachable :( Please try later'});
             }
           }

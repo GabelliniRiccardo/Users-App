@@ -1,16 +1,15 @@
 
-.max-width-of-form{
+.max-width-of-form {
   max-width: 400px;
 }
 
-.input-height{
+.input-height {
   height: 44px;
 }
 
 input {
 
-  &.no-autocomplete{
+  &.no-autocomplete {
     -webkit-box-shadow: 0 0 0 30px white inset;
   }
 }
-

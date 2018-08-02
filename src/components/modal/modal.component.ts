@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
 
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'modal-basic',
@@ -15,7 +15,6 @@ export class ModalComponent {
   constructor(private modalService: NgbModal) {
   }
 
-
   openVerticallyCentered(content: any) {
     this.modalService.open(content, {centered: true});
   }
@@ -23,5 +22,4 @@ export class ModalComponent {
   onDelete() {
     this.deleteEvent.emit(true);
   }
-
 }
