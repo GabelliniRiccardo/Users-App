@@ -14,13 +14,34 @@ import {LoadingService} from '../../services/loading.service';
 
 export class HomePageComponent implements OnInit {
 
+  /**
+   * @var {User[]} The list of users returned from the API.
+   */
   listOfUsers: User[] = [];
+
+  /**
+   * @var {User[]} The partial list of user that contains one page.
+   */
   listOfUSerOfOnePAge: User[] = [];
 
+  /**
+   * @var {boolean} True if user want to register another user.
+   */
   editMode: boolean = false;
+
+  /**
+   * @var {boolean} True if an error from the API occours.
+   */
   errorHasOccourred: boolean = false;
 
+  /**
+   * @var {number} The number of users to show in one single page.
+   */
   numberOfUsersInOnePAge: number = 3;
+
+  /**
+   * @var {number} The current page number.
+   */
   currentPage: number = 0;
 
 

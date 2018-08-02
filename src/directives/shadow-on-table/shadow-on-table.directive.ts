@@ -10,6 +10,9 @@ export class ShadowOnTableDirective implements AfterContentChecked {
   @HostBinding('class.shadowOnRight') shadowOnRight: boolean = false;
   @HostBinding('class.shadowOnRightAndOnLeft') shadowOnRightAndOnLeft: boolean = false;
 
+  /**
+   * @var {number} It indicates the value of scrolling.
+   */
   scrolling: number = 0;
 
   constructor(private elRef: ElementRef) {

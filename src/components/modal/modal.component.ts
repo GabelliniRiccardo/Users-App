@@ -10,6 +10,9 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent {
 
+  /**
+   * @var {EventEmitter<boolean>} A EventEmitter that is called when user is deleted.
+   */
   @Output() deleteEvent = new EventEmitter<boolean>();
 
   constructor(private modalService: NgbModal) {

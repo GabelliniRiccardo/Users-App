@@ -7,7 +7,14 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class HeaderComponent {
 
+  /**
+   * @var {boolean} True if user stays on registration page or login page. true on login page.
+   */
   @Input() showLinks: boolean = false;
+
+  /**
+   * @var {EventEmitter<void>} It emit an event when user exits from home page.
+   */
   @Output() onExitEvent: EventEmitter<void> = new EventEmitter();
 
   constructor() {

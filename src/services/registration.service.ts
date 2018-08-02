@@ -8,6 +8,9 @@ import {Observable} from 'rxjs/internal/Observable';
 
 export class RegistrationService {
 
+  /**
+   * @var {string} the url of the remote API.
+   */
   registrationUrl: string = 'https://us-central1-users-api-75677.cloudfunctions.net/usersApi/newUser';
 
   constructor(private http: HttpClient) {

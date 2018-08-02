@@ -8,7 +8,14 @@ import {NgForm} from '@angular/forms';
 
 export class AddUserFormComponent {
 
+  /**
+   * @var {string} The pattern used to control if password field is correct.
+   */
   passwordPattern = '([0-9]+[interval-zA-z]+|[interval-zA-z]+[0-9]+)+([0-9]+[interval-zA-z]*|[interval-zA-z]+[0-9]*)*';
+
+  /**
+   * @var {string} The pattern used to control if phone field is correct.
+   */
   phonePattern = '[0-9]*';
 
   @Output() addedUser = new EventEmitter();

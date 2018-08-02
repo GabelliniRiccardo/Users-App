@@ -1,6 +1,9 @@
 export class DataStorageService {
 
-  private storage = window.localStorage;
+  /**
+   * @var {Storage} A reference to the local storage
+   */
+  private storage: Storage = window.localStorage;
 
   getEmail(): string {
     return this.storage.getItem('email');

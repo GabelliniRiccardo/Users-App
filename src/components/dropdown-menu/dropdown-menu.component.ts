@@ -8,6 +8,9 @@ import {User} from '../../Models/user.model';
 
 export class DropdownMenuComponent {
 
+  /**
+   * @var {User} A variable thant contains the phone number of user.
+   */
   @Input() user: User;
 
 }

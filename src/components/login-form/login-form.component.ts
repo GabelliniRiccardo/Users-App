@@ -22,15 +22,39 @@ export interface User {
 
 export class LoginFormComponent implements OnInit {
 
+  /**
+   * @var {string} The email typed.
+   */
   email: string = '';
+
+  /**
+   * @var {string} The password typed.
+   */
   password: string = '';
+
+  /**
+   * @var {string} The response from the API: if some error occours it remains ''.
+   */
   responseOfServer: string = '';
 
+  /**
+   * @var {string} The pattern used to verify the password typed.
+   */
   passwordPattern = '([0-9]+[a-zA-z]+|[a-zA-z]+[0-9]+)+([0-9]+[a-zA-z]*|[a-zA-z]+[0-9]*)*';
 
+  /**
+   * @var {boolean} True if eye icon is clicked to show password in clear.
+   */
   isPasswordShownLikePlanText: boolean = true;
 
+  /**
+   * @var {NgForm} A Reference to the Login Form
+   */
   @ViewChild('loginForm') loginForm: NgForm;
+
+  /**
+   * @var {NgForm} A Reference to the checkbox
+   */
   @ViewChild('checkbox') checkbox: ElementRef;
 
   constructor(private loginService: LoginService,

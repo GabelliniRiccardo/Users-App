@@ -8,6 +8,9 @@ import {Observable} from 'rxjs/internal/Observable';
 
 export class LoginService {
 
+  /**
+   * @var {string} the url of the remote API.
+   */
   loginsUrl: string = 'https://us-central1-users-api-75677.cloudfunctions.net/usersApi/login';
 
 

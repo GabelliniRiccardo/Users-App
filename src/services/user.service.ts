@@ -9,6 +9,9 @@ import {User} from '../Models/user.model';
 
 export class UserService {
 
+  /**
+   * @var {string} the url of the remote API.
+   */
   usersUrl: string = 'https://us-central1-users-api-75677.cloudfunctions.net/usersApi/users';
 
   constructor(private http: HttpClient) {
