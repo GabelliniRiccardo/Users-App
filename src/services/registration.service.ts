@@ -10,7 +10,8 @@ export class RegistrationService {
 
 
   // registrationUrl: string = 'http://localhost:3000/newUser';
-  registrationUrl: string = 'http://ec2-35-180-128-122.eu-west-3.compute.amazonaws.com:3000/newUser';
+  // registrationUrl: string = 'http://ec2-35-180-128-122.eu-west-3.compute.amazonaws.com:3000/newUser';
+  registrationUrl: string = 'https://us-central1-users-api-75677.cloudfunctions.net/usersApi/newUser';
 
 
   constructor(private http: HttpClient) {
