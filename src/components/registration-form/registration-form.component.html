@@ -1,210 +1,201 @@
 <app-header [showLinks]="true"></app-header>
 
 <div class="container my-3 my-md-5">
+  <form #registrationForm="ngForm" novalidate
+        class="max-width-of-form mx-auto">
 
-    <form #registrationForm="ngForm" novalidate
-          class="max-width-of-form mx-auto">
-
-        <div class="container u-card">
-            <div class="row mt-4 mb-3">
-                <div class="col text-center u-title">
-                    Registration Form
-                </div>
-            </div>
-
-            <div class="row mb-2">
-                <div class="col">
-                    <input type="text"
-                           class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="registrationForm.submitted && nameOfUser.errors"
-                           [(ngModel)]="name"
-                           minlength="4"
-                           name="name"
-                           placeholder="Name"
-                           required
-                           #nameOfUser="ngModel">
-
-                    <div *ngIf="registrationForm.submitted">
-
-                        <div *ngIf="nameOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Name of user is required
-                        </div>
-
-                        <div *ngIf="nameOfUser.errors?.minlength" class="alert alert-danger mb-0">
-                            Name of user must be at least 4 character
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row my-2">
-                <div class="col">
-                    <input type="text"
-                           class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="registrationForm.submitted && surnameOfUser.errors"
-                           [(ngModel)]="surname"
-                           minlength="4"
-                           name="surname"
-                           placeholder="Surname"
-                           required
-                           #surnameOfUser="ngModel">
-
-                    <div *ngIf="registrationForm.submitted">
-
-                        <div *ngIf="surnameOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Surname of user is required
-                        </div>
-
-                        <div *ngIf="surnameOfUser.errors?.minlength" class="alert alert-danger mb-0">
-                            Name of user must be at least 4 character
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row my-2">
-                <div class="col">
-                    <input type="text"
-                           class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="registrationForm.submitted && phoneOfUser.errors"
-                           [(ngModel)]="phone"
-                           minlength="10"
-                           maxlength="10"
-                           name="phone"
-                           placeholder="Phone"
-                           required
-                           [pattern]="phonePattern"
-                           #phoneOfUser="ngModel">
-
-                    <div *ngIf="registrationForm.submitted">
-
-                        <div *ngIf="phoneOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Phone of user is required
-                        </div>
-
-                        <div *ngIf="phoneOfUser.errors?.minlength" class="alert alert-danger mb-0">
-                            Phone of user must be 10 numbers
-                        </div>
-
-                        <div *ngIf="phoneOfUser.errors?.pattern" class="alert alert-danger mb-0">
-                            Phone of user not valid.
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row my-2">
-                <div class="col">
-                    <input type="text"
-                           class="form-control u-input no-autocomplete text-truncate"
-                           [class.u-input-invalid]="registrationForm.submitted && emailOfUser.errors"
-                           [(ngModel)]="email"
-                           minlength="4"
-                           name="email"
-                           placeholder="E-mail"
-                           required
-                           [pattern]="emailPattern"
-                           #emailOfUser="ngModel">
-
-                    <div *ngIf="registrationForm.submitted">
-
-                        <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
-                            Email of user is required
-                        </div>
-
-                        <div *ngIf="emailOfUser.errors?.pattern" class="alert alert-danger mb-0">
-                            Email of user not valid.
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row my-2">
-                <div class="col">
-                    <div class="u-input input-group" #passwordFieldGroupFocus
-                         [class.u-input-invalid]="registrationForm.submitted && passwordOfTheUser.errors"
-                         [class.u-input-focused]="passwordFieldGroupFocus.value"
-                         (click)="passwordInputField.focus()">
-                        <input
-                                type="{{isPasswordShownLikePlanText ? 'password' : 'text'}}"
-                                class="form-control u-input border-0 no-autocomplete text-truncate"
-                                [(ngModel)]="password"
-                                name="passwordOfUser"
-                                placeholder="Password"
-                                minlength="4"
-                                maxlength="16"
-                                required
-                                [pattern]="passwordPattern"
-                                (focus)="passwordFieldGroupFocus.value = true"
-                                (focusout)="passwordFieldGroupFocus.value = false"
-                                #passwordOfTheUser="ngModel"
-                                #passwordInputField/>
-
-                        <div class="pr-4 my-auto">
-                            <svg-icon src="{{isPasswordShownLikePlanText ? '/assets/svg/eye.svg' : '/assets/svg/eye-off.svg'}}"
-                                      style="cursor: pointer"
-                                      (click)="isPasswordShownLikePlanText = !isPasswordShownLikePlanText; passwordInputField.focus()">
-                            </svg-icon>
-                        </div>
-                    </div>
-
-                    <div *ngIf="registrationForm.submitted">
-
-                        <div *ngIf="passwordOfTheUser.errors?.required" class="alert alert-danger mb-0">
-                            Password of user is required
-                        </div>
-
-                        <div *ngIf="passwordOfTheUser.errors?.pattern" class="alert alert-danger mb-0">
-                            Password of user not valid.
-                        </div>
-
-                        <div *ngIf="passwordOfTheUser.errors?.minlength" class="alert alert-danger mb-0">
-                            The length of the password must be at least of 4 characters
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col text-center">
-                    <button #button type="submit"
-                            [class.u-btn-error]="(passwordOfTheUser.errors || emailOfUser.errors) && registrationForm.submitted"
-                            class="btn u-btn"
-                            (click)="nameOfUser.reset(name); surnameOfUser.reset(surname); phoneOfUser.reset(phone); emailOfUser.reset(email); passwordOfTheUser.reset(password); resetConfirmMessageFromServer(); onRegister();">
-                        Register
-                    </button>
-                </div>
-            </div>
+    <div class="container u-card">
+      <div class="row mt-4 mb-3">
+        <div class="col text-center u-title">
+          Registration Form
         </div>
-    </form>
+      </div>
 
-    <div class="row my-4">
+      <div class="row mb-2">
+        <div class="col">
+          <input type="text"
+                 class="form-control u-input no-autocomplete text-truncate"
+                 [class.u-input-invalid]="registrationForm.submitted && nameOfUser.errors"
+                 [(ngModel)]="name"
+                 minlength="4"
+                 name="name"
+                 placeholder="Name"
+                 required
+                 #nameOfUser="ngModel">
+
+          <div *ngIf="registrationForm.submitted">
+            <div *ngIf="nameOfUser.errors?.required" class="alert alert-danger mb-0">
+              Name of user is required
+            </div>
+
+            <div *ngIf="nameOfUser.errors?.minlength" class="alert alert-danger mb-0">
+              Name of user must be at least 4 character
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col">
+          <input type="text"
+                 class="form-control u-input no-autocomplete text-truncate"
+                 [class.u-input-invalid]="registrationForm.submitted && surnameOfUser.errors"
+                 [(ngModel)]="surname"
+                 minlength="4"
+                 name="surname"
+                 placeholder="Surname"
+                 required
+                 #surnameOfUser="ngModel">
+
+          <div *ngIf="registrationForm.submitted">
+            <div *ngIf="surnameOfUser.errors?.required" class="alert alert-danger mb-0">
+              Surname of user is required
+            </div>
+
+            <div *ngIf="surnameOfUser.errors?.minlength" class="alert alert-danger mb-0">
+              Name of user must be at least 4 character
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col">
+          <input type="text"
+                 class="form-control u-input no-autocomplete text-truncate"
+                 [class.u-input-invalid]="registrationForm.submitted && phoneOfUser.errors"
+                 [(ngModel)]="phone"
+                 minlength="10"
+                 maxlength="10"
+                 name="phone"
+                 placeholder="Phone"
+                 required
+                 [pattern]="phonePattern"
+                 #phoneOfUser="ngModel">
+
+          <div *ngIf="registrationForm.submitted">
+            <div *ngIf="phoneOfUser.errors?.required" class="alert alert-danger mb-0">
+              Phone of user is required
+            </div>
+
+            <div *ngIf="phoneOfUser.errors?.minlength" class="alert alert-danger mb-0">
+              Phone of user must be 10 numbers
+            </div>
+
+            <div *ngIf="phoneOfUser.errors?.pattern" class="alert alert-danger mb-0">
+              Phone of user not valid.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col">
+          <input type="text"
+                 class="form-control u-input no-autocomplete text-truncate"
+                 [class.u-input-invalid]="registrationForm.submitted && emailOfUser.errors"
+                 [(ngModel)]="email"
+                 minlength="4"
+                 name="email"
+                 placeholder="E-mail"
+                 required
+                 email
+                 #emailOfUser="ngModel">
+
+          <div *ngIf="registrationForm.submitted">
+            <div *ngIf="emailOfUser.errors?.required" class="alert alert-danger mb-0">
+              Email of user is required
+            </div>
+
+            <div *ngIf="emailOfUser.errors?.email" class="alert alert-danger mb-0">
+              Email of user not valid.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col">
+          <div class="u-input input-group" #passwordFieldGroupFocus
+               [class.u-input-invalid]="registrationForm.submitted && passwordOfTheUser.errors"
+               [class.u-input-focused]="passwordFieldGroupFocus.value"
+               (click)="passwordInputField.focus()">
+            <input
+              type="{{isPasswordShownLikePlanText ? 'password' : 'text'}}"
+              class="form-control u-input border-0 no-autocomplete text-truncate"
+              [(ngModel)]="password"
+              name="passwordOfUser"
+              placeholder="Password"
+              minlength="4"
+              maxlength="16"
+              required
+              [pattern]="passwordPattern"
+              (focus)="passwordFieldGroupFocus.value = true"
+              (focusout)="passwordFieldGroupFocus.value = false"
+              #passwordOfTheUser="ngModel"
+              #passwordInputField/>
+
+            <div class="pr-4 my-auto">
+              <svg-icon src="{{isPasswordShownLikePlanText ? '/assets/svg/eye.svg' : '/assets/svg/eye-off.svg'}}"
+                        style="cursor: pointer"
+                        (click)="isPasswordShownLikePlanText = !isPasswordShownLikePlanText; passwordInputField.focus()">
+              </svg-icon>
+            </div>
+          </div>
+
+          <div *ngIf="registrationForm.submitted">
+            <div *ngIf="passwordOfTheUser.errors?.required" class="alert alert-danger mb-0">
+              Password of user is required
+            </div>
+
+            <div *ngIf="passwordOfTheUser.errors?.pattern" class="alert alert-danger mb-0">
+              Password of user not valid.
+            </div>
+
+            <div *ngIf="passwordOfTheUser.errors?.minlength" class="alert alert-danger mb-0">
+              The length of the password must be at least of 4 characters
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="col text-center">
-            <div *ngIf="registrationForm.submitted && !nameOfUser.dirty && !surnameOfUser.dirty && !phoneOfUser.dirty && !emailOfUser.dirty && !passwordOfTheUser.dirty" class="u-card p-0">
-
-                <div *ngIf="nameOfUser?.errors || surnameOfUser?.errors || phoneOfUser.errors || emailOfUser?.errors || passwordOfTheUser?.errors " class="alert alert-danger">
-                    No requests sent to the Server ( please respect all input fields )
-                </div>
-
-                <div *ngIf="registrationForm.errors?.error401" class="alert alert-danger mb-0">
-                    Registration Denied: {{registrationForm.errors.error401}}
-
-                </div>
-
-                <div *ngIf="registrationForm.errors?.genericError" class="alert alert-danger mb-0">
-                    {{registrationForm.errors.genericError}}
-                </div>
-
-                <div *ngIf="confirmMessageFromServer" class="alert alert-success">
-                    {{confirmMessageFromServer}}
-                </div>
-
-            </div>
+          <button #button type="submit"
+                  [class.u-btn-error]="(passwordOfTheUser.errors || emailOfUser.errors) && registrationForm.submitted"
+                  class="btn u-btn"
+                  (click)="nameOfUser.reset(name); surnameOfUser.reset(surname); phoneOfUser.reset(phone); emailOfUser.reset(email); passwordOfTheUser.reset(password); resetConfirmMessageFromServer(); onRegister();">
+            Register
+          </button>
         </div>
+      </div>
     </div>
+  </form>
+
+  <div class="row my-4">
+    <div class="col text-center">
+      <div
+        *ngIf="registrationForm.submitted && !nameOfUser.dirty && !surnameOfUser.dirty && !phoneOfUser.dirty && !emailOfUser.dirty && !passwordOfTheUser.dirty"
+        class="u-card p-0">
+        <div
+          *ngIf="nameOfUser?.errors || surnameOfUser?.errors || phoneOfUser.errors || emailOfUser?.errors || passwordOfTheUser?.errors "
+          class="alert alert-danger">
+          No requests sent to the Server ( please respect all input fields )
+        </div>
+
+        <div *ngIf="registrationForm.errors?.error401" class="alert alert-danger mb-0">
+          Registration Denied: {{registrationForm.errors.error401}}
+
+        </div>
+
+        <div *ngIf="registrationForm.errors?.genericError" class="alert alert-danger mb-0">
+          {{registrationForm.errors.genericError}}
+        </div>
+
+        <div *ngIf="confirmMessageFromServer" class="alert alert-success">
+          {{confirmMessageFromServer}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

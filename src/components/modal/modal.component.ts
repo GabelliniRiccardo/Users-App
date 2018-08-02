@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
 
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'modal-basic',
@@ -10,11 +10,13 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent {
 
+  /**
+   * @var {EventEmitter<boolean>} A EventEmitter that is called when user is deleted.
+   */
   @Output() deleteEvent = new EventEmitter<boolean>();
 
   constructor(private modalService: NgbModal) {
   }
-
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, {centered: true});
@@ -23,5 +25,4 @@ export class ModalComponent {
   onDelete() {
     this.deleteEvent.emit(true);
   }
-
 }

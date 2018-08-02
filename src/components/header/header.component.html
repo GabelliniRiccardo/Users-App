@@ -1,22 +1,21 @@
-<div class="row pt-3 u-sticky-top u-rounded-border-bottom mb-2 shadowBottomWhite-sm" appShadowOnScroll [useWindowScroll]="true"
+<div class="row pt-3 u-sticky-top u-rounded-border-bottom mb-2 shadowBottomWhite-sm" appShadowOnScroll
+     [useWindowScroll]="true"
      [shadowClass]="'shadowBottomBlue'">
-    <div class="col">
-        <h1 class="u-title p-1 p-md-2">RG</h1>
-    </div>
+  <div class="col">
+    <h1 class="u-title p-1 p-md-2">RG</h1>
+  </div>
 
-    <div *ngIf="!showLinks" class="col-4 text-right px-2">
-        <button class="btn btn-danger"
-                (click)="exit()">Exit
-        </button>
-    </div>
+  <div *ngIf="!showLinks" class="col-4 text-right px-2">
+    <button class="btn btn-danger" (click)="exit()">Exit</button>
+  </div>
 
-    <div *ngIf="showLinks" class="col-8 text-right px-2">
+  <div *ngIf="showLinks" class="col-8 text-right px-2">
+    <a routerLink="/login">
+      <button class="u-btn-lighter m-1 m-md-2 p-1 p-md-2">Login</button>
+    </a>
 
-        <a routerLink="/login"><button class="u-btn-lighter m-1 m-md-2 p-1 p-md-2">Login</button></a>
-
-
-
-
-        <a routerLink="/registration"> <button class="u-btn-lighter m-1 m-md-2 p-1 p-md-2">Registrati</button></a>
-    </div>
+    <a routerLink="/registration">
+      <button class="u-btn-lighter m-1 m-md-2 p-1 p-md-2">Sign Up</button>
+    </a>
+  </div>
 </div>

@@ -1,15 +1,4 @@
-import {
-  AfterContentChecked,
-  AfterViewChecked,
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  OnChanges,
-  OnInit,
-  SimpleChanges
-} from '@angular/core';
+import {AfterContentChecked, Directive, ElementRef, HostBinding, HostListener} from '@angular/core';
 
 
 @Directive({
@@ -21,6 +10,9 @@ export class ShadowOnTableDirective implements AfterContentChecked {
   @HostBinding('class.shadowOnRight') shadowOnRight: boolean = false;
   @HostBinding('class.shadowOnRightAndOnLeft') shadowOnRightAndOnLeft: boolean = false;
 
+  /**
+   * @var {number} It indicates the value of scrolling.
+   */
   scrolling: number = 0;
 
   constructor(private elRef: ElementRef) {
@@ -37,7 +29,6 @@ export class ShadowOnTableDirective implements AfterContentChecked {
   @HostListener('window:resize') do() {
     this.insertShadows();
   }
-
 
   private insertShadows() {
     this.shadowOnLeft = true;

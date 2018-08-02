@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import {Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2} from '@angular/core';
 
 @Directive({
   selector: '[appShadowOnScroll]'
@@ -28,7 +28,8 @@ export class ShadowOnScrollDirective implements OnInit, OnDestroy {
    */
   private _listeners: Function[] = [];
 
-  constructor(private elRef: ElementRef, private renderer: Renderer2) { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {
+  }
 
   ngOnInit() {
     this.useWindowScroll ?
@@ -41,7 +42,7 @@ export class ShadowOnScrollDirective implements OnInit, OnDestroy {
     this.scrolling > 0 ?
       this.renderer.addClass(this.elRef.nativeElement, this.shadowClass) :
       this.renderer.removeClass(this.elRef.nativeElement, this.shadowClass);
-  }
+  };
 
   ngOnDestroy() {
     this._listeners.forEach((unsubscribe: Function) => unsubscribe());
