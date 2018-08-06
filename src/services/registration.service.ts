@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class RegistrationService {
   /**
    * @var {string} the url of the remote API.
    */
-  registrationUrl: string = 'https://us-central1-users-api-75677.cloudfunctions.net/usersApi/newUser';
+  registrationUrl: string = 'https://www.usersapi.tk/newUser';
 
   constructor(private http: HttpClient) {
   }

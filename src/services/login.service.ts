@@ -11,7 +11,7 @@ export class LoginService {
   /**
    * @var {string} the url of the remote API.
    */
-  loginsUrl: string = 'https://us-central1-users-api-75677.cloudfunctions.net/usersApi/login';
+  loginsUrl: string = 'https://www.usersapi.tk/login';
 
 
   constructor(private http: HttpClient) {
