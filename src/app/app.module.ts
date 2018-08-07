@@ -14,7 +14,7 @@ import {HomePageComponent} from '../components/home-page/home-page.component';
 import {AuthenticationServiceOnLogin} from '../services/authentication-service-on-login.service';
 import {AuthenticationServiceOnHomePage} from '../services/authentication-service-on-home-page.service';
 import {AddUserFormComponent} from '../components/add-user-form/add-user-form.component';
-import {ModalComponent} from '../components/modal/modal.component';
+import {DeleteModalComponent} from '../components/modals/delete-modal/delete-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +27,7 @@ import {RegistrationFormComponent} from '../components/registration-form/registr
 import {RegistrationService} from '../services/registration.service';
 import {LoadingModule} from 'ngx-loading';
 import {LoadingService} from '../services/loading.service';
+import { ConfirmationModalComponent } from '../components/modals/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -46,12 +47,13 @@ import {LoadingService} from '../services/loading.service';
     LoginFormComponent,
     HomePageComponent,
     AddUserFormComponent,
-    ModalComponent,
+    DeleteModalComponent,
     DropdownMenuComponent,
     ShadowOnTableDirective,
     ShadowOnScrollDirective,
     HeaderComponent,
     RegistrationFormComponent,
+    ConfirmationModalComponent,
   ],
 
   providers: [
