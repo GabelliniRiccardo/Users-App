@@ -1,7 +1,7 @@
 .greenBackground {
-    background: linear-gradient(white, rgba(0, 255, 0, 0.45), white);
+    background-color: rgba(0, 255, 0, 0.45);
 }
 
 .redBackground {
-    background: linear-gradient(white, rgba(255, 0, 0, 0.4), white);
+    background-color: rgba(255, 0, 0, 0.4);
 }
