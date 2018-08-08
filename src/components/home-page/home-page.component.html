@@ -51,10 +51,10 @@
       </thead>
 
       <tbody>
-      <tr class="text-truncate" *ngFor="let user of listOfUSerOfOnePAge; let i=index">
+      <tr class="text-truncate" *ngFor="let user of listOfUsers; let i=index">
         <td>
           <span class="badge badge-info">
-            {{ 3 * currentPage + i }}
+            {{i}}
           </span>
         </td>
         <td>{{user.name}}</td>
@@ -74,23 +74,6 @@
       </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <div *ngFor="let number of generateNumbers()">
-            <li class="page-item active" *ngIf="number===currentPage">
-              <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
-            </li>
-            <li class="page-item" *ngIf="number!=currentPage">
-              <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
-            </li>
-          </div>
-        </ul>
-      </nav>
-    </div>
   </div>
 
   <ng-template #emptyList>
