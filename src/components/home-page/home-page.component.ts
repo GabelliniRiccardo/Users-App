@@ -29,6 +29,8 @@ export class HomePageComponent implements OnInit {
    */
   errorHasOccourred: boolean = false;
 
+  searchString: string = '';
+
   constructor(private userService: UserService,
               private dataStorageService: DataStorageService,
               private router: Router,
