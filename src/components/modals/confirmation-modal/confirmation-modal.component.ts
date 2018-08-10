@@ -6,7 +6,7 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-confirmation-modal',
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['./confirmation-modal.component.css'],
+  styleUrls: ['./confirmation-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ConfirmationModalComponent implements OnInit, OnDestroy {
