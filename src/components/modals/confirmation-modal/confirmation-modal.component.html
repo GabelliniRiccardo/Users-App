@@ -1,0 +1,14 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header text-center d-block">
+    <h4 class="modal-title">Response of the Server:</h4>
+  </div>
+  <div class="modal-body text-center" [ngClass]="confirmed ? 'greenBackground' : 'redBackground'">
+    <p class="m-0">{{message}}</p>
+  </div>
+
+  <div class="modal-footer text-center d-block">
+    <button type="button" class="btn btn-outline-primary" (click)="c('Close click')">OK</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary mb-2 mr-2" (click)="onConfirm()">Confirm Users</button>

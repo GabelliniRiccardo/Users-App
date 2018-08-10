@@ -28,33 +28,22 @@
   </div>
 
   <div class="col text-center m-auto">
-    <button type="button" class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
+    <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
   </div>
 </div>
 
 <hr>
 
-<div *ngIf="!loadingService.isLoading()">
-  <div shadowOnTable class="mx-auto table-responsive u-card lighter-background mb-2"
+<div *ngIf="!loadingService.isLoading()" appDynamicHeight>
+  <div class="mx-auto table-responsive u-card lighter-background mb-2 u-height-50 u-height-md-60" #scrollingContainer shadowOnTable
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
-    <table class="table">
-      <thead>
-      <tr class>
-        <th>ID</th>
-        <th>Firstname</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Manage</th>
-
-      </tr>
-      </thead>
-
+    <table class="table table-borderless">
       <tbody>
-      <tr class="text-truncate" *ngFor="let user of listOfUSerOfOnePAge; let i=index">
+      <tr *ngFor="let user of listOfUsers; let i=index">
         <td>
           <span class="badge badge-info">
-            {{ 3 * currentPage + i }}
+            {{i}}
           </span>
         </td>
         <td>{{user.name}}</td>
@@ -62,11 +51,11 @@
         <td>{{user.email}}</td>
         <td>
           <div class="row">
-            <div class="col">
-              <modal-basic (deleteEvent)="onDeleteUser(user)"></modal-basic>
+            <div class="col-6">
+              <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
 
-            <div class="col">
+            <div class="col-6">
               <dropdown-menu [user]="user"></dropdown-menu>
             </div>
           </div>
@@ -74,23 +63,6 @@
       </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <div *ngFor="let number of generateNumbers()">
-            <li class="page-item active" *ngIf="number===currentPage">
-              <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
-            </li>
-            <li class="page-item" *ngIf="number!=currentPage">
-              <a class="page-link" (click)="onPageNumberClick(number)">Page {{number}}</a>
-            </li>
-          </div>
-        </ul>
-      </nav>
-    </div>
   </div>
 
   <ng-template #emptyList>

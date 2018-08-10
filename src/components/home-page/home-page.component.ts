@@ -20,11 +20,6 @@ export class HomePageComponent implements OnInit {
   listOfUsers: User[] = [];
 
   /**
-   * @var {User[]} The partial list of user that contains one page.
-   */
-  listOfUSerOfOnePAge: User[] = [];
-
-  /**
    * @var {boolean} True if user want to register another user.
    */
   editMode: boolean = false;
@@ -33,17 +28,6 @@ export class HomePageComponent implements OnInit {
    * @var {boolean} True if an error from the API occours.
    */
   errorHasOccourred: boolean = false;
-
-  /**
-   * @var {number} The number of users to show in one single page.
-   */
-  numberOfUsersInOnePAge: number = 3;
-
-  /**
-   * @var {number} The current page number.
-   */
-  currentPage: number = 0;
-
 
   constructor(private userService: UserService,
               private dataStorageService: DataStorageService,
@@ -60,7 +44,6 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-
   private executeUsersRequest() {
 
     this.loadingService.setLoading();
@@ -70,7 +53,6 @@ export class HomePageComponent implements OnInit {
         this.loadingService.unsetLoading();
         console.log('Users Received: ', response);
         this.listOfUsers = response;
-        this.onPageNumberClick(0);
         this.errorHasOccourred = false;
       },
       (error) => {
@@ -82,21 +64,13 @@ export class HomePageComponent implements OnInit {
   }
 
   onDeleteUser(user: User) {
-    let indexOfUser: number = this.listOfUsers.indexOf(user);
     console.log('Clicked on', user.name, user.surname);
     this.listOfUsers.splice(this.listOfUsers.indexOf(user), 1);
-    this.onPageNumberClick(0);
   }
 
   addUserToList(user: User) {
     this.listOfUsers.push(user);
     this.editMode = false;
-    if (this.listOfUSerOfOnePAge.length < this.numberOfUsersInOnePAge) {
-      this.listOfUSerOfOnePAge.push(user);
-    } else {
-      this.listOfUSerOfOnePAge = [user];
-      this.onPageNumberClick(this.currentPage + 1);
-    }
   }
 
   onRegisterUser() {
@@ -111,29 +85,14 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
+          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
           console.log('Response of Server : ', response);
         },
         (error: any) => {
           this.loadingService.unsetLoading();
+          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false);
           console.log('Response of Server : ', error.error);
         }
       );
-  }
-
-  generateNumbers() {
-
-    const array: number[] = [];
-    for (let i = 0; i < this.listOfUsers.length / this.numberOfUsersInOnePAge; i++)
-      array.push(i);
-
-    return array;
-  }
-
-  onPageNumberClick(number: number) {
-
-    this.currentPage = number;
-    const startFrom: number = number * this.numberOfUsersInOnePAge;
-    console.log('current Page : ', this.currentPage);
-    this.listOfUSerOfOnePAge = this.listOfUsers.slice(startFrom, startFrom + this.numberOfUsersInOnePAge);
   }
 }
