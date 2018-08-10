@@ -28,6 +28,7 @@ import {RegistrationService} from '../services/registration.service';
 import {LoadingModule} from 'ngx-loading';
 import {LoadingService} from '../services/loading.service';
 import { ConfirmationModalComponent } from '../components/modals/confirmation-modal/confirmation-modal.component';
+import {DynamicHeightDirective} from '../directives/dynamic-height.directive/dynamic-height.directive';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ConfirmationModalComponent } from '../components/modals/confirmation-mo
     DropdownMenuComponent,
     ShadowOnTableDirective,
     ShadowOnScrollDirective,
+    DynamicHeightDirective,
     HeaderComponent,
     RegistrationFormComponent,
     ConfirmationModalComponent,

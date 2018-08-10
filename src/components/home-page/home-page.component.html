@@ -34,21 +34,11 @@
 
 <hr>
 
-<div *ngIf="!loadingService.isLoading()">
-  <div class="mx-auto table-responsive u-card lighter-background mb-2" shadowOnTable
+<div *ngIf="!loadingService.isLoading()" appDynamicHeight>
+  <div class="mx-auto table-responsive u-card lighter-background mb-2 u-height-50 u-height-md-60" #scrollingContainer shadowOnTable
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
     <table class="table table-borderless">
-      <thead>
-      <tr class>
-        <th>ID</th>
-        <th>Firstname</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Manage</th>
-      </tr>
-      </thead>
-
       <tbody>
       <tr *ngFor="let user of listOfUsers; let i=index">
         <td>
