@@ -85,7 +85,7 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
+          this.loadingService.notifyChanges(JSON.stringify(response), true);
           console.log('Response of Server : ', response);
         },
         (error: any) => {
