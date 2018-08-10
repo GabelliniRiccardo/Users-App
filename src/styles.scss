@@ -20,6 +20,16 @@
   font-weight: 500;
   letter-spacing: -0.2px;
 
+  &.search-input{
+    border-radius: 12px;
+    height: 40px;
+    border: unset;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   &.form-control {
     font-size: 16px;
     height: 60px;
@@ -110,6 +120,20 @@ body {
   margin: 0;
   padding: 0px 0px 6px 0px;
   font-size: 40px;
+  line-height: 44px;
+  letter-spacing: -2px;
+  font-weight: bold;
+
+  background: -webkit-linear-gradient($backgroundColor2, #1f50ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.u-text {
+  color: #444;
+  margin: 0;
+  padding: 0px 0px 6px 0px;
+  font-size: 25px;
   line-height: 44px;
   letter-spacing: -2px;
   font-weight: bold;
