@@ -21,10 +21,12 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.loadingService.subject.subscribe((response: { message, confirmed }) => {
+    this.subscription = this.loadingService.subject.subscribe((response: { message, confirmed, elementRef }) => {
       this.message = response.message;
       this.confirmed = response.confirmed;
-      this.openVerticallyCentered();
+      if(this.content === response.elementRef) {
+        this.openVerticallyCentered();
+      }
     });
   }
 
@@ -36,6 +38,10 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
 
   onConfirm() {
     this.confirmEvent.emit();
+  }
+
+  getcontent(){
+    return this.content;
   }
 
   ngOnDestroy() {

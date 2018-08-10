@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {DataStorageService} from '../../services/data-storage.service';
 import {Router} from '@angular/router';
@@ -79,7 +79,7 @@ export class HomePageComponent implements OnInit {
     this.editMode = true;
   }
 
-  onConfirm() {
+  onConfirm(contentToShowAfterConfirmation: ElementRef) {
 
     this.loadingService.setLoading();
 
@@ -87,12 +87,12 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
+          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true, contentToShowAfterConfirmation);
           console.log('Response of Server : ', response);
         },
         (error: any) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false);
+          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false, contentToShowAfterConfirmation);
           console.log('Response of Server : ', error.error);
         }
       );

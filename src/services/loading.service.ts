@@ -1,4 +1,5 @@
 import {Subject} from 'rxjs';
+import {ElementRef} from '@angular/core';
 
 export class LoadingService {
 
@@ -7,7 +8,7 @@ export class LoadingService {
    */
   private loading: boolean = false;
 
-  subject: Subject<{message: string, confirmed: boolean}> = new Subject<{message: string, confirmed: boolean}>();
+  subject: Subject<{message: string, confirmed: boolean, elementRef: ElementRef}> = new Subject<{message: string, confirmed: boolean, elementRef: ElementRef}>();
 
   isLoading(): boolean {
     return this.loading;
@@ -21,7 +22,7 @@ export class LoadingService {
     this.loading = false;
   }
 
-  notifyChanges(message: string, confirmed: boolean) {
-    this.subject.next({message, confirmed});
+  notifyChanges(message: string, confirmed: boolean, elementRef: ElementRef) {
+    this.subject.next({message, confirmed, elementRef});
   }
 }

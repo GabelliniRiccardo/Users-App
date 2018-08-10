@@ -3,7 +3,8 @@ import {User} from '../Models/user.model';
 import * as _ from 'lodash';
 
 @Pipe({
-  name: 'filterby'
+  name: 'filterby',
+  pure: false
 })
 export class FilterUserListPipe implements PipeTransform {
   transform(users: User[], typeOfFilter: string, value: string) {
