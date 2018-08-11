@@ -31,12 +31,14 @@ import { ConfirmationModalComponent } from '../components/modals/confirmation-mo
 import {DynamicHeightDirective} from '../directives/dynamic-height.directive/dynamic-height.directive';
 import {FilterUserListPipe} from '../pipes/filter-user-list.pipe';
 import {SelectModalComponent} from '../components/modals/select-modal/select-modal.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
+    FontAwesomeModule,
     AngularSvgIconModule,
     ReactiveFormsModule,
     LoadingModule,

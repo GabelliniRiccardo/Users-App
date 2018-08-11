@@ -1,4 +1,5 @@
 import {Component, ElementRef, EventEmitter, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import {  faListUl } from '@fortawesome/free-solid-svg-icons';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,6 +10,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None,
 })
 export class SelectModalComponent {
+
+  faListUl = faListUl;
 
   /**
    * @var {EventEmitter<boolean>} A EventEmitter that is called when user is deleted.
