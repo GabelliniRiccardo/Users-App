@@ -3,7 +3,8 @@ import {User} from '../../Models/user.model';
 
 @Component({
   selector: 'dropdown-menu',
-  templateUrl: './dropdown-menu.component.html'
+  templateUrl: './dropdown-menu.component.html',
+  styleUrls: ['./dropdown-menu.style.scss']
 })
 
 export class DropdownMenuComponent {
