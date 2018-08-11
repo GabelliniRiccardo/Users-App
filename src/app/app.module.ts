@@ -30,6 +30,7 @@ import {LoadingService} from '../services/loading.service';
 import { ConfirmationModalComponent } from '../components/modals/confirmation-modal/confirmation-modal.component';
 import {DynamicHeightDirective} from '../directives/dynamic-height.directive/dynamic-height.directive';
 import {FilterUserListPipe} from '../pipes/filter-user-list.pipe';
+import {SelectModalComponent} from '../components/modals/select-modal/select-modal.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import {FilterUserListPipe} from '../pipes/filter-user-list.pipe';
     HeaderComponent,
     RegistrationFormComponent,
     ConfirmationModalComponent,
+    SelectModalComponent,
     FilterUserListPipe
   ],
 
