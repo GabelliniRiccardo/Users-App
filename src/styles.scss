@@ -188,3 +188,28 @@ body {
 .u-pointer{
   cursor: pointer;
 }
+
+// MENU
+
+.u-menu {
+  border: solid 0.5px rgba(164, 164, 164, 0.29);
+  border-radius: 20px;
+  box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  .u-menu-option {
+    cursor: pointer;
+    display: flex;
+    border-radius: 20px;
+    flex-flow: nowrap row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60px;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    &:hover, &:active {
+      background-color: rgba(0, 190, 255, 0.44);
+    }
+  }
+}
