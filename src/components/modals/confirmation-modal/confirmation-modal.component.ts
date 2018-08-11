@@ -11,20 +11,41 @@ import {Subscription} from 'rxjs';
 })
 export class ConfirmationModalComponent implements OnInit, OnDestroy {
 
+  /**
+   * @var {string} The response of the server.
+   */
   message: string;
+
+  /**
+   * @var {EventEmitter<void>} An Event emitter that emits when confirmation button is clicked
+   */
   @Output() confirmEvent: EventEmitter<void> = new EventEmitter<void>();
+
+  /**
+   * @var {ElementRef} The content that the modal must show.
+   */
   @ViewChild('content') content: ElementRef;
+
+  /**
+   * @var {Subscription} The subscription to the Loading Service who serves the response of the server
+   */
   subscription: Subscription;
+
+  /**
+   * @var {bolean} True if the server response is OK (statuscode=200), false otherwise.
+   */
   confirmed: boolean = false;
 
   constructor(private modalService: NgbModal, private loadingService: LoadingService) {
   }
 
   ngOnInit() {
-    this.subscription = this.loadingService.subject.subscribe((response: { message, confirmed }) => {
+    this.subscription = this.loadingService.subject.subscribe((response: { message, confirmed, elementRef }) => {
       this.message = response.message;
       this.confirmed = response.confirmed;
-      this.openVerticallyCentered();
+      if (this.content === response.elementRef) {
+        this.openVerticallyCentered();
+      }
     });
   }
 

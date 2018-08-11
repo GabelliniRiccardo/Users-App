@@ -18,7 +18,8 @@
 
       <input
         id="name"
-        class="form-control"
+        class="u-input form-control u-height-40"
+        [class.u-input-invalid]="!inputName.valid && inputName.touched"
         type="text"
         name="name"
         ngModel
@@ -47,7 +48,8 @@
 
       <input
         id="surname"
-        class="form-control"
+        class="u-input form-control u-height-40"
+        [class.u-input-invalid]="!inputSurname.valid && inputSurname.touched"
         type="text"
         name="surname"
         ngModel
@@ -77,7 +79,8 @@
 
       <input
         id="email"
-        class="form-control"
+        class="u-input form-control u-height-40"
+        [class.u-input-invalid]="!inputEmail.valid && inputEmail.touched"
         type="email"
         name="email"
         ngModel
@@ -109,7 +112,8 @@
 
       <input
         id="phone"
-        class="form-control"
+        class="u-input form-control u-height-40"
+        [class.u-input-invalid]="!inputPhone.valid && inputPhone.touched"
         type="text"
         name="phone"
         ngModel
@@ -140,7 +144,8 @@
 
       <input
         id="password"
-        class="form-control"
+        class="u-input form-control u-height-40"
+        [class.u-input-invalid]="!inputPassword.valid && inputPassword.touched"
         type="password"
         name="password"
         ngModel

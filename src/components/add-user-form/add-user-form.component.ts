@@ -3,7 +3,8 @@ import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'add-user-form',
-  templateUrl: './add-user-form.html'
+  templateUrl: './add-user-form.html',
+  styleUrls: ['add-user-form.scss']
 })
 
 export class AddUserFormComponent {

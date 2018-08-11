@@ -15,6 +15,9 @@ export class DeleteModalComponent {
    */
   @Output() deleteEvent = new EventEmitter<boolean>();
 
+  /**
+   * @var {ElementRef} The content that the modal must show.
+   */
   @ViewChild('content') content: ElementRef;
 
   constructor(private modalService: NgbModal) {

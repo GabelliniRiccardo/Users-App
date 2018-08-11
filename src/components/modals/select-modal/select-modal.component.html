@@ -1,0 +1,16 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header text-center d-block">
+    <h4 class="modal-title">Select a type of filter</h4>
+  </div>
+  <div class="modal-body text-center">
+    <p class="mx-0 my-1" (click)="onSelect('name'); c('Close click')">Name</p>
+    <p class="mx-0 my-1" (click)="onSelect('surname'); c('Close click')">Surname</p>
+    <p class="mx-0 my-1" (click)="onSelect('phone'); c('Close click')">Phone</p>
+    <p class="mx-0 my-1" (click)="onSelect('email'); c('Close click')">Email</p>
+  </div>
+</ng-template>
+
+<div class="text-center my-2">
+  <span class="d-inline pr-3"> Filter by: {{selectedFilter}}</span>
+  <i class="fas fa-list-ul" (click)="openVerticallyCentered()"></i>
+</div>
