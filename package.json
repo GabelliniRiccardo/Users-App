@@ -22,7 +22,6 @@
     "@angular/router": "^6.1.2",
     "@fortawesome/angular-fontawesome": "^0.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
-    "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^2.2.2",
     "adm-zip": "^0.4.11",
     "angular-svg-icon": "^6.0.0",

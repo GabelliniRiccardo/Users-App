@@ -1,5 +1,4 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {faListUl} from '@fortawesome/free-solid-svg-icons';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,11 +9,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   encapsulation: ViewEncapsulation.None,
 })
 export class SelectModalComponent {
-
-  /**
-   * @var {IconDefinition} An aicon of Font Awesome
-   */
-  faListUl = faListUl;
 
   /**
    * @var {string} The tipe of filter that the filter pipe must use
