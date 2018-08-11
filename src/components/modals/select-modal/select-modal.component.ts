@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {  faListUl } from '@fortawesome/free-solid-svg-icons';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import {faListUl} from '@fortawesome/free-solid-svg-icons';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,6 +12,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class SelectModalComponent {
 
   faListUl = faListUl;
+
+  @Input() selectedFilter: string;
 
   /**
    * @var {EventEmitter<boolean>} A EventEmitter that is called when user is deleted.
@@ -29,6 +31,7 @@ export class SelectModalComponent {
   }
 
   onSelect(selectedFilter: string) {
+    this.selectedFilter = selectedFilter;
     this.selectEvent.emit(selectedFilter);
   }
 }
