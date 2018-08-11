@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',

@@ -20,7 +20,7 @@ export class DynamicHeightDirective implements AfterViewChecked {
       const height = window.scrollY + this.scrollingContainer.nativeElement.offsetTop + 16;
       this.renderer.setStyle(this.scrollingContainer.nativeElement, 'height', 'calc(100vh - ' + height + 'px)');
     } else {
-      this.renderer.setStyle(this.scrollingContainer.nativeElement, 'height', 'calc(100vh - ' + 100 + 'px)');
+      this.renderer.setStyle(this.scrollingContainer.nativeElement, 'height', 'calc(100vh - ' + 200 + 'px)');
     }
   }
 }
