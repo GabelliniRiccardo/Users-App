@@ -44,7 +44,7 @@ export class RegistrationFormComponent {
   /**
    * @var {boolean} True if eye icon is clicked to show password in clear.
    */
-  isPasswordShownLikePlanText: boolean = false;
+  isPasswordShownLikePlanText: boolean = true;
 
   /**
    * @var {string} The pattern used to verify the password typed.
