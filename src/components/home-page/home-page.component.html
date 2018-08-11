@@ -30,16 +30,28 @@
 
 
 <div class="row u-card lighter-background mx-0 mb-3 mt-md-3 px-0 text-center text-nowrap" *ngIf="!errorHasOccourred">
-  <div class="col text-md-right">
-    <span class="u-text">Search users</span>
+  <div class="col text-right d-none d-md-block">
+    <div ngbDropdown class="d-inline-block dropleft" placement="left">
+      <button class="btn btn-outline-primary" ngbDropdownToggle></button>
+      <div ngbDropdownMenu class="mr-2">
+        <li class="dropdown-item-text u-pointer" (click)="searchByParameter='name'">Search by name</li>
+        <li class="dropdown-item-text u-pointer" (click)="searchByParameter='surname'">Search by surname</li>
+        <li class="dropdown-item-text u-pointer" (click)="searchByParameter='email'">Search by email</li>
+        <li class="dropdown-item-text u-pointer" (click)="searchByParameter='phone'">Search by phone</li>
+      </div>
+    </div>
+  </div>
+  <div class="col text-center d-md-none">
+    sm
   </div>
   <div class="col text-md-left mb-2 mb-md-0">
     <input
       id="search"
-      class="u-input search-input"
+      class="u-input form-control search-input"
+      [class.u-input-invalid]="(listOfUsers | filterby: searchByParameter: searchString).length === 0"
       type="text"
       name="search"
-      placeholder="search users"
+      placeholder="Search users by {{searchByParameter}}"
       [(ngModel)]="searchString">
   </div>
   <div class="col text-center d-none d-md-block">
@@ -58,7 +70,7 @@
 
     <table class="table table-borderless">
       <tbody>
-      <tr *ngFor="let user of listOfUsers | filterby: 'name': searchString; let i=index">
+      <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
         <td>
           <span class="badge badge-info">
             {{i}}

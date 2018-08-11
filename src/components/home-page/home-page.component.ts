@@ -31,6 +31,8 @@ export class HomePageComponent implements OnInit {
 
   searchString: string = '';
 
+  searchByParameter: string = 'name';
+
   constructor(private userService: UserService,
               private dataStorageService: DataStorageService,
               private router: Router,
