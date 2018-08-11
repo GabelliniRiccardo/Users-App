@@ -7,7 +7,12 @@ import * as _ from 'lodash';
   pure: false
 })
 export class FilterUserListPipe implements PipeTransform {
-  transform(users: User[], typeOfFilter: string, value: string) {
+
+  /**
+   * @function {User[]} A pipe wich filter a users list according to one parameter of the user
+   * (typeOfFilter = 'name' | 'surname' | 'phone' | 'email') and value (a string typed on search input field)
+   */
+  transform(users: User[], typeOfFilter: string, value: string): User[] {
     return users.filter((user: User) => {
       return _.includes(user[typeOfFilter].toLowerCase(), value.toLowerCase());
     });

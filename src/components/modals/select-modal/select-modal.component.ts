@@ -11,8 +11,14 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class SelectModalComponent {
 
+  /**
+   * @var {IconDefinition} An aicon of Font Awesome
+   */
   faListUl = faListUl;
 
+  /**
+   * @var {string} The tipe of filter that the filter pipe must use
+   */
   @Input() selectedFilter: string;
 
   /**
@@ -20,8 +26,10 @@ export class SelectModalComponent {
    */
   @Output() selectEvent = new EventEmitter<string>();
 
+  /**
+   * @var {ElementRef} The content that the modal must show.
+   */
   @ViewChild('content') content: ElementRef;
-
 
   constructor(private modalService: NgbModal) {
   }

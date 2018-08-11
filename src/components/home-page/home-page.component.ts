@@ -29,9 +29,15 @@ export class HomePageComponent implements OnInit {
    */
   errorHasOccourred: boolean = false;
 
+  /**
+   * @var {string} The string that will be passed to the filter pipe. this string is linked with two way data binding with the search field.
+   */
   searchString: string = '';
 
-  searchByParameter: string = 'name';
+  /**
+   * @var {string} The user attribute that filter pipe has to evaluate.
+   */
+  searchByParameter: ('name' | 'surname' | 'phone' | 'email') = 'name';
 
   constructor(private userService: UserService,
               private dataStorageService: DataStorageService,
