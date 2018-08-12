@@ -31,6 +31,7 @@ import { ConfirmationModalComponent } from '../components/modals/confirmation-mo
 import {DynamicHeightDirective} from '../directives/dynamic-height.directive/dynamic-height.directive';
 import {FilterUserListPipe} from '../pipes/filter-user-list.pipe';
 import {SelectModalComponent} from '../components/modals/select-modal/select-modal.component';
+import {EditUserComponent} from '../components/edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import {SelectModalComponent} from '../components/modals/select-modal/select-mod
     RegistrationFormComponent,
     ConfirmationModalComponent,
     SelectModalComponent,
-    FilterUserListPipe
+    FilterUserListPipe,
+    EditUserComponent
   ],
 
   providers: [
