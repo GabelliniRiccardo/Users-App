@@ -11,8 +11,8 @@ import {AppComponent} from './app.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {DataStorageService} from '../services/data-storage.service';
 import {HomePageComponent} from '../components/home-page/home-page.component';
-import {AuthenticationServiceOnLogin} from '../services/authentication-service-on-login.service';
-import {AuthenticationServiceOnHomePage} from '../services/authentication-service-on-home-page.service';
+import {AuthenticationGuardBeforeLogin} from '../services/authentication-guard-before-login';
+import {AuthenticationGuardAfterLogin} from '../services/authentication-guard-after-login';
 import {AddUserFormComponent} from '../components/add-user-form/add-user-form.component';
 import {DeleteModalComponent} from '../components/modals/delete-modal/delete-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -67,8 +67,8 @@ import {EditUserComponent} from '../components/edit-user/edit-user.component';
     HttpClient,
     LoginService,
     DataStorageService,
-    AuthenticationServiceOnLogin,
-    AuthenticationServiceOnHomePage,
+    AuthenticationGuardBeforeLogin,
+    AuthenticationGuardAfterLogin,
     NgbModal,
     RegistrationService,
     LoadingService

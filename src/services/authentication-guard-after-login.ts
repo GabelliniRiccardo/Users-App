@@ -4,20 +4,19 @@ import {CanActivate, Router} from '@angular/router';
 
 @Injectable()
 
-export class AuthenticationServiceOnLogin implements CanActivate {
+export class AuthenticationGuardAfterLogin implements CanActivate {
 
   constructor(private dataStorageService: DataStorageService, private router: Router) {
   }
 
   canActivate(): boolean {
 
-    console.log('user is logged In', this.dataStorageService.isUserAutenticated(), 'path ', this.router.url);
+    console.log('user is logged in: ', this.dataStorageService.isUserAutenticated(), 'path ', this.router.url);
 
-    if (this.dataStorageService.isUserAutenticated()) {
-      this.router.navigate(['home']);
+    if (!this.dataStorageService.isUserAutenticated()) {
+      this.router.navigate(['login']);
       return false;
     }
-
     else return true;
   }
 }

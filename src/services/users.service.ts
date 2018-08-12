@@ -54,4 +54,8 @@ export class UsersService {
     this.listOfUsers = users;
     this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
   }
+
+  getUser(index: number){
+    return this.listOfUsers[index];
+  }
 }
