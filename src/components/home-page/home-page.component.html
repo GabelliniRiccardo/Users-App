@@ -29,7 +29,7 @@
 
 
 <div class="row u-card lighter-background mx-0 mb-3 mt-md-3 px-0 text-center text-nowrap" *ngIf="!errorHasOccourred">
-  <div class="col-5 text-righ" *ngIf="!isMobile">
+  <div class="col-5 text-right" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
       <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
@@ -112,11 +112,13 @@
         <td>{{user.email}}</td>
         <td>
           <div class="row">
-            <div class="col-6">
+            <div class="col">
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
-
-            <div class="col-6">
+            <div class="col">
+              <button class="btn btn-outline-warning mb-2 mr-2" routerLink="/edit/{{i}}">Edit</button>
+            </div>
+            <div class="col text-center">
               <dropdown-menu [user]="user"></dropdown-menu>
             </div>
           </div>
