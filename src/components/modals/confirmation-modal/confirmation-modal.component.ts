@@ -40,7 +40,7 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.loadingService.subject.subscribe((response: { message, confirmed, elementRef }) => {
+    this.subscription = this.loadingService.subjectModals.subscribe((response: { message, confirmed, elementRef }) => {
       this.message = response.message;
       this.confirmed = response.confirmed;
       if (this.content === response.elementRef) {
