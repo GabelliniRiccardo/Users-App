@@ -64,6 +64,7 @@
 <div *ngIf="!loadingService.isLoading() " appDynamicHeight>
   <div class="mx-auto table-responsive u-card lighter-background mb-2 u-height-50 u-height-md-60 p-1 p-md-2"
        #scrollingContainer
+       appShadowOnScroll [shadowClass]="'shadowOnTop'"
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
     <!-- VISIBLE ONLY FOR MOBILE -->
