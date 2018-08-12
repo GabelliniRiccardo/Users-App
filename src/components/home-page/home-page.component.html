@@ -61,39 +61,14 @@
   </div>
 </div>
 
-<div *ngIf="!loadingService.isLoading()" appDynamicHeight>
+<div *ngIf="!loadingService.isLoading() " appDynamicHeight>
   <div class="mx-auto table-responsive u-card lighter-background mb-2 u-height-50 u-height-md-60 p-1 p-md-2"
        #scrollingContainer
        shadowOnTable
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
-    <table class="table table-borderless d-none d-md-block">
-      <tbody>
-      <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
-        <td>
-          <span class="badge badge-info">
-            {{i}}
-          </span>
-        </td>
-        <td>{{user.name}}</td>
-        <td>{{user.surname}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          <div class="row">
-            <div class="col-6">
-              <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
-            </div>
-
-            <div class="col-6">
-              <dropdown-menu [user]="user"></dropdown-menu>
-            </div>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-
-    <table class="table table-borderless d-md-none">
+    <!-- VISIBLE ONLY FOR MOBILE -->
+    <table class="table table-borderless d-md-none" *ngIf="isMobile">
       <tbody>
       <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
         <td class="px-0">
@@ -122,6 +97,34 @@
       </tr>
       </tbody>
     </table>
+
+    <!-- VISIBLE ONLY FOR DESCKTOP -->
+    <table class="table table-borderless" *ngIf="!isMobile">
+      <tbody>
+      <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
+        <td>
+          <span class="badge badge-info">
+            {{i}}
+          </span>
+        </td>
+        <td>{{user.name}}</td>
+        <td>{{user.surname}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <div class="row">
+            <div class="col-6">
+              <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
+            </div>
+
+            <div class="col-6">
+              <dropdown-menu [user]="user"></dropdown-menu>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
   </div>
 
   <ng-template #emptyList>

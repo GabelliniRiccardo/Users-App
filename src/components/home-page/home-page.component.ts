@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {User} from '../../Models/user.model';
 import {LoadingService} from '../../services/loading.service';
 import {Subscription} from 'rxjs';
+import {DeviceService} from '../../services/device.service';
+import {Device} from '../../directives/device-detector/device-detector.directive';
 
 
 @Component({
@@ -45,13 +47,17 @@ export class HomePageComponent implements OnInit {
    */
   subscriptionToUsersListChanges: Subscription;
 
+  isMobile: boolean;
+
   constructor(private userService: UsersService,
               private dataStorageService: DataStorageService,
               private router: Router,
-              public loadingService: LoadingService) {
+              public loadingService: LoadingService,
+              private deviceService: DeviceService) {
   }
 
   ngOnInit() {
+    this.deviceService.deviceChanged$.subscribe((device: Device) => this.isMobile = device === Device.SMALL || device === Device.X_SMALL);
     this.subscriptionToUsersListChanges = this.userService.subjectToNotifyUsersListChanges
       .subscribe((users: User[]) => this.listOfUsers = users);
     this.executeUsersRequest();

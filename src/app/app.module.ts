@@ -32,6 +32,8 @@ import {DynamicHeightDirective} from '../directives/dynamic-height.directive/dyn
 import {FilterUserListPipe} from '../pipes/filter-user-list.pipe';
 import {SelectModalComponent} from '../components/modals/select-modal/select-modal.component';
 import {EditUserComponent} from '../components/edit-user/edit-user.component';
+import {DeviceDetectorDirective} from '../directives/device-detector/device-detector.directive';
+import {DeviceService} from '../services/device.service';
 
 @NgModule({
   imports: [
@@ -55,6 +57,7 @@ import {EditUserComponent} from '../components/edit-user/edit-user.component';
     ShadowOnTableDirective,
     ShadowOnScrollDirective,
     DynamicHeightDirective,
+    DeviceDetectorDirective,
     HeaderComponent,
     RegistrationFormComponent,
     ConfirmationModalComponent,
@@ -71,7 +74,8 @@ import {EditUserComponent} from '../components/edit-user/edit-user.component';
     AuthenticationGuardAfterLogin,
     NgbModal,
     RegistrationService,
-    LoadingService
+    LoadingService,
+    DeviceService
   ],
 
   bootstrap: [AppComponent]
