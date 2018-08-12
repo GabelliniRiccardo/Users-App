@@ -32,7 +32,7 @@
 <div class="row u-card lighter-background mx-0 mb-3 mt-md-3 px-0 text-center text-nowrap" *ngIf="!errorHasOccourred">
   <div class="col-5 text-right d-none d-md-block">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
-      <button class="btn btn-outline-primary" ngbDropdownToggle>Search By</button>
+      <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='name'">Search by name</li>
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='surname'">Search by surname</li>

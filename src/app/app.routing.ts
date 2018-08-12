@@ -10,6 +10,7 @@ export const ROUTING: Routes = [
   {path: 'login', component: LoginFormComponent, canActivate: [AuthenticationServiceOnLogin]},
   {path: 'registration', component: RegistrationFormComponent},
   {path: 'home', component: HomePageComponent, canActivate: [AuthenticationServiceOnHomePage]},
+  {path: 'edit/:id', component: HomePageComponent},
   {path: '**', redirectTo: '/login'},
 
 ];
