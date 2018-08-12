@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   subscription: Subscription;
 
-  constructor(public loadingService: LoadingService) {
+  constructor(private loadingService: LoadingService) {
   }
 
   ngOnInit() {
