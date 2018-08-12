@@ -101,7 +101,7 @@ export class HomePageComponent implements OnInit {
     this.editMode = true;
   }
 
-  onConfirm(contentToShowAfterConfirmation: ElementRef) {
+  onConfirm() {
 
     this.loadingService.setLoading();
 
@@ -109,12 +109,12 @@ export class HomePageComponent implements OnInit {
       .subscribe(
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true, contentToShowAfterConfirmation);
+          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
           console.log('Response of Server : ', response);
         },
         (error: any) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false, contentToShowAfterConfirmation);
+          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false);
           console.log('Response of Server : ', error.error);
         }
       );

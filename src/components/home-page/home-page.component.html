@@ -20,16 +20,16 @@
 </div>
 
 
-<div *ngIf="!errorHasOccourred" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap d-md-none">
+<div *ngIf="!errorHasOccourred && isMobile" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap">
   <app-confirmation-modal #confirmationModalSM
-                          (confirmEvent)="onConfirm(confirmationModalSM.content)">
+                          (confirmEvent)="onConfirm()">
 
   </app-confirmation-modal>
 </div>
 
 
 <div class="row u-card lighter-background mx-0 mb-3 mt-md-3 px-0 text-center text-nowrap" *ngIf="!errorHasOccourred">
-  <div class="col-5 text-right d-none d-md-block">
+  <div class="col-5 text-righ" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
       <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
@@ -40,7 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="col text-center d-md-none">
+  <div class="col text-center" *ngIf="isMobile">
     <select-modal [selectedFilter]="searchByParameter" (selectEvent)="searchByParameter = $event"></select-modal>
   </div>
   <div class="col text-md-left">
@@ -53,9 +53,9 @@
       placeholder="Search users by {{searchByParameter}}"
       [(ngModel)]="searchString">
   </div>
-  <div class="col text-center d-none d-md-block">
+  <div class="col text-center" *ngIf="!isMobile">
     <app-confirmation-modal #confirmationModalMD
-                            (confirmEvent)="onConfirm(confirmationModalMD.content)">
+                            (confirmEvent)="onConfirm()">
 
     </app-confirmation-modal>
   </div>
@@ -68,7 +68,7 @@
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
     <!-- VISIBLE ONLY FOR MOBILE -->
-    <table class="table table-borderless d-md-none" *ngIf="isMobile">
+    <table class="table table-borderless" *ngIf="isMobile">
       <tbody>
       <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
         <td class="px-0">
@@ -86,10 +86,10 @@
                 <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
               </div>
               <div class="col text-center">
-                <dropdown-menu [user]="user"></dropdown-menu>
+                <button class="btn btn-outline-warning mb-2 mr-2" routerLink="/edit/{{i}}">Edit</button>
               </div>
               <div class="col text-left">
-                <button class="btn btn-outline-warning mb-2 mr-2" routerLink="/edit/{{i}}">Edit</button>
+                <dropdown-menu [user]="user"></dropdown-menu>
               </div>
             </div>
           </div>

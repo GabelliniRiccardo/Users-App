@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 
 
-import {Device} from '../../shared/directives/device-detector/device-detector.directive';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {Device} from '../directives/device-detector/device-detector.directive';
 
 @Injectable()
 /**

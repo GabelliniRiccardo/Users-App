@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./confirmation-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ConfirmationModalComponent implements OnInit, OnDestroy {
+export class ConfirmationModalComponent implements OnInit {
 
   /**
    * @var {string} The response of the server.
@@ -27,11 +27,6 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
   @ViewChild('content') content: ElementRef;
 
   /**
-   * @var {Subscription} The subscription to the Loading Service who serves the response of the server
-   */
-  subscription: Subscription;
-
-  /**
    * @var {bolean} True if the server response is OK (statuscode=200), false otherwise.
    */
   confirmed: boolean = false;
@@ -40,12 +35,10 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.loadingService.subjectModals.subscribe((response: { message, confirmed, elementRef }) => {
+    this.loadingService.subjectModals.subscribe((response: { message, confirmed }) => {
       this.message = response.message;
       this.confirmed = response.confirmed;
-      if (this.content === response.elementRef) {
-        this.openVerticallyCentered();
-      }
+      this.openVerticallyCentered();
     });
   }
 
@@ -57,9 +50,5 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
 
   onConfirm() {
     this.confirmEvent.emit();
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }
