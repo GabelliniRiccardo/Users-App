@@ -19,17 +19,40 @@
   </div>
 </div>
 
-
 <div *ngIf="!errorHasOccourred && isMobile" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap">
-  <app-confirmation-modal #confirmationModalSM
-                          (confirmEvent)="onConfirm()">
-
-  </app-confirmation-modal>
+  <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
 </div>
 
-
+<!-- BUTTONS AND SEARCH LAYER -->
 <div class="row u-card lighter-background mx-0 mb-3 mt-md-3 px-0 text-center text-nowrap" *ngIf="!errorHasOccourred">
-  <div class="col-5 text-right" *ngIf="!isMobile">
+
+  <!-- ORDER BY -->
+  <div class="col text-left" *ngIf="!isMobile">
+    <div ngbDropdown class="d-inline-block dropright" placement="right">
+      <button class="btn btn-outline-primary" ngbDropdownToggle>Order By {{orderByParameter}}</button>
+      <div ngbDropdownMenu class="ml-2 u-menu p-0">
+        <li class="dropdown-item-text u-menu-option" (click)="orderByParameter='id'; orderListAccordingToParameter()">
+          Order by id
+        </li>
+        <li class="dropdown-item-text u-menu-option" (click)="orderByParameter='name'; orderListAccordingToParameter()">
+          Order by name
+        </li>
+        <li class="dropdown-item-text u-menu-option"
+            (click)="orderByParameter='surname'; orderListAccordingToParameter()">Order by surname
+        </li>
+        <li class="dropdown-item-text u-menu-option"
+            (click)="orderByParameter='email'; orderListAccordingToParameter()">Order by email
+        </li>
+        <li class="dropdown-item-text u-menu-option"
+            (click)="orderByParameter='phone'; orderListAccordingToParameter()">Order by phone
+        </li>
+      </div>
+    </div>
+  </div>
+  <!-- END OF ORDER BY -->
+
+  <!-- SEARCH BY ON MOBILE -->
+  <div class="col text-right" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
       <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
@@ -40,9 +63,15 @@
       </div>
     </div>
   </div>
+  <!-- END OF SEARCH BY ON MOBILE -->
+
+  <!-- SEARCH BY ON DESKTOP -->
   <div class="col text-center" *ngIf="isMobile">
     <select-modal [selectedFilter]="searchByParameter" (selectEvent)="searchByParameter = $event"></select-modal>
   </div>
+  <!-- END OF SEARCH BY ON DESKTOP -->
+
+  <!-- SEARCH FIELD -->
   <div class="col text-md-left">
     <input
       id="search"
@@ -53,28 +82,44 @@
       placeholder="Search users by {{searchByParameter}}"
       [(ngModel)]="searchString">
   </div>
-  <div class="col text-center" *ngIf="!isMobile">
-    <app-confirmation-modal #confirmationModalMD
-                            (confirmEvent)="onConfirm()">
+  <!-- END OF SEARCH FIELD -->
 
-    </app-confirmation-modal>
+  <!-- SEARCH BY ON MOBILE -->
+  <div class="col text-center" *ngIf="!isMobile">
+    <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
   </div>
+  <!-- END OF SEARCH BY ON MOBILE -->
 </div>
+<!-- END OF BUTTONS AND SEARCH LAYER -->
 
 <div *ngIf="!loadingService.isLoading() " appDynamicHeight>
-  <div class="table-responsive u-card lighter-background mb-2"
+
+  <!-- CONTAINER TITLES -->
+  <div class="u-card lighter-background no-shadow no-border-bottom" *ngIf="!isMobile">
+    <div class="row">
+      <div class="col-1"><span class="badge badge-dark">ID</span></div>
+      <div class="col-2"><span class="badge badge-dark">NAME</span></div>
+      <div class="col-2"><span class="badge badge-dark">SURNAME</span></div>
+      <div class="col-3"><span class="badge badge-dark">EMAIL</span></div>
+      <div class="col-4 text-right text-lg-center"><span class="badge badge-dark">MANAGE</span></div>
+    </div>
+  </div>
+  <!-- END OF CONTAINER TITLES -->
+
+  <!-- CONTAINER -->
+  <div class="table-responsive u-card lighter-background no-border-top mb-2"
        [class.p-1]="isMobile"
        #scrollingContainer
        appShadowOnScroll [shadowClass]="'shadowOnTop'"
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
-    <!-- VISIBLE ONLY FOR MOBILE -->
+    <!-- CONTAINER SMALL VISIBLE ONLY FOR MOBILE -->
     <div *ngIf="isMobile">
       <div class="u-card lighter-background my-2"
-           *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
+           *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString;">
         <div class="row">
           <div class="col text-nowrap">
-            <ul class="p-0 text-truncate"><span class="badge badge-info">ID</span> : {{i}}</ul>
+            <ul class="p-0 text-truncate"><span class="badge badge-info">ID</span> : {{user.id}}</ul>
             <ul class="p-0 text-truncate"><span class="badge badge-info">Name</span> : {{user.name}}</ul>
             <ul class="p-0 text-truncate"><span class="badge badge-info">Surname</span> : {{user.surname}}</ul>
             <ul class="p-0 text-truncate"><span class="badge badge-info">Email</span> : {{user.email}}</ul>
@@ -85,7 +130,7 @@
             <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
           </div>
           <div class="col text-center">
-            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{i}}">Edit</button>
+            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
           </div>
           <div class="col text-left">
             <dropdown-menu [user]="user"></dropdown-menu>
@@ -93,21 +138,22 @@
         </div>
       </div>
     </div>
+    <!-- END OF CONTAINER SMALL-->
 
-    <!-- VISIBLE ONLY FOR DESCKTOP -->
-    <div class="table table-borderless" *ngIf="!isMobile">
-      <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
-        <div class="col-1"><span class="badge badge-info">{{i}}</span></div>
+    <!-- CONTAINER MEDIUM VISIBLE ONLY FOR DESKTOP -->
+    <div *ngIf="!isMobile">
+      <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString">
+        <div class="col-1"><span class="badge badge-info">{{user.id}}</span></div>
         <div class="col-2">{{user.name}}</div>
         <div class="col-2">{{user.surname}}</div>
         <div class="col-3">{{user.email}}</div>
         <div class="col-4">
-          <div class="row text-right">
+          <div class="row text-right text-lg-center">
             <div class="col-12 col-lg">
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
             <div class="col-12 col-lg">
-              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{i}}">Edit</button>
+              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
             </div>
             <div class="col-12 col-lg">
               <dropdown-menu [user]="user"></dropdown-menu>
@@ -116,7 +162,9 @@
         </div>
       </div>
     </div>
+    <!-- END OF CONTAINER MEDIUM -->
   </div>
+  <!-- END OF TABLE -->
 
   <ng-template #emptyList>
     <hr>
