@@ -27,25 +27,23 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
   @ViewChild('content') content: ElementRef;
 
   /**
-   * @var {Subscription} The subscription to the Loading Service who serves the response of the server
-   */
-  subscription: Subscription;
-
-  /**
    * @var {bolean} True if the server response is OK (statuscode=200), false otherwise.
    */
   confirmed: boolean = false;
+
+  /**
+   * @var {Subscription} A subscription to the response of server: when loading is finished, loading Service get the response of server
+   */
+  subscriptionToResponseOfServer: Subscription;
 
   constructor(private modalService: NgbModal, private loadingService: LoadingService) {
   }
 
   ngOnInit() {
-    this.subscription = this.loadingService.subjectModals.subscribe((response: { message, confirmed, elementRef }) => {
+    this.subscriptionToResponseOfServer = this.loadingService.subjectModals.subscribe((response: { message, confirmed }) => {
       this.message = response.message;
       this.confirmed = response.confirmed;
-      if (this.content === response.elementRef) {
-        this.openVerticallyCentered();
-      }
+      this.openVerticallyCentered();
     });
   }
 
@@ -59,7 +57,7 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
     this.confirmEvent.emit();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  ngOnDestroy(){
+    this.subscriptionToResponseOfServer.unsubscribe();
   }
 }

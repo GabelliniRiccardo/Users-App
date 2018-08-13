@@ -1,9 +1,12 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {UsersService} from '../../services/users.service';
 import {DataStorageService} from '../../services/data-storage.service';
 import {Router} from '@angular/router';
 import {User} from '../../Models/user.model';
 import {LoadingService} from '../../services/loading.service';
+import {Subscription} from 'rxjs';
+import {DeviceService} from '../../services/device.service';
+import {Device} from '../../directives/device-detector/device-detector.directive';
 
 
 @Component({
@@ -15,7 +18,7 @@ import {LoadingService} from '../../services/loading.service';
 export class HomePageComponent implements OnInit {
 
   /**
-   * @var {User[]} The list of users returned from the API.
+   * @var {User[]} The list of users returned from Users Service.
    */
   listOfUsers: User[] = [];
 
@@ -39,13 +42,27 @@ export class HomePageComponent implements OnInit {
    */
   searchByParameter: ('name' | 'surname' | 'phone' | 'email') = 'name';
 
-  constructor(private userService: UserService,
+  /**
+   * @var {Subscription} A subscription to the list of users changes according to the users service.
+   */
+  subscriptionToUsersListChanges: Subscription;
+
+  /**
+   * @var {boolean} True if screen width < Device.SMALL
+   */
+  isMobile: boolean;
+
+  constructor(private userService: UsersService,
               private dataStorageService: DataStorageService,
               private router: Router,
-              public loadingService: LoadingService) {
+              public loadingService: LoadingService,
+              private deviceService: DeviceService) {
   }
 
   ngOnInit() {
+    this.deviceService.deviceChanged$.subscribe((device: Device) => this.isMobile = device === Device.SMALL || device === Device.X_SMALL);
+    this.subscriptionToUsersListChanges = this.userService.subjectToNotifyUsersListChanges
+      .subscribe((users: User[]) => this.listOfUsers = users);
     this.executeUsersRequest();
   }
 
@@ -62,7 +79,7 @@ export class HomePageComponent implements OnInit {
       (response: User[]) => {
         this.loadingService.unsetLoading();
         console.log('Users Received: ', response);
-        this.listOfUsers = response;
+        this.userService.setListOfUsers(response);
         this.errorHasOccourred = false;
       },
       (error) => {
@@ -75,11 +92,11 @@ export class HomePageComponent implements OnInit {
 
   onDeleteUser(user: User) {
     console.log('Clicked on', user.name, user.surname);
-    this.listOfUsers.splice(this.listOfUsers.indexOf(user), 1);
+    this.userService.deleteUser(user);
   }
 
   addUserToList(user: User) {
-    this.listOfUsers.push(user);
+    this.userService.addUser(user);
     this.editMode = false;
   }
 
@@ -87,20 +104,20 @@ export class HomePageComponent implements OnInit {
     this.editMode = true;
   }
 
-  onConfirm(contentToShowAfterConfirmation: ElementRef) {
+  onConfirm() {
 
     this.loadingService.setLoading();
 
-    this.userService.updateListOfUsers(this.listOfUsers)
+    this.userService.updateListOfUsers()
       .subscribe(
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true, contentToShowAfterConfirmation);
+          this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
           console.log('Response of Server : ', response);
         },
         (error: any) => {
           this.loadingService.unsetLoading();
-          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false, contentToShowAfterConfirmation);
+          this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false);
           console.log('Response of Server : ', error.error);
         }
       );

@@ -12,9 +12,8 @@ export class LoadingService {
    * @var {Subject<{string, boolean, ElementRef}>} This subject notify modals with 3 parameters:
    * 1) message: the response of the server
    * 2) confirmed: true if response is OK (status code 200) false otherwise
-   * 3) elementRef: A reference to the content of the modal to open. Without this elementRef all modals will be open
    */
-  subjectModals: Subject<{message: string, confirmed: boolean, elementRef: ElementRef}> = new Subject<{message: string, confirmed: boolean, elementRef: ElementRef}>();
+  subjectModals: Subject<{message: string, confirmed: boolean}> = new Subject<{message: string, confirmed: boolean}>();
 
   /**
    * @var {Subject<boolean>} This subject notify the app.component of loadingChanges
@@ -36,7 +35,7 @@ export class LoadingService {
     this.subjectForLoadingStatus.next(this.loading);
   }
 
-  notifyChanges(message: string, confirmed: boolean, elementRef: ElementRef) {
-    this.subjectModals.next({message, confirmed, elementRef});
+  notifyChanges(message: string, confirmed: boolean) {
+    this.subjectModals.next({message, confirmed});
   }
 }

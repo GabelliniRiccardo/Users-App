@@ -11,8 +11,8 @@ import {AppComponent} from './app.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {DataStorageService} from '../services/data-storage.service';
 import {HomePageComponent} from '../components/home-page/home-page.component';
-import {AuthenticationServiceOnLogin} from '../services/authentication-service-on-login.service';
-import {AuthenticationServiceOnHomePage} from '../services/authentication-service-on-home-page.service';
+import {AuthenticationGuardBeforeLogin} from '../services/authentication-guard-before-login';
+import {AuthenticationGuardAfterLogin} from '../services/authentication-guard-after-login';
 import {AddUserFormComponent} from '../components/add-user-form/add-user-form.component';
 import {DeleteModalComponent} from '../components/modals/delete-modal/delete-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DropdownMenuComponent} from '../components/dropdown-menu/dropdown-menu.component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {ShadowOnTableDirective} from '../directives/shadow-on-table/shadow-on-table.directive';
 import {ShadowOnScrollDirective} from '../directives/shadow-on-scroll/shadow-on-scroll.directive';
 import {HeaderComponent} from '../components/header/header.component';
 import {RegistrationFormComponent} from '../components/registration-form/registration-form.component';
@@ -31,6 +30,9 @@ import { ConfirmationModalComponent } from '../components/modals/confirmation-mo
 import {DynamicHeightDirective} from '../directives/dynamic-height.directive/dynamic-height.directive';
 import {FilterUserListPipe} from '../pipes/filter-user-list.pipe';
 import {SelectModalComponent} from '../components/modals/select-modal/select-modal.component';
+import {EditUserComponent} from '../components/edit-user/edit-user.component';
+import {DeviceDetectorDirective} from '../directives/device-detector/device-detector.directive';
+import {DeviceService} from '../services/device.service';
 
 @NgModule({
   imports: [
@@ -51,25 +53,27 @@ import {SelectModalComponent} from '../components/modals/select-modal/select-mod
     AddUserFormComponent,
     DeleteModalComponent,
     DropdownMenuComponent,
-    ShadowOnTableDirective,
     ShadowOnScrollDirective,
     DynamicHeightDirective,
+    DeviceDetectorDirective,
     HeaderComponent,
     RegistrationFormComponent,
     ConfirmationModalComponent,
     SelectModalComponent,
-    FilterUserListPipe
+    FilterUserListPipe,
+    EditUserComponent
   ],
 
   providers: [
     HttpClient,
     LoginService,
     DataStorageService,
-    AuthenticationServiceOnLogin,
-    AuthenticationServiceOnHomePage,
+    AuthenticationGuardBeforeLogin,
+    AuthenticationGuardAfterLogin,
     NgbModal,
     RegistrationService,
-    LoadingService
+    LoadingService,
+    DeviceService
   ],
 
   bootstrap: [AppComponent]

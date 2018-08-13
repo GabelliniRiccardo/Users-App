@@ -7,7 +7,6 @@
 
 <add-user-form *ngIf="editMode" (addedUser)="addUserToList($event)"></add-user-form>
 
-
 <div class="row my-2 " *ngIf="errorHasOccourred">
   <div class="col-12">
     <div class="text-center">
@@ -21,18 +20,18 @@
 </div>
 
 
-<div *ngIf="!errorHasOccourred" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap d-md-none">
+<div *ngIf="!errorHasOccourred && isMobile" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap">
   <app-confirmation-modal #confirmationModalSM
-                          (confirmEvent)="onConfirm(confirmationModalSM.content)">
+                          (confirmEvent)="onConfirm()">
 
   </app-confirmation-modal>
 </div>
 
 
 <div class="row u-card lighter-background mx-0 mb-3 mt-md-3 px-0 text-center text-nowrap" *ngIf="!errorHasOccourred">
-  <div class="col-5 text-right d-none d-md-block">
+  <div class="col-5 text-right" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
-      <button class="btn btn-outline-primary" ngbDropdownToggle>Search By</button>
+      <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='name'">Search by name</li>
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='surname'">Search by surname</li>
@@ -41,7 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="col text-center d-md-none">
+  <div class="col text-center" *ngIf="isMobile">
     <select-modal [selectedFilter]="searchByParameter" (selectEvent)="searchByParameter = $event"></select-modal>
   </div>
   <div class="col text-md-left">
@@ -54,45 +53,69 @@
       placeholder="Search users by {{searchByParameter}}"
       [(ngModel)]="searchString">
   </div>
-  <div class="col text-center d-none d-md-block">
+  <div class="col text-center" *ngIf="!isMobile">
     <app-confirmation-modal #confirmationModalMD
-                            (confirmEvent)="onConfirm(confirmationModalMD.content)">
+                            (confirmEvent)="onConfirm()">
 
     </app-confirmation-modal>
   </div>
 </div>
 
-<div *ngIf="!loadingService.isLoading()" appDynamicHeight>
-  <div class="mx-auto table-responsive u-card lighter-background mb-2 u-height-50 u-height-md-60"
+<div *ngIf="!loadingService.isLoading() " appDynamicHeight>
+  <div class="table-responsive u-card lighter-background mb-2"
+       [class.p-1]="isMobile"
        #scrollingContainer
-       shadowOnTable
+       appShadowOnScroll [shadowClass]="'shadowOnTop'"
        *ngIf="listOfUsers.length>0 ; else emptyList">
 
-    <table class="table table-borderless">
-      <tbody>
-      <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
-        <td>
-          <span class="badge badge-info">
-            {{i}}
-          </span>
-        </td>
-        <td>{{user.name}}</td>
-        <td>{{user.surname}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          <div class="row">
-            <div class="col-6">
+    <!-- VISIBLE ONLY FOR MOBILE -->
+    <div *ngIf="isMobile">
+      <div class="u-card lighter-background my-2"
+           *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
+        <div class="row">
+          <div class="col text-nowrap">
+            <ul class="p-0 text-truncate"><span class="badge badge-info">ID</span> : {{i}}</ul>
+            <ul class="p-0 text-truncate"><span class="badge badge-info">Name</span> : {{user.name}}</ul>
+            <ul class="p-0 text-truncate"><span class="badge badge-info">Surname</span> : {{user.surname}}</ul>
+            <ul class="p-0 text-truncate"><span class="badge badge-info">Email</span> : {{user.email}}</ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-right">
+            <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
+          </div>
+          <div class="col text-center">
+            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{i}}">Edit</button>
+          </div>
+          <div class="col text-left">
+            <dropdown-menu [user]="user"></dropdown-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISIBLE ONLY FOR DESCKTOP -->
+    <div class="table table-borderless" *ngIf="!isMobile">
+      <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
+        <div class="col-1"><span class="badge badge-info">{{i}}</span></div>
+        <div class="col-2">{{user.name}}</div>
+        <div class="col-2">{{user.surname}}</div>
+        <div class="col-3">{{user.email}}</div>
+        <div class="col-4">
+          <div class="row text-right">
+            <div class="col-12 col-lg">
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
-
-            <div class="col-6">
+            <div class="col-12 col-lg">
+              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{i}}">Edit</button>
+            </div>
+            <div class="col-12 col-lg">
               <dropdown-menu [user]="user"></dropdown-menu>
             </div>
           </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <ng-template #emptyList>
@@ -101,5 +124,3 @@
     </div>
   </ng-template>
 </div>
-
-<!--<ngx-loading [show]="loadingService.isLoading()" [config]="{ fullScreenBackdrop: true }"></ngx-loading>-->

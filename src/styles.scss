@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
-
 @import '~bootstrap/scss/_functions';
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
@@ -22,7 +20,7 @@
   font-weight: 500;
   letter-spacing: -0.2px;
 
-  &.search-input{
+  &.search-input {
     font-size: 16px;
     border-radius: 12px;
     border: solid 1px transparent;
@@ -157,16 +155,8 @@ body {
 
 // SHADOW ON SCROLLING
 
-.shadowOnLeft {
-  box-shadow: inset 5px 0px 10px -3px #616161;
-}
-
-.shadowOnRight {
-  box-shadow: inset -5px 0px 10px -3px #616161;
-}
-
-.shadowOnRightAndOnLeft {
-  box-shadow: inset -5px 0px 10px -3px #616161, inset 5px 0px 10px -3px #616161;
+.shadowOnTop {
+  box-shadow: inset 0px 10px 10px -3px #82c2ee;
 }
 
 .shadowBottomDarkBlue {
@@ -185,7 +175,7 @@ body {
 
 // General
 
-.u-pointer{
+.u-pointer {
   cursor: pointer;
 }
 
