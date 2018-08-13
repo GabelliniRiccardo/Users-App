@@ -8,7 +8,6 @@ import {Subscription} from 'rxjs';
 import {DeviceService} from '../../services/device.service';
 import {Device} from '../../directives/device-detector/device-detector.directive';
 
-
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -43,6 +42,11 @@ export class HomePageComponent implements OnInit {
   searchByParameter: ('name' | 'surname' | 'phone' | 'email') = 'name';
 
   /**
+   * @var {string} The list of users is sort according to this parameter
+   */
+  orderByParameter: ('id' | 'name' | 'surname' | 'phone' | 'email') = 'id';
+
+  /**
    * @var {Subscription} A subscription to the list of users changes according to the users service.
    */
   subscriptionToUsersListChanges: Subscription;
@@ -62,7 +66,10 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.deviceService.deviceChanged$.subscribe((device: Device) => this.isMobile = device === Device.SMALL || device === Device.X_SMALL);
     this.subscriptionToUsersListChanges = this.userService.subjectToNotifyUsersListChanges
-      .subscribe((users: User[]) => this.listOfUsers = users);
+      .subscribe((users: User[]) => {
+        this.listOfUsers = users;
+        this.orderListAccordingToParameter();
+      });
     this.executeUsersRequest();
   }
 
@@ -121,5 +128,19 @@ export class HomePageComponent implements OnInit {
           console.log('Response of Server : ', error.error);
         }
       );
+  }
+
+  orderListAccordingToParameter() {
+    this.listOfUsers.sort((user1: User, user2: User) => {
+      if (this.orderByParameter === 'id') {
+        if (user1[this.orderByParameter] < user2[this.orderByParameter]) return -1; else {
+          return 1;
+        }
+      } else {
+        if (user1[this.orderByParameter].toLowerCase() < user2[this.orderByParameter].toLowerCase()) return -1; else {
+          return 1;
+        }
+      }
+    });
   }
 }
