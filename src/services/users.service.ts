@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {User} from '../Models/user.model';
 import {Subject} from 'rxjs';
+import {forEach} from '../../node_modules/@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,7 @@ export class UsersService {
   }
 
   addUser(user: User) {
+    user.id = this.listOfUsers.length;
     this.listOfUsers.push(user);
     this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
   }
@@ -52,10 +54,15 @@ export class UsersService {
 
   setListOfUsers(users: User[]) {
     this.listOfUsers = users;
+    let count = 0;
+    this.listOfUsers.forEach((user: User) => {
+      user.id = count;
+      count++;
+    });
     this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
   }
 
-  getUser(index: number){
+  getUser(index: number) {
     return this.listOfUsers[index];
   }
 }

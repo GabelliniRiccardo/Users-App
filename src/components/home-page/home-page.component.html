@@ -71,10 +71,10 @@
     <!-- VISIBLE ONLY FOR MOBILE -->
     <div *ngIf="isMobile">
       <div class="u-card lighter-background my-2"
-           *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
+           *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString;">
         <div class="row">
           <div class="col text-nowrap">
-            <ul class="p-0 text-truncate"><span class="badge badge-info">ID</span> : {{i}}</ul>
+            <ul class="p-0 text-truncate"><span class="badge badge-info">ID</span> : {{user.id}}</ul>
             <ul class="p-0 text-truncate"><span class="badge badge-info">Name</span> : {{user.name}}</ul>
             <ul class="p-0 text-truncate"><span class="badge badge-info">Surname</span> : {{user.surname}}</ul>
             <ul class="p-0 text-truncate"><span class="badge badge-info">Email</span> : {{user.email}}</ul>
@@ -85,7 +85,7 @@
             <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
           </div>
           <div class="col text-center">
-            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{i}}">Edit</button>
+            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
           </div>
           <div class="col text-left">
             <dropdown-menu [user]="user"></dropdown-menu>
@@ -96,8 +96,8 @@
 
     <!-- VISIBLE ONLY FOR DESCKTOP -->
     <div class="table table-borderless" *ngIf="!isMobile">
-      <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
-        <div class="col-1"><span class="badge badge-info">{{i}}</span></div>
+      <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString">
+        <div class="col-1"><span class="badge badge-info">{{user.id}}</span></div>
         <div class="col-2">{{user.name}}</div>
         <div class="col-2">{{user.surname}}</div>
         <div class="col-3">{{user.email}}</div>
@@ -107,7 +107,7 @@
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
             <div class="col-12 col-lg">
-              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{i}}">Edit</button>
+              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
             </div>
             <div class="col-12 col-lg">
               <dropdown-menu [user]="user"></dropdown-menu>
