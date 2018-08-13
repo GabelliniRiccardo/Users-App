@@ -47,6 +47,9 @@ export class HomePageComponent implements OnInit {
    */
   subscriptionToUsersListChanges: Subscription;
 
+  /**
+   * @var {boolean} True if screen width < Device.SMALL
+   */
   isMobile: boolean;
 
   constructor(private userService: UsersService,

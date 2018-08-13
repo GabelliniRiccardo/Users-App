@@ -1,20 +1,15 @@
 import {Injectable} from '@angular/core';
-
-
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Device} from '../directives/device-detector/device-detector.directive';
 
 @Injectable()
-/**
- * Provides a set of streams to be used in the app to be informed about useful events.
- */
+
 export class DeviceService {
 
   /**
    * @var {Subject<void>} A subject emitting whenever the type of device changes.
    */
   private _deviceChanged: BehaviorSubject<Device> = new BehaviorSubject(undefined);
-
 
   /**
    * Trigger the _deviceChanged stream. This method should be called every time the device type changes.

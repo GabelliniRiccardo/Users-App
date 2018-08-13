@@ -31,6 +31,9 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
    */
   confirmed: boolean = false;
 
+  /**
+   * @var {Subscription} A subscription to the response of server: when loading is finished, loading Service get the response of server
+   */
   subscriptionToResponseOfServer: Subscription;
 
   constructor(private modalService: NgbModal, private loadingService: LoadingService) {

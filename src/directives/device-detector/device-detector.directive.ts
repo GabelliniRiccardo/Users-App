@@ -15,9 +15,7 @@ export enum Device {
 @Directive({
   selector: '[appDeviceDetector]'
 })
-/**
- * A directive to detect device changes.
- */
+
 export class DeviceDetectorDirective implements OnInit {
 
   /**
