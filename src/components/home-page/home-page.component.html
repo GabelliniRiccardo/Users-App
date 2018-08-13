@@ -62,7 +62,8 @@
 </div>
 
 <div *ngIf="!loadingService.isLoading() " appDynamicHeight>
-  <div class="mx-auto table-responsive u-card lighter-background mb-2 u-height-50 u-height-md-60 p-1 p-md-2"
+  <div class="table-responsive u-card lighter-background mb-2"
+       [class.p-1]="isMobile"
        #scrollingContainer
        appShadowOnScroll [shadowClass]="'shadowOnTop'"
        *ngIf="listOfUsers.length>0 ; else emptyList">
@@ -94,18 +95,13 @@
     </div>
 
     <!-- VISIBLE ONLY FOR DESCKTOP -->
-    <table class="table table-borderless" *ngIf="!isMobile">
-      <tbody>
-      <tr *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
-        <td>
-          <span class="badge badge-info">
-            {{i}}
-          </span>
-        </td>
-        <td>{{user.name}}</td>
-        <td>{{user.surname}}</td>
-        <td>{{user.email}}</td>
-        <td>
+    <div class="table table-borderless" *ngIf="!isMobile">
+      <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString; let i=index">
+        <div class="col-1"><span class="badge badge-info">{{i}}</span></div>
+        <div class="col-2">{{user.name}}</div>
+        <div class="col-2">{{user.surname}}</div>
+        <div class="col-3">{{user.email}}</div>
+        <div class="col-4">
           <div class="row text-right">
             <div class="col-12 col-lg">
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
@@ -117,10 +113,9 @@
               <dropdown-menu [user]="user"></dropdown-menu>
             </div>
           </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <ng-template #emptyList>
@@ -129,5 +124,3 @@
     </div>
   </ng-template>
 </div>
-
-<!--<ngx-loading [show]="loadingService.isLoading()" [config]="{ fullScreenBackdrop: true }"></ngx-loading>-->

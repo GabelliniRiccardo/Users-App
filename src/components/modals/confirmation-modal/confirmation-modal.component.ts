@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./confirmation-modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ConfirmationModalComponent implements OnInit {
+export class ConfirmationModalComponent implements OnInit, OnDestroy {
 
   /**
    * @var {string} The response of the server.
@@ -31,11 +31,13 @@ export class ConfirmationModalComponent implements OnInit {
    */
   confirmed: boolean = false;
 
+  subscriptionToResponseOfServer: Subscription;
+
   constructor(private modalService: NgbModal, private loadingService: LoadingService) {
   }
 
   ngOnInit() {
-    this.loadingService.subjectModals.subscribe((response: { message, confirmed }) => {
+    this.subscriptionToResponseOfServer = this.loadingService.subjectModals.subscribe((response: { message, confirmed }) => {
       this.message = response.message;
       this.confirmed = response.confirmed;
       this.openVerticallyCentered();
@@ -50,5 +52,9 @@ export class ConfirmationModalComponent implements OnInit {
 
   onConfirm() {
     this.confirmEvent.emit();
+  }
+
+  ngOnDestroy(){
+    this.subscriptionToResponseOfServer.unsubscribe();
   }
 }
