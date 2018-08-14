@@ -18,7 +18,7 @@
 
       <input
         id="name"
-        class="u-input form-control u-height-40"
+        class="u-input form-control u-input-height-40"
         [class.u-input-invalid]="!inputName.valid && inputName.touched"
         type="text"
         name="name"
@@ -48,7 +48,7 @@
 
       <input
         id="surname"
-        class="u-input form-control u-height-40"
+        class="u-input form-control u-input-height-40"
         [class.u-input-invalid]="!inputSurname.valid && inputSurname.touched"
         type="text"
         name="surname"
@@ -79,7 +79,7 @@
 
       <input
         id="email"
-        class="u-input form-control u-height-40"
+        class="u-input form-control u-input-height-40"
         [class.u-input-invalid]="!inputEmail.valid && inputEmail.touched"
         type="email"
         name="email"
@@ -87,7 +87,6 @@
         required
         email
         #inputEmail="ngModel">
-
 
       <div class="alert alert-danger" *ngIf="!inputEmail.valid && inputEmail.touched">
         Email is invalid
@@ -112,7 +111,7 @@
 
       <input
         id="phone"
-        class="u-input form-control u-height-40"
+        class="u-input form-control u-input-height-40"
         [class.u-input-invalid]="!inputPhone.valid && inputPhone.touched"
         type="text"
         name="phone"
@@ -144,7 +143,7 @@
 
       <input
         id="password"
-        class="u-input form-control u-height-40"
+        class="u-input form-control u-input-height-40"
         [class.u-input-invalid]="!inputPassword.valid && inputPassword.touched"
         type="password"
         name="password"

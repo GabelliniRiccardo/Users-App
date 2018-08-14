@@ -50,6 +50,14 @@
     border-color: #f68c9c !important;
   }
 
+  &.u-input-warning {
+    border-color: #f6be00 !important;
+  }
+
+  &.u-input-valid {
+    border-color: #00f607 !important;
+  }
+
   &:focus, &.u-input-focused {
     box-shadow: none;
     border-color: #1c56d9;
@@ -62,6 +70,10 @@
   &::placeholder {
     color: #afb6bd;
   }
+}
+
+.u-input-height-40 {
+  height: 40px !important;
 }
 
 // CARD

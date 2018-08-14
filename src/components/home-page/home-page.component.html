@@ -1,4 +1,4 @@
-<app-header [showLinks]="false" (onExitEvent)="exit()"></app-header>
+<app-header [showLinks]="false"></app-header>
 
 <div *ngIf="!editMode"
      class="text-center">
@@ -144,10 +144,10 @@
     <div *ngIf="!isMobile">
       <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString">
         <div class="col-1"><span class="badge badge-info">{{user.id}}</span></div>
-        <div class="col-2">{{user.name}}</div>
-        <div class="col-2">{{user.surname}}</div>
-        <div class="col-3">{{user.email}}</div>
-        <div class="col-4">
+        <div class="col-2 text-truncate">{{user.name}}</div>
+        <div class="col-2 text-truncate">{{user.surname}}</div>
+        <div class="col-3 text-truncate">{{user.email}}</div>
+        <div class="col-4 text-truncate">
           <div class="row text-right text-lg-center">
             <div class="col-12 col-lg">
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>

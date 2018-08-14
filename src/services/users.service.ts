@@ -63,6 +63,8 @@ export class UsersService {
   }
 
   getUser(index: number) {
-    return this.listOfUsers[index];
+    if (!!this.listOfUsers) {
+      return this.listOfUsers[index];
+    } else return;
   }
 }
