@@ -65,4 +65,8 @@ export class UsersService {
   getUser(index: number) {
     return this.listOfUsers[index];
   }
+
+  hasDefinedList(): boolean {
+    return !!this.listOfUsers;
+  }
 }

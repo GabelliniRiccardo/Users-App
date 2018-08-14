@@ -1,4 +1,4 @@
-<app-header [showLinks]="false" (onExitEvent)="exit()"></app-header>
+<app-header [showLinks]="false"></app-header>
 
 <div *ngIf="!editMode"
      class="text-center">
@@ -20,7 +20,8 @@
 </div>
 
 <div *ngIf="!errorHasOccourred && isMobile" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap">
-  <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
+  <app-confirmation-modal></app-confirmation-modal>
+  <button class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
 </div>
 
 <!-- BUTTONS AND SEARCH LAYER -->
@@ -86,7 +87,8 @@
 
   <!-- SEARCH BY ON MOBILE -->
   <div class="col text-center" *ngIf="!isMobile">
-    <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
+    <app-confirmation-modal></app-confirmation-modal>
+    <button class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
   </div>
   <!-- END OF SEARCH BY ON MOBILE -->
 </div>
@@ -130,7 +132,7 @@
             <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
           </div>
           <div class="col text-center">
-            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
+            <button class="btn btn-outline-warning m-1" routerLink="/edit/{{user.id}}">Edit</button>
           </div>
           <div class="col text-left">
             <dropdown-menu [user]="user"></dropdown-menu>
@@ -144,16 +146,16 @@
     <div *ngIf="!isMobile">
       <div class="row" *ngFor="let user of listOfUsers | filterby: searchByParameter : searchString">
         <div class="col-1"><span class="badge badge-info">{{user.id}}</span></div>
-        <div class="col-2">{{user.name}}</div>
-        <div class="col-2">{{user.surname}}</div>
-        <div class="col-3">{{user.email}}</div>
-        <div class="col-4">
+        <div class="col-2 text-truncate">{{user.name}}</div>
+        <div class="col-2 text-truncate">{{user.surname}}</div>
+        <div class="col-3 text-truncate">{{user.email}}</div>
+        <div class="col-4 text-truncate">
           <div class="row text-right text-lg-center">
             <div class="col-12 col-lg">
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
             <div class="col-12 col-lg">
-              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
+              <button class="btn btn-outline-warning m-1" routerLink="/edit/{{user.id}}">Edit</button>
             </div>
             <div class="col-12 col-lg">
               <dropdown-menu [user]="user"></dropdown-menu>

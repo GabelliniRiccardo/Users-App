@@ -73,11 +73,6 @@ export class HomePageComponent implements OnInit {
     this.executeUsersRequest();
   }
 
-  exit() {
-    this.dataStorageService.setUserAsNotAutenticated();
-    this.router.navigate(['login']);
-  }
-
   private executeUsersRequest() {
 
     this.loadingService.setLoading();

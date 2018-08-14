@@ -5,13 +5,14 @@ import {AuthenticationGuardBeforeLogin} from '../services/authentication-guard-b
 import {AuthenticationGuardAfterLogin} from '../services/authentication-guard-after-login';
 import {RegistrationFormComponent} from '../components/registration-form/registration-form.component';
 import {EditUserComponent} from '../components/edit-user/edit-user.component';
+import {AuthenticationGuardOnEditPage} from '../services/authentication-guard-on-edit-page';
 
 export const ROUTING: Routes = [
 
   {path: 'login', component: LoginFormComponent, canActivate: [AuthenticationGuardBeforeLogin]},
   {path: 'registration', component: RegistrationFormComponent},
   {path: 'home', component: HomePageComponent, canActivate: [AuthenticationGuardAfterLogin]},
-  {path: 'edit/:id', component: EditUserComponent,  canActivate: [AuthenticationGuardAfterLogin]},
+  {path: 'edit/:id', component: EditUserComponent,  canActivate: [AuthenticationGuardAfterLogin, AuthenticationGuardOnEditPage]},
   {path: '**', redirectTo: '/login'},
 
 ];

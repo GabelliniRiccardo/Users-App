@@ -1,4 +1,192 @@
-<p>
-  ID: {{id}}
-  User: {{user.name}} {{user.surname}} {{user.phone}}  {{user.password}}  {{user.email}}
-</p>
+<app-header [showLinks]="false"></app-header>
+
+<div class="container px-0">
+  <form (ngSubmit)="onSubmit()"
+        #f="ngForm"
+        class="mx-auto max-width-of-form u-card lighter-background px-3 px-md-4">
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="!inputName.valid && inputName.touched"
+          type="text"
+          name="name"
+          [(ngModel)]="user.name"
+          required
+          minlength="3"
+          #inputName="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="!inputName.valid && inputName.touched">
+          Name is invalid
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="surname">Surname</label>
+        <input
+          id="surname"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="!surname.valid && surname.touched"
+          type="text"
+          name="surname"
+          [(ngModel)]="user.surname"
+          required
+          minlength="3"
+          #surname="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="!surname.valid && surname.touched">
+          Surname is invalid
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="!email.valid && email.touched"
+          type="text"
+          name="email"
+          [(ngModel)]="user.email"
+          email
+          required
+          minlength="3"
+          #email="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="!email.valid && email.touched">
+          Email is invalid
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="phone">Phone</label>
+        <input
+          id="phone"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="!phone.valid && phone.touched"
+          type="text"
+          name="phone"
+          [(ngModel)]="user.phone"
+          required
+          [pattern]="phonePattern"
+          minlength="10"
+          maxlength="10"
+          #phone="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="!phone.valid && phone.touched">
+          Phone is invalid
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="currentPassword">Current Password</label>
+        <input
+          id="currentPassword"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="currentPassword.value!==user.password && currentPassword.touched"
+          [class.u-input-valid]="currentPassword.value===user.password"
+          type="password"
+          name="currentPassword"
+          ngModel
+          required
+          minlength="3"
+          #currentPassword="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="currentPassword.value!==user.password && currentPassword.touched">
+          Password doesn't match
+        </div>
+        <div class="alert alert-success m-0" *ngIf="currentPassword.value===user.password && currentPassword.touched">
+          Password match
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="newPassword1">New Password</label>
+        <input
+          id="newPassword1"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="!newPassword1.valid && newPassword1.touched"
+          [class.u-input-warning]="newPassword2.value!==newPassword1.value && newPassword1.touched && newPassword2.dirty"
+          [class.u-input-valid]="newPassword2.value==newPassword1.value && newPassword2.valid"
+          type="password"
+          name="newPassword1"
+          ngModel
+          required
+          [pattern]="passwordPattern"
+          minlength="3"
+          #newPassword1="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="!newPassword1.valid && newPassword1.touched">
+          Password is invalid
+        </div>
+        <div class="alert alert-warning m-0"
+             *ngIf="newPassword2.value!==newPassword1.value && newPassword1.touched && newPassword2.dirty">
+          Passwords aren't the same
+        </div>
+        <div class="alert alert-success m-0"
+             *ngIf="newPassword2.value==newPassword1.value && newPassword2.valid">
+          Passwords are the same
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-1 my-md-2">
+      <div class="col-12">
+        <label for="newPassword2">New Password</label>
+        <input
+          id="newPassword2"
+          class="u-input form-control u-input-height-40"
+          [class.u-input-invalid]="!newPassword2.valid && newPassword2.touched"
+          [class.u-input-warning]="newPassword2.value!==newPassword1.value && newPassword1.touched && newPassword2.dirty"
+          [class.u-input-valid]="newPassword2.value==newPassword1.value && newPassword2.valid"
+          type="password"
+          name="newPassword2"
+          [(ngModel)]="newPassword"
+          required
+          [pattern]="passwordPattern"
+          minlength="3"
+          #newPassword2="ngModel">
+
+        <div class="alert alert-danger m-0" *ngIf="!newPassword2.valid && newPassword2.touched">
+          Password is invalid
+        </div>
+        <div class="alert alert-warning m-0"
+             *ngIf="newPassword2.value!==newPassword1.value && newPassword1.touched && newPassword2.dirty">
+          Passwords aren't the same
+        </div>
+        <div class="alert alert-success m-0"
+             *ngIf="newPassword2.value==newPassword1.value && newPassword2.valid">
+          Passwords are the same
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-6 text-right">
+        <app-confirmation-modal [urlToNavigateAfterConfirmation]="'home'"></app-confirmation-modal>
+        <button class="btn btn-primary"
+                [disabled]="!f.valid || newPassword2.value!==newPassword1.value || currentPassword.value!==user.password"
+                type="submit">
+          Confirm
+        </button>
+      </div>
+      <div class="col-6 text-left">
+        <button class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

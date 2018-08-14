@@ -1,7 +1,8 @@
-import {Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {LoadingService} from '../../../services/loading.service';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -15,11 +16,6 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
    * @var {string} The response of the server.
    */
   message: string;
-
-  /**
-   * @var {EventEmitter<void>} An Event emitter that emits when confirmation button is clicked
-   */
-  @Output() confirmEvent: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * @var {ElementRef} The content that the modal must show.
@@ -36,7 +32,14 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
    */
   subscriptionToResponseOfServer: Subscription;
 
-  constructor(private modalService: NgbModal, private loadingService: LoadingService) {
+  /**
+   * @var {string} The url where router has to navigate when user confirm the modal.
+   */
+  @Input() urlToNavigateAfterConfirmation: string;
+
+  constructor(private modalService: NgbModal,
+              private loadingService: LoadingService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -53,11 +56,14 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  onConfirm() {
-    this.confirmEvent.emit();
-  }
-
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptionToResponseOfServer.unsubscribe();
   }
+
+  onConfirmationModal() {
+    if (!!this.urlToNavigateAfterConfirmation) {
+      this.router.navigate([this.urlToNavigateAfterConfirmation]);
+    }
+  }
+
 }

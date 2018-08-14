@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {DataStorageService} from '../../services/data-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,15 +14,12 @@ export class HeaderComponent {
    */
   @Input() showLinks: boolean = false;
 
-  /**
-   * @var {EventEmitter<void>} It emit an event when user exits from home page.
-   */
-  @Output() onExitEvent: EventEmitter<void> = new EventEmitter();
-
-  constructor() {
+  constructor(private dataStorageService: DataStorageService,
+              private router: Router) {
   }
 
   exit() {
-    this.onExitEvent.emit();
+    this.dataStorageService.setUserAsNotAutenticated();
+    this.router.navigate(['login']);
   }
 }

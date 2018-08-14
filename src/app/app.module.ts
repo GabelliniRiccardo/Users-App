@@ -33,6 +33,7 @@ import {SelectModalComponent} from '../components/modals/select-modal/select-mod
 import {EditUserComponent} from '../components/edit-user/edit-user.component';
 import {DeviceDetectorDirective} from '../directives/device-detector/device-detector.directive';
 import {DeviceService} from '../services/device.service';
+import {AuthenticationGuardOnEditPage} from '../services/authentication-guard-on-edit-page';
 
 @NgModule({
   imports: [
@@ -70,6 +71,7 @@ import {DeviceService} from '../services/device.service';
     DataStorageService,
     AuthenticationGuardBeforeLogin,
     AuthenticationGuardAfterLogin,
+    AuthenticationGuardOnEditPage,
     NgbModal,
     RegistrationService,
     LoadingService,
