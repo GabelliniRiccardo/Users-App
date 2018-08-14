@@ -37,7 +37,6 @@ export class EditUserComponent implements OnInit {
         (params: Params) => {
           const id: number = +params['id'];
           this.user = this.usersService.getUser(id);
-          !!this.user ? this.userBeforeEdit = this.user : this.router.navigate(['home']);
         }
       );
   }
@@ -58,12 +57,10 @@ export class EditUserComponent implements OnInit {
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
           this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
-          this.router.navigate(['home']);
         },
         (error: any) => {
           this.loadingService.unsetLoading();
           this.loadingService.notifyChanges('Ops, someting went wrong On updating users... :(', false);
-          this.router.navigate(['home']);
         }
       );
   }

@@ -20,7 +20,8 @@
 </div>
 
 <div *ngIf="!errorHasOccourred && isMobile" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap">
-  <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
+  <app-confirmation-modal></app-confirmation-modal>
+  <button class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
 </div>
 
 <!-- BUTTONS AND SEARCH LAYER -->
@@ -86,7 +87,8 @@
 
   <!-- SEARCH BY ON MOBILE -->
   <div class="col text-center" *ngIf="!isMobile">
-    <app-confirmation-modal (confirmEvent)="onConfirm()"></app-confirmation-modal>
+    <app-confirmation-modal></app-confirmation-modal>
+    <button class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
   </div>
   <!-- END OF SEARCH BY ON MOBILE -->
 </div>

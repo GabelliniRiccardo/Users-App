@@ -1,9 +1,9 @@
 <app-header [showLinks]="false"></app-header>
 
-<div class="container">
+<div class="container px-0">
   <form (ngSubmit)="onSubmit()"
         #f="ngForm"
-        class="mx-auto max-width-of-form u-card lighter-background">
+        class="mx-auto max-width-of-form u-card lighter-background px-3 px-md-4">
 
     <div class="row my-1 my-md-2">
       <div class="col-12">
@@ -177,6 +177,7 @@
 
     <div class="row my-4">
       <div class="col-6 text-right">
+        <app-confirmation-modal [urlToNavigateAfterConfirmation]="'home'"></app-confirmation-modal>
         <button class="btn btn-primary"
                 [disabled]="!f.valid || newPassword2.value!==newPassword1.value || currentPassword.value!==user.password"
                 type="submit">
