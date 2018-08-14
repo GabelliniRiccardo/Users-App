@@ -32,6 +32,9 @@ export class ConfirmationModalComponent implements OnInit, OnDestroy {
    */
   subscriptionToResponseOfServer: Subscription;
 
+  /**
+   * @var {string} The url where router has to navigate when user confirm the modal.
+   */
   @Input() urlToNavigateAfterConfirmation: string;
 
   constructor(private modalService: NgbModal,

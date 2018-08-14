@@ -132,7 +132,7 @@
             <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
           </div>
           <div class="col text-center">
-            <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
+            <button class="btn btn-outline-warning m-1" routerLink="/edit/{{user.id}}">Edit</button>
           </div>
           <div class="col text-left">
             <dropdown-menu [user]="user"></dropdown-menu>
@@ -155,7 +155,7 @@
               <delete-modal (deleteEvent)="onDeleteUser(user)"></delete-modal>
             </div>
             <div class="col-12 col-lg">
-              <button class="btn btn-outline-warning mb-2" routerLink="/edit/{{user.id}}">Edit</button>
+              <button class="btn btn-outline-warning m-1" routerLink="/edit/{{user.id}}">Edit</button>
             </div>
             <div class="col-12 col-lg">
               <dropdown-menu [user]="user"></dropdown-menu>

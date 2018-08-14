@@ -21,8 +21,19 @@ export class EditUserComponent implements OnInit {
    */
   phonePattern = '[0-9]*';
 
+  /**
+   * @var {User} The current user to edit.
+   */
   user: User;
+
+  /**
+   * @var {User} The current user before edit.
+   */
   userBeforeEdit: User;
+
+  /**
+   * @var {string} The new value of password user to edit
+   */
   newPassword: string;
 
   constructor(private usersService: UsersService,
