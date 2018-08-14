@@ -44,22 +44,17 @@ export class UsersService {
   addUser(user: User) {
     user.id = this.listOfUsers.length;
     this.listOfUsers.push(user);
-    this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
+    this.recalcIDforUsers();
   }
 
   deleteUser(user: User) {
     this.listOfUsers.splice(this.listOfUsers.indexOf(user), 1);
-    this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
+    this.recalcIDforUsers();
   }
 
   setListOfUsers(users: User[]) {
     this.listOfUsers = users;
-    let count = 0;
-    this.listOfUsers.forEach((user: User) => {
-      user.id = count;
-      count++;
-    });
-    this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
+    this.recalcIDforUsers();
   }
 
   getUser(index: number) {
@@ -68,5 +63,14 @@ export class UsersService {
 
   hasDefinedList(): boolean {
     return !!this.listOfUsers;
+  }
+
+  private recalcIDforUsers() {
+    let count = 0;
+    this.listOfUsers.forEach((user: User) => {
+      user.id = count;
+      count++;
+    });
+    this.subjectToNotifyUsersListChanges.next(this.listOfUsers.slice());
   }
 }
