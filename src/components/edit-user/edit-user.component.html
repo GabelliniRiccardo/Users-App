@@ -178,14 +178,14 @@
     <div class="row my-4">
       <div class="col-6 text-right">
         <app-confirmation-modal [urlToNavigateAfterConfirmation]="'home'"></app-confirmation-modal>
-        <button class="btn btn-primary u-font-bold"
+        <button class="btn u-btn u-font-bold"
                 [disabled]="!f.valid || newPassword2.value!==newPassword1.value || currentPassword.value!==user.password"
                 type="submit">
           Confirm
         </button>
       </div>
       <div class="col-6 text-left">
-        <button class="btn btn-danger u-font-bold" (click)="onCancel()">Cancel</button>
+        <button class="btn u-btn u-btn-exit u-font-bold" (click)="onCancel()">Cancel</button>
       </div>
     </div>
   </form>

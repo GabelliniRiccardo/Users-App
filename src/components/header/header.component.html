@@ -1,4 +1,4 @@
-<div class="row py-1 pt-md-3 px-md-2 u-sticky-top u-rounded-border-bottom mb-2 header-height header-height-md" appShadowOnScroll
+<div class="row py-1 pt-md-3 px-md-2 u-sticky-top u-rounded-border-bottom mb-2 header-height header-height-md bg-white blur-background" appShadowOnScroll
      [useWindowScroll]="true"
      [shadowClass]="'shadowBottomDarkBlue'">
   <div class="col">
@@ -6,16 +6,16 @@
   </div>
 
   <div *ngIf="!showLinks" class="col-4 text-right px-2">
-    <button class="btn btn-danger px-1 py-0 py-md-1 mt-1 px-md-2 u-font-bold" (click)="exit()">Exit</button>
+    <button class="btn u-btn u-btn-exit no-box-shadow-down-sm py-1 u-font-bold" (click)="exit()">Exit</button>
   </div>
 
   <div *ngIf="showLinks" class="col-8 text-right px-2">
     <a routerLink="/login">
-      <button class="u-btn-lighter m-1 m-md-2 p-1 p-md-2">Login</button>
+      <button class="btn u-btn no-box-shadow-down-sm mx-1 py-1">Login</button>
     </a>
 
     <a routerLink="/registration">
-      <button class="u-btn-lighter m-1 m-md-2 p-1 p-md-2">Sign Up</button>
+      <button class="btn u-btn no-box-shadow-down-sm mx-1 py-1">Sign Up</button>
     </a>
   </div>
 </div>

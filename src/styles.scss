@@ -112,38 +112,49 @@ body {
   }
 }
 
+@include media-breakpoint-up(md) {
+  .blur-background {
+    background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%);
+    background-size: 100% 100vh;
+  }
+}
+
 // BUTTON
 
 .u-btn {
-  background-image: -webkit-linear-gradient(99deg, $backgroundColor2, $backgroundColor1);
+  background-color: $backgroundColor2;
   border: 0;
   border-radius: 8px;
   color: white;
   cursor: pointer;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: bold;
   line-height: 1.8;
   letter-spacing: -0.6px;
   text-transform: capitalize;
   text-align: center;
-  box-shadow: 0 3px 24px 0 #00a6e9;
-
-  &.u-btn-error {
-    box-shadow: 0 3px 24px 0 #e9132f;
-  }
-
-  &:hover {
-    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), -webkit-linear-gradient(99deg, $backgroundColor2, $backgroundColor1);
-  }
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15) !important;
 
   &:active {
-    // NOTE: !important is needed to override the bootstrap behaviour
-    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), -webkit-linear-gradient(99deg, #1020d4, $backgroundColor2) !important;
+    background-color: $backgroundColor1 !important;
   }
 
   &:focus {
     outline: none;
+  }
+
+  &.u-btn-exit {
+    background-color: red !important;
+  }
+
+  &.u-btn-register-user {
+    background-color: rgba(255, 137, 0, 0.87) !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &.no-box-shadow-down-sm {
+      box-shadow: unset !important;
+    }
   }
 }
 
@@ -193,8 +204,6 @@ body {
   position: sticky;
   top: 0px;
   z-index: 1000;
-  background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%);
-  background-size: 100% 100vh;
 }
 
 // General
@@ -230,6 +239,6 @@ body {
 
 // FONT
 
-.u-font-bold{
+.u-font-bold {
   font-weight: bold;
 }
