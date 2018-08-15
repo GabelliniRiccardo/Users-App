@@ -48,6 +48,7 @@ export class EditUserComponent implements OnInit {
         (params: Params) => {
           const id: number = +params['id'];
           this.user = this.usersService.getUser(id);
+          this.userBeforeEdit = this.user;
         }
       );
   }

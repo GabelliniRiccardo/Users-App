@@ -2,10 +2,10 @@
 
 <div *ngIf="!editMode"
      class="text-center">
-  <button type="button" class="btn btn-success" (click)="onRegisterUser()">Register new User</button>
+  <button type="button" class="btn u-btn u-btn-register-user u-font-bold" (click)="onRegisterUser()">Register new User</button>
 </div>
 
-<add-user-form *ngIf="editMode" (addedUser)="addUserToList($event)"></add-user-form>
+<add-user-form *ngIf="editMode" (addedUser)="addUserToList($event)" (cancelEvent)="editMode=!editMode"></add-user-form>
 
 <div class="row my-2 " *ngIf="errorHasOccourred">
   <div class="col-12">
@@ -21,7 +21,7 @@
 
 <div *ngIf="!errorHasOccourred && isMobile" class="u-card lighter-background mx-0 my-3 px-0 text-center text-nowrap">
   <app-confirmation-modal></app-confirmation-modal>
-  <button class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
+  <button class="btn u-btn u-font-bold" (click)="onConfirm()">Confirm Users</button>
 </div>
 
 <!-- BUTTONS AND SEARCH LAYER -->
@@ -30,7 +30,7 @@
   <!-- ORDER BY -->
   <div class="col text-left" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropright" placement="right">
-      <button class="btn btn-outline-primary" ngbDropdownToggle>Order By {{orderByParameter}}</button>
+      <button class="btn u-btn" ngbDropdownToggle>Order By {{orderByParameter}}</button>
       <div ngbDropdownMenu class="ml-2 u-menu p-0">
         <li class="dropdown-item-text u-menu-option" (click)="orderByParameter='id'; orderListAccordingToParameter()">
           Order by id
@@ -55,7 +55,7 @@
   <!-- SEARCH BY ON MOBILE -->
   <div class="col text-right" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
-      <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
+      <button class="btn u-btn" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='name'">Search by name</li>
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='surname'">Search by surname</li>
@@ -88,7 +88,7 @@
   <!-- SEARCH BY ON MOBILE -->
   <div class="col text-center" *ngIf="!isMobile">
     <app-confirmation-modal></app-confirmation-modal>
-    <button class="btn btn-primary" (click)="onConfirm()">Confirm Users</button>
+    <button class="btn u-btn u-font-bold" (click)="onConfirm()">Confirm Users</button>
   </div>
   <!-- END OF SEARCH BY ON MOBILE -->
 </div>
@@ -109,7 +109,7 @@
   <!-- END OF CONTAINER TITLES -->
 
   <!-- CONTAINER -->
-  <div class="table-responsive u-card lighter-background no-border-top mb-2"
+  <div class="table-responsive u-card lighter-background no-border-top-md mb-2"
        [class.p-1]="isMobile"
        #scrollingContainer
        appShadowOnScroll [shadowClass]="'shadowOnTop'"

@@ -1,3 +1,13 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
 .max-width-of-form {
   max-width: 600px;
+}
+
+@include media-breakpoint-down(sm) {
+  .text-sm-small {
+    font-size: 20px;
+  }
 }

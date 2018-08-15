@@ -12,5 +12,8 @@
 
 <div class="text-center my-2">
   <span class="d-inline pr-3"> Filter by: {{selectedFilter}}</span>
-  <i class="fas fa-list-ul" (click)="openVerticallyCentered()"></i>
+  <svg-icon src="{{'/assets/svg/list.svg'}}"
+            class="u-pointer"
+            (click)="openVerticallyCentered()">
+  </svg-icon>
 </div>

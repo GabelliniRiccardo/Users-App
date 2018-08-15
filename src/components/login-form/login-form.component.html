@@ -5,9 +5,9 @@
         class="max-width-of-form mx-auto">
 
     <div class="container u-card">
-      <div class="row mt-4 mb-3">
-        <div class="col text-center u-title">
-          Login Form
+      <div class="row my-0 my-md-3">
+        <div class="col text-center u-title u-audio-wide-Regular-font">
+          Login
         </div>
       </div>
 
@@ -59,7 +59,7 @@
 
             <div class="pr-4 my-auto">
               <svg-icon src="{{isPasswordShownLikePlanText ? '/assets/svg/eye.svg' : '/assets/svg/eye-off.svg'}}"
-                        style="cursor: pointer"
+                        class="u-pointer"
                         (click)="isPasswordShownLikePlanText = !isPasswordShownLikePlanText; passwordInputField.focus()">
               </svg-icon>
             </div>
@@ -78,7 +78,7 @@
               The length of the password must be at least of 4 characters
             </div>
           </div>
-          <div class="checkbox my-4 text-truncate">
+          <div class="checkbox my-4 text-truncate u-font-bold u-font-gray u-font-small">
             <label><input #checkbox type="checkbox" name="remember">
               Remember mail address</label>
           </div>
@@ -88,7 +88,6 @@
       <div class="row">
         <div class="col text-center">
           <button #button type="submit"
-                  [class.u-btn-error]="(passwordOfTheUser.errors || emailOfUser.errors) && loginForm.submitted"
                   class="btn u-btn"
                   (click)="passwordOfTheUser.reset(password); emailOfUser.reset(email); userHasClickedButtonOfLogin();">
             Submit

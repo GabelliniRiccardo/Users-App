@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataStorageService} from '../../services/data-storage.service';
 import {Router} from '@angular/router';
 
@@ -7,15 +7,24 @@ import {Router} from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   /**
    * @var {boolean} True if user stays on registration page or login page. true on login page.
    */
   @Input() showLinks: boolean = false;
 
+  /**
+   * @var {string} The last selected button.
+   */
+  selectedButton: string;
+
   constructor(private dataStorageService: DataStorageService,
               private router: Router) {
+  }
+
+  ngOnInit() {
+    this.selectedButton = this.router.url;
   }
 
   exit() {
