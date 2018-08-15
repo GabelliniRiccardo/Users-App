@@ -30,7 +30,7 @@
   <!-- ORDER BY -->
   <div class="col text-left" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropright" placement="right">
-      <button class="btn btn-outline-primary" ngbDropdownToggle>Order By {{orderByParameter}}</button>
+      <button class="btn u-btn" ngbDropdownToggle>Order By {{orderByParameter}}</button>
       <div ngbDropdownMenu class="ml-2 u-menu p-0">
         <li class="dropdown-item-text u-menu-option" (click)="orderByParameter='id'; orderListAccordingToParameter()">
           Order by id
@@ -55,7 +55,7 @@
   <!-- SEARCH BY ON MOBILE -->
   <div class="col text-right" *ngIf="!isMobile">
     <div ngbDropdown class="d-inline-block dropleft" placement="left">
-      <button class="btn btn-outline-primary" ngbDropdownToggle>Search By {{searchByParameter}}</button>
+      <button class="btn u-btn" ngbDropdownToggle>Search By {{searchByParameter}}</button>
       <div ngbDropdownMenu class="mr-2 u-menu p-0">
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='name'">Search by name</li>
         <li class="dropdown-item-text u-menu-option" (click)="searchByParameter='surname'">Search by surname</li>
