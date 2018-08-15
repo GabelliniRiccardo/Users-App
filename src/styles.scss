@@ -3,6 +3,11 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 
+@font-face {
+  font-family: 'AudioWide-Regular';
+  src: url('assets/fonts/Audiowide-Regular.ttf');
+}
+
 // FORM
 
 .u-form {
@@ -128,12 +133,19 @@ body {
   color: white;
   cursor: pointer;
   font-size: 16px;
+  @include media-breakpoint-down(sm) {
+    font-size: 14px !important;
+  }
   font-weight: bold;
   line-height: 1.8;
   letter-spacing: -0.6px;
   text-transform: capitalize;
   text-align: center;
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15) !important;
+
+  &.is-active {
+    background-color: $backgroundColor1 !important;
+  }
 
   &:active {
     background-color: $backgroundColor1 !important;
@@ -164,9 +176,8 @@ body {
   color: #444;
   margin: 0;
   padding: 0px 0px 6px 0px;
-  font-size: 40px;
+  font-size: 35px;
   line-height: 44px;
-  letter-spacing: -2px;
   font-weight: bold;
 
   background: -webkit-linear-gradient($backgroundColor2, #1f50ff);
@@ -241,4 +252,8 @@ body {
 
 .u-font-bold {
   font-weight: bold;
+}
+
+.u-audio-wide-Regular-font {
+  font-family: AudioWide-Regular;
 }

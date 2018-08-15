@@ -1,21 +1,24 @@
-<div class="row py-1 pt-md-3 px-md-2 u-sticky-top u-rounded-border-bottom mb-2 header-height header-height-md bg-white blur-background" appShadowOnScroll
-     [useWindowScroll]="true"
-     [shadowClass]="'shadowBottomDarkBlue'">
+<div
+  class="row py-1 pt-md-3 px-md-2 u-sticky-top u-rounded-border-bottom mb-2 header-height header-height-md bg-white blur-background"
+  appShadowOnScroll
+  [useWindowScroll]="true"
+  [shadowClass]="'shadowBottomDarkBlue'">
   <div class="col">
-    <span class="u-title p-0">RG</span>
+    <span class="u-title p-0 u-audio-wide-Regular-font">RG</span>
   </div>
 
   <div *ngIf="!showLinks" class="col-4 text-right px-2">
-    <button class="btn u-btn u-btn-exit no-box-shadow-down-sm py-1 u-font-bold" (click)="exit()">Exit</button>
+    <button class="btn u-btn u-btn-exit no-box-shadow-down-sm py-1 u-font-bold mt-1 mt-md-0" (click)="exit()">Exit</button>
   </div>
 
-  <div *ngIf="showLinks" class="col-8 text-right px-2">
-    <a routerLink="/login">
-      <button class="btn u-btn no-box-shadow-down-sm mx-1 py-1">Login</button>
-    </a>
-
-    <a routerLink="/registration">
-      <button class="btn u-btn no-box-shadow-down-sm mx-1 py-1">Sign Up</button>
-    </a>
+  <div *ngIf="showLinks" class="col-8 text-right px-2 mt-1 mt-md-0">
+    <button routerLink="/login" (click)="selectedButton='/login'"
+            class="btn u-btn no-box-shadow-down-sm mx-1 py-1 py-md-2"
+            [class.is-active]="selectedButton==='/login'">Login
+    </button>
+    <button routerLink="/registration" (click)="selectedButton='/registration'"
+            class="btn u-btn no-box-shadow-down-sm mx-1 py-1 py-md-2"
+            [class.is-active]="selectedButton==='/registration'">Sign Up
+    </button>
   </div>
 </div>
