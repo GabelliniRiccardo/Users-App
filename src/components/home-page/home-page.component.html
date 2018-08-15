@@ -5,7 +5,7 @@
   <button type="button" class="btn u-btn u-btn-register-user u-font-bold" (click)="onRegisterUser()">Register new User</button>
 </div>
 
-<add-user-form *ngIf="editMode" (addedUser)="addUserToList($event)"></add-user-form>
+<add-user-form *ngIf="editMode" (addedUser)="addUserToList($event)" (cancelEvent)="editMode=!editMode"></add-user-form>
 
 <div class="row my-2 " *ngIf="errorHasOccourred">
   <div class="col-12">
@@ -109,7 +109,7 @@
   <!-- END OF CONTAINER TITLES -->
 
   <!-- CONTAINER -->
-  <div class="table-responsive u-card lighter-background no-border-top mb-2"
+  <div class="table-responsive u-card lighter-background no-border-top-md mb-2"
        [class.p-1]="isMobile"
        #scrollingContainer
        appShadowOnScroll [shadowClass]="'shadowOnTop'"

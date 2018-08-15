@@ -1,5 +1,6 @@
 <form (ngSubmit)="onSubmit(f)"
-      #f="ngForm">
+      #f="ngForm"
+      class="u-card lighter-background">
 
   <div class="row">
     <div class="col-md-4 py-1 py-md-2">
@@ -24,6 +25,7 @@
         name="name"
         ngModel
         required
+        placeholder="Name"
         minlength="3"
         #inputName="ngModel">
 
@@ -54,6 +56,7 @@
         name="surname"
         ngModel
         required
+        placeholder="Surname"
         minlength="3"
         #inputSurname="ngModel">
 
@@ -85,6 +88,7 @@
         name="email"
         ngModel
         required
+        placeholder="Email"
         email
         #inputEmail="ngModel">
 
@@ -117,6 +121,7 @@
         name="phone"
         ngModel
         required
+        placeholder="Phone"
         minlength="10"
         maxlength="10"
         [pattern]="phonePattern"
@@ -149,6 +154,7 @@
         name="password"
         ngModel
         required
+        placeholder="Password"
         [pattern]="passwordPattern"
         #inputPassword="ngModel">
 
@@ -157,13 +163,20 @@
       </div>
     </div>
 
-    <div class="col-md-4 py-1 py-md-2 text-center">
-
-      <br>
-
-      <button [disabled]="!f.valid" class="btn u-btn u-btn-register-user u-font-bold" type="submit">
-        Register User
-      </button>
+    <div class="col-md-4 py-1 py-md-3">
+      <div class="row pt-4">
+        <div class="col-6"
+             [ngClass]="isMobile ? 'text-right' : 'text-center'">
+          <button [disabled]="!f.valid" class="btn u-btn u-btn-register-user u-font-bold"
+                  type="submit">
+            Register User
+          </button>
+        </div>
+        <div class="col-6"
+             [ngClass]="isMobile ? 'text-left' : 'text-center'">
+          <button class="btn u-btn u-btn-exit u-font-bold" (click)="onCancel()">{{isMobile ? 'Cancel' : 'X'}}</button>
+        </div>
+      </div>
     </div>
   </div>
 </form>
