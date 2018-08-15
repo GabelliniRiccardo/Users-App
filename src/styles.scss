@@ -3,11 +3,6 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 
-@font-face {
-  font-family: 'AudioWide-Regular';
-  src: url('assets/fonts/Audiowide-Regular.ttf');
-}
-
 // FORM
 
 .u-form {
@@ -265,7 +260,7 @@ body {
 }
 
 .u-audio-wide-Regular-font {
-  font-family: AudioWide-Regular;
+  font-family: 'Audiowide', cursive;
 }
 
 .u-font-gray {
