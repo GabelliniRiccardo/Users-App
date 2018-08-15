@@ -14,6 +14,9 @@ export class HeaderComponent implements OnInit {
    */
   @Input() showLinks: boolean = false;
 
+  /**
+   * @var {string} The last selected button.
+   */
   selectedButton: string;
 
   constructor(private dataStorageService: DataStorageService,
