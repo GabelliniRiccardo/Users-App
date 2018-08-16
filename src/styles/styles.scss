@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins/breakpoints';
+@import 'button';
+@import 'card';
+@import 'font';
+@import 'form';
+@import 'input';
+@import 'menu';
+@import 'shadow';
+@import 'text';
+
+$backgroundColor1: #377cff;
+$backgroundColor2: #00c1ff;
+$backgroundColor3: white;
+
+body {
+  background-color: $backgroundColor2;
+  @include media-breakpoint-up(md) {
+    background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%) fixed !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .blur-background {
+    background: -webkit-linear-gradient(141deg, $backgroundColor1 0%, $backgroundColor2 51%, $backgroundColor3 75%);
+    background-size: 100% 100vh;
+  }
+}
+
+.u-sticky-top {
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+}
+
+.u-pointer {
+  cursor: pointer;
+}

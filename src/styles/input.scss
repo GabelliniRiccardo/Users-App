@@ -1,0 +1,68 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+.u-input {
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: solid 1px #eaeaea;
+  color: #35214f;
+  font-family: Rubik, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+
+  &.search-input {
+    font-size: 16px;
+    border-radius: 12px;
+    border: solid 1px transparent;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 40px !important;
+
+    @include media-breakpoint-up(lg) {
+      width: 80%;
+    }
+
+    @include media-breakpoint-down(md) {
+      min-width: 200px;
+      width: 100%;
+    }
+  }
+
+  &.form-control {
+    font-size: 16px;
+    height: 60px;
+    padding: 20px;
+  }
+
+  &.u-input-invalid {
+    border-color: #f68c9c !important;
+  }
+
+  &.u-input-warning {
+    border-color: #f6be00 !important;
+  }
+
+  &.u-input-valid {
+    border-color: #00f607 !important;
+  }
+
+  &:focus, &.u-input-focused {
+    box-shadow: none;
+    border-color: #1c56d9;
+
+    &.u-input-invalid {
+      border-color: #f23d58;
+    }
+  }
+
+  &::placeholder {
+    color: #afb6bd;
+  }
+}
+
+.u-input-height-40 {
+  height: 40px !important;
+}
