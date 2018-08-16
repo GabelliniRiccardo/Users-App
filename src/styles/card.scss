@@ -1,0 +1,28 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+.u-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.06);
+
+  &.no-shadow {
+    box-shadow: unset;
+  }
+
+  &.no-border-bottom {
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  @include media-breakpoint-up(md) {
+    &.no-border-top-md {
+      border-radius: 0px 0px 10px 10px;
+    }
+  }
+
+  &.lighter-background {
+    background-color: rgba(255, 255, 255, 0.36);
+  }
+}

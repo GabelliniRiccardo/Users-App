@@ -1,0 +1,50 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+$backgroundColor1: #377cff;
+$backgroundColor2: #00c1ff;
+
+.u-btn {
+  background-color: $backgroundColor2;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  @include media-breakpoint-down(sm) {
+    font-size: 14px !important;
+  }
+  font-weight: bold;
+  line-height: 1.8;
+  letter-spacing: -0.6px;
+  text-transform: capitalize;
+  text-align: center;
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.15) !important;
+
+  &.is-active {
+    background-color: $backgroundColor1 !important;
+  }
+
+  &:active {
+    background-color: $backgroundColor1 !important;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.u-btn-exit {
+    background-color: red !important;
+  }
+
+  &.u-btn-register-user {
+    background-color: rgba(255, 137, 0, 0.87) !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &.no-box-shadow-down-sm {
+      box-shadow: unset !important;
+    }
+  }
+}
