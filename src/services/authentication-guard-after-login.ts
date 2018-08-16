@@ -11,8 +11,6 @@ export class AuthenticationGuardAfterLogin implements CanActivate {
 
   canActivate(): boolean {
 
-    console.log('user is logged in: ', this.dataStorageService.isUserAutenticated(), 'path ', this.router.url);
-
     if (!this.dataStorageService.isUserAutenticated()) {
       this.router.navigate(['login']);
       return false;

@@ -80,7 +80,6 @@ export class HomePageComponent implements OnInit {
     this.userService.getListOfUsers().subscribe(
       (response: User[]) => {
         this.loadingService.unsetLoading();
-        console.log('Users Received: ', response);
         this.userService.setListOfUsers(response);
         this.errorHasOccourred = false;
       },
@@ -93,7 +92,6 @@ export class HomePageComponent implements OnInit {
   }
 
   onDeleteUser(user: User) {
-    console.log('Clicked on', user.name, user.surname);
     this.userService.deleteUser(user);
   }
 
@@ -115,7 +113,6 @@ export class HomePageComponent implements OnInit {
         (response: { response: string }) => {
           this.loadingService.unsetLoading();
           this.loadingService.notifyChanges(JSON.parse(JSON.stringify(response)), true);
-          console.log('Response of Server : ', response);
         },
         (error: any) => {
           this.loadingService.unsetLoading();

@@ -11,8 +11,6 @@ export class AuthenticationGuardBeforeLogin implements CanActivate {
 
   canActivate(): boolean {
 
-    console.log('user is logged In', this.dataStorageService.isUserAutenticated(), 'path ', this.router.url);
-
     if (this.dataStorageService.isUserAutenticated()) {
       this.router.navigate(['home']);
       return false;
